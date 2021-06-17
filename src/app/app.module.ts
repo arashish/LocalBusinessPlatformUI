@@ -9,13 +9,16 @@ import {FormsModule} from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './login/login.component';  
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListComponent,
+    LoginComponent,    
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

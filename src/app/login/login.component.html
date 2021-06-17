@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Local Business Platform</h1>
+<br>
+<h2>Please Login</h2>
+<form name="Login Page" action="login" method='POST'>
+    <table>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="username" [(ngModel)]="username" required>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" [(ngModel)]="password" required>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="login" value="Login" (click)="doLogin()">
+        </tr>
+        <tr>
+            <td></td>
+            <td>Don't have an account!</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="/signup">Create an account</a></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

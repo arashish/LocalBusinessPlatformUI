@@ -13,10 +13,10 @@ export class ListComponent implements OnInit {
   constructor(private _http: ApiService) { }
 
   ngOnInit(): void {
-    this._http.myMethod().subscribe(data => {
-      this.brews = data;
-      console.log(this.brews);
-    });
+    // this._http.myMethod().subscribe(data => {
+    //   this.brews = data;
+    //   console.log(this.brews);
+    // });
   }
 
 }

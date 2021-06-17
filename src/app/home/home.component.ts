@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -7,24 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  clickCounter: number = 0;
-  name: string ='';
+  name: any;
 
-  constructor() { }
+  constructor(private service: ApiService ,private loginComponent:LoginComponent) { }
 
   ngOnInit(): void {
+    let resp = this.service.getInfo();
+    resp.subscribe(data=>{
+      this.name = data;
+    })
   }
 
-  countClick(){
-    this.clickCounter += 1;
+  getUser(){
+    this.name = this.loginComponent.message;
+    console.log(this.name);
   }
 
-  setClasses() {
-    let myClasses = {
-      active: this. clickCounter > 4,
-      notactive: this.clickCounter <= 4
-    }
-    return myClasses;
-  }
+
 
 }
