@@ -1,0 +1,44 @@
+<title>Insert title here</title>
+</head>
+<body>
+<br>
+<h1>Signup Form</h1>
+	<form name="sign Up Page" action="adduser" method='POST'>
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="firstname" (ngModel)]=“firstname” required></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="lastname" (ngModel)]=“lastname” required></td>
+			</tr>
+			
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="username" (ngModel)]=“username” required></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password" (ngModel)]=“password” required></td>
+			</tr>
+			<tr>
+				<td>User Type:</td>
+				<td>
+				  <input type="radio" name="usertype" value="buyer" [(ngModel)]="myRadio" required>
+				  <label for="buyer">Buyer</label><br>
+				  <input type="radio" name="usertype" value="seller" [(ngModel)]="myRadio">
+				  <label for="seller">Seller</label><br>
+				  <input type="radio" name="usertype" value="both" [(ngModel)]="myRadio">
+				  <label for="both">Both</label>
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type ="submit" value="Submit" (click)="onSubmit()" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

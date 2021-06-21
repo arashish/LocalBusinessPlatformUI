@@ -1,6 +1,26 @@
-<h1>Welcome!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
 
-<ul *ngIf="name">
-        {{name.firstname}}
-        {{name.lastname}}
+<div class="container">
+        <a href="#" class="logo">CoolApp</a>
+        <nav>
+            <ul>
+              <li><a href="#" routerLink="/home">Home</a></li>
+              <li><a href="#" routerLink="/profile">Profile</a></li>
+              <li><a href="#" routerLink="/logout">logout</a></li>
+            </ul>
+        </nav>
+</div>
+	
+<ul *ngIf="userData">
+        <h1>Welcome  {{userData.firstname  + ' ' + userData.lastname}} </h1>
 </ul>
+
+</body>
+</html>
+
