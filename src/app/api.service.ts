@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { User } from './models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +16,12 @@ export class ApiService {
     return this.http.get('http://localhost:8080/', {headers, responseType:'json'});
   }
 
-  public getInfo(){
-    let username = "blk_mtl07@yahoo.com";
-    let password = "123456";
-    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ":" + password)})
-    return this.http.get('http://localhost:8080/', {headers, responseType:'json'});
+  public signup(user: User): Observable<User>{
+    return this.http.post<User>('http://localhost:8080/signup', user);
   }
 
-
-  myMethod() {
-    return this.http.get('http://localhost:8080/', {responseType: 'json'})
+  public updateProfile(user: User): Observable<User>{
+    return this.http.post<User>('http://localhost:8080/updateprofile', user);
   }
+
 }

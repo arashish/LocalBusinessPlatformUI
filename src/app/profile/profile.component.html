@@ -9,4 +9,35 @@
     </nav>
 </div>
 
-<p>profile works!</p>
+<form>
+  <table>
+      <tr>
+          <td>Firstname:</td>
+          <td><input type="text" name="firstname" [(ngModel)]="firstname" required></td>
+      </tr>
+      <tr>
+          <td>Lastname:</td>
+          <td><input type="text" name="lastname" [(ngModel)]="lastname" required>
+      </tr>
+
+      <tr>
+          <td>Password:</td>
+          <td><input type="text" name="password" [(ngModel)]="password" required>
+      </tr>
+  <tr>
+    <td>User Type:</td>
+    <td>
+      <input type="radio" name="usertype" value="buyer" [(ngModel)]="usertype" required>
+      <label for="buyer">Buyer</label><br>
+      <input type="radio" name="usertype" value="seller" [(ngModel)]="usertype">
+      <label for="seller">Seller</label><br>
+      <input type="radio" name="usertype" value="both" [(ngModel)]="usertype">
+      <label for="both">Both</label>
+    </td>
+  </tr>
+      <tr>
+          <td></td>
+          <td><input type="submit" name="update" value="Update" (click)="Update()">
+      </tr>
+  </table>
+</form>
