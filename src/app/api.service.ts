@@ -13,15 +13,23 @@ export class ApiService {
 
   public login(username:string, password:string){
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ":" + password)})
-    return this.http.get('http://localhost:8080/', {headers, responseType:'json'});
+    return this.http.get('http://localhost:8080/', {headers, responseType:'text'});
   }
-
+  
+  public home(getToken:string): Observable<User>{
+    let token = 'Bearer ' + getToken;
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.get<User>('http://localhost:8080/home', {headers, responseType: 'text' as 'json'});
+  }
+  
   public signup(user: User): Observable<User>{
     return this.http.post<User>('http://localhost:8080/signup', user);
   }
 
-  public updateProfile(user: User): Observable<User>{
-    return this.http.post<User>('http://localhost:8080/updateprofile', user);
+  public updateProfile(getToken:string, user: User): Observable<User>{
+    let token = 'Bearer ' + getToken;
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.post<User>('http://localhost:8080/updateprofile', user, {headers, responseType: 'text' as 'json'});
   }
 
 }

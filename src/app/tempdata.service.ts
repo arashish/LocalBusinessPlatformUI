@@ -7,10 +7,13 @@ export class TempdataService {
 
 
 
-  constructor() { }
-
   private loginData: any;
+  private token: any;
   private responseStatus: any;
+  
+  constructor() {
+    this.token = "";
+  }
 
   public  getloginData(){
       return this.loginData;
@@ -26,7 +29,14 @@ export class TempdataService {
 
   public setResoponseStatus(responseStatus: any){
     this.responseStatus = responseStatus;
-}
+  }
 
+  public  getToken(){
+    return this.token;
+  }
+
+  public setToken(token: any){
+    this.token = token;
+  }
 
 }

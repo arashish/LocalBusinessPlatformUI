@@ -35,11 +35,12 @@ export class ProfileComponent implements OnInit {
     this.active = this.loginData.active;
     this.registrationdate = this.loginData.registrationdate;
 
+    console.log(this.tempdata.getloginData());
     console.log(this.firstname);
   }
 
   Update(){
-    let resp = this.service.updateProfile(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate));
+    let resp = this.service.updateProfile(this.tempdata.getToken(), new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate));
     resp.subscribe(data=>{
       this.tempdata.setResoponseStatus(data);
       //alert(data);
