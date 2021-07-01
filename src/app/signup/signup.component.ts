@@ -3,6 +3,8 @@ import { User } from '../models/user';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { TempdataService } from '../tempdata.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +22,7 @@ export class SignupComponent implements OnInit {
   active: string ="";
   registrationdate: string ="";
 
-  constructor(private service:ApiService, private router: Router, private tempData: TempdataService) { }
+  constructor(private service:ApiService, private router: Router, private tempData: TempdataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +31,8 @@ export class SignupComponent implements OnInit {
     let resp = this.service.signup(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate));
     resp.subscribe(data=>{
       this.tempData.setResoponseStatus(data);
-      alert(data);
+      this.tempData.setMessage("The accound has been successfully created!");
+      this.dialog.open(MessageComponent);
       this.router.navigate(["/login"])
     })
   }

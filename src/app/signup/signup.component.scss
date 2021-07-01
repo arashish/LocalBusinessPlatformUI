@@ -1,0 +1,22 @@
+.login-main{
+    margin-top: 10%;
+    }
+    mat-card{
+    min-width: 40%;
+    }
+
+    .mat-button, .mat-raised-button{
+    background-color:#4CAF50;
+    } 
+
+    .errorColor{
+    background-color: red;
+    }
+
+    div.a {
+    font-size: 12px;
+    }
+
+    .mat-radio-button ~ .mat-radio-button {
+        margin-left: 15px;
+      }

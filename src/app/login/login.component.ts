@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { HomeComponent } from '../home/home.component';
 import { TempdataService } from '../tempdata.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-login',
@@ -14,16 +17,33 @@ export class LoginComponent implements OnInit {
   username:string="";
   password:string="";
 
-  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router) { }
+  errorResponse: boolean=false;
+  errorMessage: string="";
+
+  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog(){
+    this.dialog.open(SignupComponent);
   }
 
   doLogin(){
     let resp = this.service.login(this.username,this.password);
     resp.subscribe(data=>{
       this.tempdata.setToken(data);
-      this.router.navigate(["/home"])
+      this.router.navigate(["/home"]);
+      }, err => {
+      if (err instanceof HttpErrorResponse) {
+        //const errorMessages = new Array<{ propName: string; errors: string }>();
+        if (err.status === 401) {
+          this.errorMessage = ("Error: Invalid username or password!");
+          this.errorResponse = true;
+          // TODO: extract errors here and match onto the form
+        }
+      }
+
     })
   }
 

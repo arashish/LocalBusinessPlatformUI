@@ -6,33 +6,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Local Business Platform</h1>
+<h1 align="center" [ngStyle]="{'color':'green'}">Local Business Platform</h1>
 <br>
-<h2>Please Login</h2>
-<form name="Login Page" action="login" method='POST'>
-    <table>
-        <tr>
-            <td>Email:</td>
-            <td><input type="text" name="username" [(ngModel)]="username" required>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" name="password" [(ngModel)]="password" required>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" name="login" value="Login" (click)="doLogin()">
-        </tr>
-        <tr>
-            <td></td>
-            <td>Don't have an account!</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><a href="#" routerLink="/signup">Create an account</a></td>
-        </tr>
-    </table>
-</form>
+    <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+        <mat-card>
+        <mat-card-header>
+            <mat-card-title>Please Login</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content fxLayout="column">
+            <mat-form-field>
+            <input matInput placeholder="Email" name="username" [(ngModel)]="username" required>
+            </mat-form-field>
+
+            <mat-form-field>
+            <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" required>
+            </mat-form-field>
+
+            <div *ngIf="errorResponse" [ngStyle]="{'color':'red'}">Invalid username or password!</div>
+        </mat-card-content>
+
+        <mat-card-actions align="start">
+            <button mat-raised-button color="accent" value="Login" (click)="doLogin()">Login</button>
+        </mat-card-actions>
+        
+        <!-- <div class="a">Don't have an account!
+        <a href="#" routerLink="/signup">Create an account</a>
+        </div>
+        <button mat-raised-button color="accent" value="Login" (click)="openDialog()">Open Dialog</button> -->
+
+        <div class="a">Don't have an account!
+            <a class="link" (click)="openDialog()">Create an account</a>
+        </div>
+
+        </mat-card> 
+    </div>
 
 </body>
 </html>

@@ -10,6 +10,7 @@ export class TempdataService {
   private loginData: any;
   private token: any;
   private responseStatus: any;
+  private message: string="";
   
   constructor() {
     this.token = "";
@@ -38,5 +39,14 @@ export class TempdataService {
   public setToken(token: any){
     this.token = token;
   }
+
+  public  getMessage(){
+    return this.message;
+  }
+
+  public setMessage(message: any){
+    this.message = message;
+  }
+
 
 }
