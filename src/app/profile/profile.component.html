@@ -9,35 +9,58 @@
     </nav>
 </div>
 
-<form>
-  <table>
-      <tr>
-          <td>Firstname:</td>
-          <td><input type="text" name="firstname" [(ngModel)]="firstname" required></td>
-      </tr>
-      <tr>
-          <td>Lastname:</td>
-          <td><input type="text" name="lastname" [(ngModel)]="lastname" required>
-      </tr>
+<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+  <mat-card>
+      <mat-card-header>
+          <mat-card-title>Please update the information below:</mat-card-title>
+      </mat-card-header>
 
-      <tr>
-          <td>Password:</td>
-          <td><input type="text" name="password" [(ngModel)]="password" required>
-      </tr>
-  <tr>
-    <td>User Type:</td>
-    <td>
-      <input type="radio" name="usertype" value="buyer" [(ngModel)]="usertype" required>
-      <label for="buyer">Buyer</label><br>
-      <input type="radio" name="usertype" value="seller" [(ngModel)]="usertype">
-      <label for="seller">Seller</label><br>
-      <input type="radio" name="usertype" value="both" [(ngModel)]="usertype">
-      <label for="both">Both</label>
-    </td>
-  </tr>
-      <tr>
-          <td></td>
-          <td><input type="submit" name="update" value="Update" (click)="Update()">
-      </tr>
-  </table>
-</form>
+      <mat-card-content fxLayout="column">
+          <mat-form-field>
+          <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" required>
+          </mat-form-field>
+          
+          <mat-form-field>
+          <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" required>
+          </mat-form-field>
+      
+          <mat-form-field>
+          <input matInput placeholder="password" name="password" [(ngModel)]="password" required>
+          </mat-form-field>
+    
+          <mat-form-field>
+          <input matInput placeholder="Email" name="username" [(ngModel)]="username" readonly>
+          </mat-form-field>
+         
+          <br>
+          <fieldset>
+            <legend>
+                <label>User Type</label>
+            </legend>
+
+            <mat-radio-group [(ngModel)]="usertype">
+                <mat-radio-button value="buyer">Buyer</mat-radio-button>
+                <mat-radio-button value="seller">Seller</mat-radio-button>
+                <mat-radio-button value="both">Both</mat-radio-button>
+            </mat-radio-group>
+          </fieldset>
+    
+          <br>
+          <mat-form-field>
+          <input matInput placeholder="Registration Date" name="registrationdate" [(ngModel)]="registrationdate" readonly>
+          </mat-form-field>
+    
+          <fieldset>
+          <legend>
+              <label>Active</label>
+          </legend>
+          <mat-slide-toggle [(ngModel)]="active"></mat-slide-toggle> 
+          </fieldset>
+          </mat-card-content>
+
+      <mat-card-actions align="start">
+          <button mat-raised-button value="Update" (click)="Update()">Update</button>
+          <button mat-raised-button value="Close" (click)="HomePage()">Close</button>
+      </mat-card-actions>
+  </mat-card> 
+</div>

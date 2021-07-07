@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { User } from '../models/user';
 import { TempdataService } from '../tempdata.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   loginData: any;
 
-  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router) { }
+  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loginData = this.tempdata.getloginData();
@@ -42,10 +44,16 @@ export class ProfileComponent implements OnInit {
   Update(){
     let resp = this.service.updateProfile(this.tempdata.getToken(), new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate));
     resp.subscribe(data=>{
-      this.tempdata.setResoponseStatus(data);
+      this.tempdata.setMessage("The accound has been successfully updated!");
+      this.dialog.open(MessageComponent);
+      this.router.navigate(["/home"])
       //alert(data);
       //this.router.navigate(["/login"])
     })
+  }
+
+  HomePage(){
+    this.router.navigate(["/home"])
   }
 
 

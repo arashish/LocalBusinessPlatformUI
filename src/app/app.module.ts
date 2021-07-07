@@ -20,9 +20,11 @@ import { MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MessageComponent } from './message/message.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -49,7 +51,9 @@ import { MessageComponent } from './message/message.component';
     MatButtonModule,
     FlexLayoutModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule
   ],
   providers: [ApiService, LoginComponent],
   bootstrap: [AppComponent]

@@ -13,33 +13,44 @@
 
         <mat-card-content fxLayout="column">
             <mat-form-field>
-            <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" required>
+            <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" [formControl]="firstnameFormControl">
+            <mat-error *ngIf="firstnameFormControl.hasError">
+                Firstname should only contain alphabets!
+            </mat-error>
             </mat-form-field>
             
             <mat-form-field>
-            <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" required>
+            <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" [formControl]="lastnameFormControl">
+            <mat-error *ngIf="lastnameFormControl.hasError">
+                Lastname should only contain alphabets!
+            </mat-error>    
             </mat-form-field>
         
             <mat-form-field>
-            <input matInput placeholder="Email" name="username" [(ngModel)]="username" required>
+            <input matInput placeholder="Email" name="username" [(ngModel)]="username" [formControl]="emailFormControl">
+            <mat-error *ngIf="emailFormControl.hasError">
+                Invalid email!
+            </mat-error> 
             </mat-form-field>
 
             <mat-form-field>
-            <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" required>
+            <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" [formControl]="passwordFormControl">
+            <mat-error *ngIf="passwordFormControl.hasError">
+                Invalid password! The password length should be atleast 8 characters long!
+            </mat-error> 
             </mat-form-field>
             
             <label> User Type: </label>
             <mat-radio-group [(ngModel)]="usertype">
                 <mat-radio-button value="buyer">Buyer</mat-radio-button>
-                <mat-radio-button value="seller">Seller</mat-radio-button>
-                <mat-radio-button value="both">Both</mat-radio-button>
+                <mat-radio-button value="seller" [checked]="true">Seller</mat-radio-button>
             </mat-radio-group>
             
         </mat-card-content>
 
-        <mat-card-actions align="start">
-            <button mat-raised-button value="Submit" (click)="SignUp()" [mat-dialog-close]="true">Submit</button>
-            <button mat-raised-button value="Close" [mat-dialog-close]="true">Close</button>
+        <mat-card-actions align="start" aria-label="Select an option">
+            <button mat-raised-button value="Submit" (click)="SignUp()">Submit</button>
+            <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
         </mat-card-actions>
     </mat-card> 
 </div>
