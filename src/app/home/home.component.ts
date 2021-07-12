@@ -36,23 +36,26 @@ export class HomeComponent implements OnInit {
         this.userData = data;
         this.userData = JSON.parse(this.userData);
         this.tempdata.setLoginData(this.userData);
-        this.id = this.userData.id;
-        this.firstname = this.userData.firstname;
-        this.lastname = this.userData.lastname;
-        this.username = this.userData.username;
-        this.password = this.userData.password;
-        this.usertype = this.userData.usertype;
-        this.active = this.userData.active;
-        this.registrationdate = this.userData.registrationdate;
+        // this.id = this.userData.id;
+        // this.firstname = this.userData.firstname;
+        // this.lastname = this.userData.lastname;
+        // this.username = this.userData.username;
+        // this.password = this.userData.password;
+        // this.usertype = this.userData.usertype;
+        // this.active = this.userData.active;
+        // this.registrationdate = this.userData.registrationdate;
 
         console.log(this.firstname);
 
       })
   }
 
-  getUser(){
+
+  createStore(){
 
   }
+
+
 
 
 

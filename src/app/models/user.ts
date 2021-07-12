@@ -7,8 +7,10 @@ export class User {
     private usertype: string ="";
     private active: string ="";
     private registrationdate: string ="";
+    private phone: string ="";
+    
 
-    constructor (id: string, firstname: string, lastname: string, username: string, password: string, usertype: string, active: string, registrationdate: string ){
+    constructor (id: string, firstname: string, lastname: string, username: string, password: string, usertype: string, active: string, registrationdate: string, phone: string ){
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -17,6 +19,7 @@ export class User {
         this.usertype = usertype;
         this.active = active;
         this.registrationdate = registrationdate;
+        this.phone = phone;
     }
 
 }

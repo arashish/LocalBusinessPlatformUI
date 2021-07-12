@@ -32,4 +32,8 @@ export class ApiService {
     return this.http.post<User>('http://localhost:8080/updateprofile', user, {headers, responseType: 'text' as 'json'});
   }
 
+  public logout(){
+    return this.http.get('http://localhost:8080/logout');
+  }
+
 }

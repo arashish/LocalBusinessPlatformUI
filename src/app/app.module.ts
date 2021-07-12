@@ -25,6 +25,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MessageComponent } from './message/message.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -35,7 +36,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     ProfileComponent,
     SignupComponent,
-    MessageComponent
+    MessageComponent,
+    LogoutComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

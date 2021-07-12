@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   usertype: string ="";
   active: string ="";
   registrationdate: string ="";
+  phone: string="";
 
   loginData: any;
 
@@ -36,13 +37,14 @@ export class ProfileComponent implements OnInit {
     this.usertype = this.loginData.usertype;
     this.active = this.loginData.active;
     this.registrationdate = this.loginData.registrationdate;
+    this.phone = this.loginData.phone;
 
     console.log(this.tempdata.getloginData());
     console.log(this.firstname);
   }
 
   Update(){
-    let resp = this.service.updateProfile(this.tempdata.getToken(), new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate));
+    let resp = this.service.updateProfile(this.tempdata.getToken(), new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone));
     resp.subscribe(data=>{
       this.tempdata.setMessage("The accound has been successfully updated!");
       this.dialog.open(MessageComponent);

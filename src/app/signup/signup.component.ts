@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
   usertype: string ="";
   active: string ="";
   registrationdate: string ="";
+  phone: string="";
 
   readytoclose: boolean = false;
 
@@ -41,7 +42,7 @@ export class SignupComponent implements OnInit {
         this.tempData.setMessage("Please fill out all the information and resubmit again!");
         this.dialog.open(MessageComponent);
     } else {
-      let resp = this.service.signup(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate));
+      let resp = this.service.signup(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone));
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);
         this.tempData.setMessage("The accound has been successfully created!");

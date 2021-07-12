@@ -1,10 +1,9 @@
-<div class="container">
-    <a href="#" class="logo">CoolApp</a>
+<div>
     <nav>
         <ul>
-          <li><a href="#" routerLink="/home">Home</a></li>
-          <li><a href="#" routerLink="/profile">Profile</a></li>
           <li><a href="#" routerLink="/logout">logout</a></li>
+          <li><a href="#" class="active" routerLink="/profile">Profile</a></li>
+          <li><a href="#" routerLink="/home">Home</a></li>
         </ul>
     </nav>
 </div>
@@ -56,6 +55,33 @@
           </legend>
           <mat-slide-toggle [(ngModel)]="active"></mat-slide-toggle> 
           </fieldset>
+          
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone">
+          </mat-form-field>
+
+          <!-- <mat-form-field>
+            <input matInput placeholder="Address" name="address" [(ngModel)]="address">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="City" name="city" [(ngModel)]="city">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="State" name="state" [(ngModel)]="state">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Country" name="country" [(ngModel)]="country">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Zip" name="zip" [(ngModel)]="zip">
+          </mat-form-field> -->
+
+
           </mat-card-content>
 
       <mat-card-actions align="start">
