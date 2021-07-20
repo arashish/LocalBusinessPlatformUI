@@ -2,7 +2,7 @@
     text-align: center;
     margin: auto;
     margin-top: 10%;
-    width: 50%;
+    width: 100%;
     padding: 10px;
     position: relative;
     font-size: large;
@@ -17,3 +17,16 @@
 .mat-button, .mat-raised-button{
     background-color:#4CAF50;
 } 
+
+table {
+    width: 100%;
+}
+
+
+.mat-row .mat-cell {
+    cursor: pointer;
+    }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }

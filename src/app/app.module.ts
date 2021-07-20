@@ -20,12 +20,17 @@ import { MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
+
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MessageComponent } from './message/message.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
+import { CreateStoreComponent } from './create-store/create-store.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 
 
@@ -37,7 +42,9 @@ import { LogoutComponent } from './logout/logout.component';
     ProfileComponent,
     SignupComponent,
     MessageComponent,
-    LogoutComponent
+    LogoutComponent,
+    CreateStoreComponent,
+    AddItemComponent
   ],
   entryComponents:[SignupComponent],
   imports: [
@@ -55,7 +62,8 @@ import { LogoutComponent } from './logout/logout.component';
     MatDialogModule,
     MatRadioModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [ApiService, LoginComponent],
   bootstrap: [AppComponent]

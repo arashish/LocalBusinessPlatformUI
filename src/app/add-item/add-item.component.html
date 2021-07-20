@@ -1,0 +1,66 @@
+
+<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Please fillout the information below:</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content fxLayout="column">
+            <mat-form-field>
+            <input matInput placeholder="Item Name" name="item_name" [(ngModel)]="item_name" [formControl]="item_nameFormControl">
+            <mat-error *ngIf="item_nameFormControl.hasError">
+                Store name should only contain alphabets!
+            </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <input matInput placeholder="Item Description" name="description" [(ngModel)]="description" [formControl]="descriptionFormControl">
+                <mat-error *ngIf="descriptionFormControl.hasError">
+                    Store name should only contain alphabets!
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input matInput placeholder="Category" name="category" [(ngModel)]="category" [formControl]="categoryFormControl">
+                <mat-error *ngIf="categoryFormControl.hasError">
+                    Store name should only contain alphabets!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Available Qty" name="inventoryqty" [(ngModel)]="inventoryqty" [formControl]="inventoryqtyFormControl">
+                <mat-error *ngIf="inventoryqtyFormControl.hasError">
+                    Qty should only contain numbers!
+                </mat-error>    
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Price" name="price" [(ngModel)]="price" [formControl]="priceFormControl">
+                <mat-error *ngIf="priceFormControl.hasError">
+                    Price should be in decimal numbers!
+                </mat-error>    
+            </mat-form-field>
+
+            <div *ngIf="url">
+                <img [src]="url" width="100" height="100" alt="">
+            </div>
+
+            <label for="file">Choose File</label>
+            <input type="file" id="file" (change)="handleFileInput($any($event))">
+            
+            <!-- <picture>
+                <source media='(min-width:0px)' srcset="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                <img mat-card-image src="" alt="Photo of a Shiba Inu">
+            </picture> -->
+
+
+
+            
+        </mat-card-content>
+
+        <mat-card-actions align="start">
+            <button mat-raised-button value="Submit" (click)="AddItem()">Submit</button>
+            <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
+        </mat-card-actions>
+    </mat-card> 
+</div>

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { TempdataService } from '../tempdata.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageComponent } from '../message/message.component';
 import { FormControl, Validators } from '@angular/forms';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-signup',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { User } from '../models/user';
 import { TempdataService } from '../tempdata.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageComponent } from '../message/message.component';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-profile',
@@ -44,13 +44,11 @@ export class ProfileComponent implements OnInit {
   }
 
   Update(){
-    let resp = this.service.updateProfile(this.tempdata.getToken(), new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone));
+    let resp = this.service.updateProfile(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone));
     resp.subscribe(data=>{
       this.tempdata.setMessage("The accound has been successfully updated!");
       this.dialog.open(MessageComponent);
       this.router.navigate(["/home"])
-      //alert(data);
-      //this.router.navigate(["/login"])
     })
   }
 
