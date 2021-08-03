@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Event, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { MessageComponent } from '../message/message.component';
-import { Item } from '../models/Item';
+import { ItemWrapper } from '../models/ItemWrapper';
 import { TempdataService } from '../tempdata.service';
 
 @Component({
@@ -21,6 +21,8 @@ export class AddItemComponent implements OnInit {
 	category: string="";
 	inventoryqty: string="";
 	price: string="";
+  item_image: any="";
+  store_id: string="";
 
   user_id: string="";
 
@@ -36,24 +38,6 @@ export class AddItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  AddItem(){
-    if (!this.item_name || !this.description || !this.category || !this.inventoryqty || !this.price) {
-        this.tempData.setMessage("Please fill out all the information and resubmit again!");
-        this.dialog.open(MessageComponent);
-    } else {
-      this.user_id = this.tempData.getloginData().id; //Id of the user will be used to create a store
-      console.log(this.user_id);  
-      let resp = this.service.addItem(new Item(this.item_id, this.item_name, this.description, this.category, this.inventoryqty, this.price));
-      resp.subscribe(data=>{
-        this.tempData.setResoponseStatus(data);
-        this.tempData.setMessage("The store has been successfully created!");
-        this.dialogRef.closeAll();
-        this.dialog.open(MessageComponent);
-        this.router.navigate(["/home"])
-      })
-    }
-  }
-
   fileToUpload: any | null = null;
 
   // handleFileInput(files: FileList) {
@@ -66,6 +50,7 @@ export class AddItemComponent implements OnInit {
   //url; //Angular 8
 	url: any; //Angular 11, for stricter type
 	msg = "";
+  selectedFile!: File;
 	
 	//selectFile(event) { //Angular 8
 	handleFileInput(event: any) { //Angular 11, for stricter type
@@ -75,14 +60,37 @@ export class AddItemComponent implements OnInit {
 		}
 		
 		var reader = new FileReader();
-
 		reader.readAsDataURL(event.target.files[0]);
-		
-		reader.onload = (_event) => {
-			this.msg = "";
-			this.url = reader.result; 
-		}
+		reader.onload = (_event) => {this.msg = "";this.url = reader.result;}
+    this.selectedFile = event.target.files[0];
 	}
+
+  AddItem(){
+    if (!this.item_name || !this.description || !this.category || !this.inventoryqty || !this.price) {
+        this.tempData.setMessage("Please fill out all the information and resubmit again!");
+        this.dialog.open(MessageComponent);
+    } else {
+      this.store_id = this.tempData.getStoreData().store_id; //Id of the store will be used to create an item
+      const uploadItemData = new FormData();
+      //Image file and Item data are sent together
+      uploadItemData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      const itemWrapper = new ItemWrapper(this.item_id, this.item_name, this.description, this.category, this.inventoryqty, this.price, this.store_id);
+      uploadItemData.append('itemWrapper', new Blob([JSON.stringify(itemWrapper)],
+        {
+            type: "application/json"
+        }));
+      
+      this.item_image = uploadItemData;
+      let resp = this.service.addItem(uploadItemData);
+      resp.subscribe(data=>{
+        this.tempData.setResoponseStatus(data);
+        this.tempData.setMessage("The item has been successfully created!");
+        this.dialogRef.closeAll();
+        this.dialog.open(MessageComponent);
+        this.router.navigate(["/home"])
+      })
+    }
+  }
 
 
 

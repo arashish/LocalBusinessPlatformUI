@@ -5,7 +5,7 @@ import { Store } from './models/store';
 import { TempdataService } from './tempdata.service';
 import { User } from './models/User';
 import { UserData } from './models/UserData';
-import { Item } from './models/Item';
+import { ItemWrapper } from './models/ItemWrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +36,10 @@ export class ApiService {
     return this.http.post<Store>('http://localhost:8080/createstore', store, {headers, responseType: 'text' as 'json'});
   }
 
-  public addItem(item: Item): Observable<Item>{
+  public addItem(file: any): Observable<ItemWrapper>{
     let token = 'Bearer ' + this.tempdata.getToken();
     const headers = new HttpHeaders().set("Authorization", token);
-    return this.http.post<Item>('http://localhost:8080/createstore', item, {headers, responseType: 'text' as 'json'});
+    return this.http.post<ItemWrapper>('http://localhost:8080/additem', file, {headers});
   }
 
   public updateProfile(user: User): Observable<User>{

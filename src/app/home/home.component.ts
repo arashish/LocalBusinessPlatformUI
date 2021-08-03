@@ -68,6 +68,8 @@ export class HomeComponent implements OnInit {
         this.store = this.userData.store;
 
         this.tempdata.setLoginData(this.user); //login credentials are stored in LoginData tempvariable
+        this.tempdata.setStoreData(this.store); //Store data will be stored in StoreData tempvariable
+        
         console.log(this.dataSource);
         // this.id = this.userData.id;
         // this.firstname = this.userData.firstname;
