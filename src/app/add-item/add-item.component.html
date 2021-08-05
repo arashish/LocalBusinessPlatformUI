@@ -7,7 +7,7 @@
 
         <mat-card-content fxLayout="column">
             <mat-form-field>
-            <input matInput placeholder="Item Name" name="item_name" [(ngModel)]="item_name" [formControl]="item_nameFormControl">
+            <input matInput placeholder="Item Name" name="item_name" [(ngModel)]="itemName" [formControl]="item_nameFormControl">
             <mat-error *ngIf="item_nameFormControl.hasError">
                 Store name should only contain alphabets!
             </mat-error>
@@ -28,7 +28,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Available Qty" name="inventoryqty" [(ngModel)]="inventoryqty" [formControl]="inventoryqtyFormControl">
+                <input matInput placeholder="Available Qty" name="inventoryqty" [(ngModel)]="inventoryQty" [formControl]="inventoryqtyFormControl">
                 <mat-error *ngIf="inventoryqtyFormControl.hasError">
                     Qty should only contain numbers!
                 </mat-error>    

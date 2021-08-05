@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { ApiService } from '../api.service';
 import { CreateStoreComponent } from '../create-store/create-store.component';
@@ -13,16 +14,16 @@ import { TempdataService } from '../tempdata.service';
 
 
 export interface ItemFields{
-  item_id: number;
+  itemId: number;
   name: string;
   description: string;
   category: string;
-  inventoryqty: number;
+  inventoryQty: number;
   price: number;
 }
 
 const ELEMENT_DATA: ItemFields[]= [
-  {item_id:1, name:'Baby Shampoo', description: 'No chemicals no cry', category: 'Shampoo', inventoryqty: 50, price: 17.50}
+  {itemId:1, name:'Baby Shampoo', description: 'No chemicals no cry', category: 'Shampoo', inventoryQty: 50, price: 17.50}
 ];
 
 @Component({
@@ -50,12 +51,17 @@ export class HomeComponent implements OnInit {
   registrationdate: string ="";
 
   //defining the columns
-  displayedColumns: string[] = ['item_id', 'name', 'description', 'category', 'inventoryqty', 'price'];
+  displayedColumns: string[] = ['itemId', 'name', 'description', 'category', 'inventoryQty', 'price', 'itemImage', 'storeId'];
   dataSource = ELEMENT_DATA;
   clickedRows = new Set<ItemFields>();
+  
+  retrievedImage: any;
+  retrievedImages: any;
+  
 
-  constructor(private service: ApiService ,private loginComponent:LoginComponent, private tempdata:TempdataService, public dialog: MatDialog) { 
+  constructor(private service: ApiService ,private loginComponent:LoginComponent, private tempdata:TempdataService, public dialog: MatDialog, private sanitizer:DomSanitizer) { 
   }
+
 
   ngOnInit(): void {
       //this.userData = this.tempdata.getloginData();             
@@ -66,19 +72,27 @@ export class HomeComponent implements OnInit {
 
         this.user = this.userData.user;
         this.store = this.userData.store;
+        this.item = this.userData.item;
+
 
         this.tempdata.setLoginData(this.user); //login credentials are stored in LoginData tempvariable
         this.tempdata.setStoreData(this.store); //Store data will be stored in StoreData tempvariable
+        this.tempdata.setItemData(this.item); //Item data will be stored in ItemData tempvariable
         
+        this.dataSource= this.item;
+        console.log(this.item);
         console.log(this.dataSource);
-        // this.id = this.userData.id;
-        // this.firstname = this.userData.firstname;
-        // this.lastname = this.userData.lastname;
-        // this.username = this.userData.username;
-        // this.password = this.userData.password;
-        // this.usertype = this.userData.usertype;
-        // this.active = this.userData.active;
-        // this.registrationdate = this.userData.registrationdate;
+        console.log(this.tempdata.getItemData());
+        this.retrievedImages = this.tempdata.getItemData();
+        
+        for  (var image of this.retrievedImages){
+          this.retrievedImage = image.itemImage;
+        }
+
+        //let objectURL = 'data:image/jpeg;base64,' + this.retrievedImage;
+        //this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
+       //this.user_id = this.tempData.getloginData().id; //Id of the user will be used to create a store
       })
   }
 

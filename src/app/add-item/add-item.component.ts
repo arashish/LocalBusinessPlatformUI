@@ -15,14 +15,14 @@ import { TempdataService } from '../tempdata.service';
 })
 export class AddItemComponent implements OnInit {
 
-  item_id: string="";
-	item_name: string="";
+  itemId: string="";
+	itemName: string="";
 	description: string="";
 	category: string="";
-	inventoryqty: string="";
+	inventoryQty: string="";
 	price: string="";
-  item_image: any="";
-  store_id: string="";
+  itemImage: any="";
+  storeId: string="";
 
   user_id: string="";
 
@@ -66,21 +66,21 @@ export class AddItemComponent implements OnInit {
 	}
 
   AddItem(){
-    if (!this.item_name || !this.description || !this.category || !this.inventoryqty || !this.price) {
+    if (!this.itemName || !this.description || !this.category || !this.inventoryQty || !this.price) {
         this.tempData.setMessage("Please fill out all the information and resubmit again!");
         this.dialog.open(MessageComponent);
     } else {
-      this.store_id = this.tempData.getStoreData().store_id; //Id of the store will be used to create an item
+      this.storeId = this.tempData.getStoreData().store_id; //Id of the store will be used to create an item
       const uploadItemData = new FormData();
       //Image file and Item data are sent together
       uploadItemData.append('imageFile', this.selectedFile, this.selectedFile.name);
-      const itemWrapper = new ItemWrapper(this.item_id, this.item_name, this.description, this.category, this.inventoryqty, this.price, this.store_id);
+      const itemWrapper = new ItemWrapper(this.itemId, this.itemName, this.description, this.category, this.inventoryQty, this.price, this.itemImage, this.storeId);
       uploadItemData.append('itemWrapper', new Blob([JSON.stringify(itemWrapper)],
         {
             type: "application/json"
         }));
       
-      this.item_image = uploadItemData;
+      this.itemImage = uploadItemData;
       let resp = this.service.addItem(uploadItemData);
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);

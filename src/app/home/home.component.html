@@ -20,14 +20,14 @@
         Store Exists!
         The name {{store.store_name}}
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="item_id">
+          <ng-container matColumnDef="itemId">
             <th mat-header-cell *matHeaderCellDef>Item Id#</th>
-            <td mat-cell *matCellDef="let element">{{element.item_id}}</td>
+            <td mat-cell *matCellDef="let element">{{element.itemId}}</td>
           </ng-container>
 
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            <td mat-cell *matCellDef="let element">{{element.itemName}}</td>
           </ng-container>
 
           <ng-container matColumnDef="description">
@@ -40,14 +40,24 @@
             <td mat-cell *matCellDef="let element">{{element.category}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="inventoryqty">
+          <ng-container matColumnDef="inventoryQty">
             <th mat-header-cell *matHeaderCellDef>Qty in Stock</th>
-            <td mat-cell *matCellDef="let element">{{element.inventoryqty}}</td>
+            <td mat-cell *matCellDef="let element">{{element.inventoryQty}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="itemImage">
+            <th mat-header-cell *matHeaderCellDef>Item Image</th>
+            <td mat-cell *matCellDef="let element"> <img class="thumbnail" [src]="'data:image/jpeg;base64,'+ element.itemImage"></td>
           </ng-container>
 
           <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
             <td mat-cell *matCellDef="let element">{{element.price}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="storeId">
+            <th mat-header-cell *matHeaderCellDef>Store Id</th>
+            <td mat-cell *matCellDef="let element">{{element.storeId}}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -69,7 +79,6 @@
           <Span> Click here to create a store</Span>
         </mat-card-actions>
       </div>
-
 
   </div>       
 
