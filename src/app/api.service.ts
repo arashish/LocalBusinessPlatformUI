@@ -42,6 +42,12 @@ export class ApiService {
     return this.http.post<ItemWrapper>('http://localhost:8080/additem', file, {headers});
   }
 
+  public deleteItem(itemId: string){
+    let token = 'Bearer ' + this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.delete('http://localhost:8080/deleteitem/' + itemId, {headers});
+  }
+
   public updateProfile(user: User): Observable<User>{
     let token = 'Bearer ' + this.tempdata.getToken();
     const headers = new HttpHeaders().set("Authorization", token);

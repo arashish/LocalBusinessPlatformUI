@@ -9,11 +9,12 @@ export class TempdataService {
 
   private loginData: any;
   private storeData: any;
-  private itemData: any;
+  private itemData!: any;
   private token: any;
   private responseStatus: any;
   private message: string="";
-  
+  private rowNumber!: number;
+
   constructor() {
     this.token = "";
   }
@@ -65,6 +66,14 @@ this.itemData = itemData;
 
   public setMessage(message: any){
     this.message = message;
+  }
+
+  public  getRowNumber(){
+    return this.rowNumber;
+  }
+
+  public setRowNumber(rowNumber: number){
+    this.rowNumber = rowNumber;
   }
 
 

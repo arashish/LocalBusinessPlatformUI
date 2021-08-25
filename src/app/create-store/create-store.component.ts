@@ -14,7 +14,9 @@ import { TempdataService } from '../tempdata.service';
 })
 export class CreateStoreComponent implements OnInit {
 
-  constructor(private service:ApiService, private router: Router, private tempData: TempdataService, private dialog: MatDialog, private dialogRef: MatDialog) { }
+  constructor(private service:ApiService, private router: Router, private tempData: TempdataService, private dialog: MatDialog, private dialogRef: MatDialog) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
+  }
 
   ngOnInit(): void {
   }
@@ -45,6 +47,7 @@ export class CreateStoreComponent implements OnInit {
         this.dialog.open(MessageComponent);
     } else {
       this.user_id = this.tempData.getloginData().id; //Id of the user will be used to create a store
+      console.log(this.tempData);
       console.log(this.user_id);  
       let resp = this.service.createstore(new Store(this.store_id,this.store_name, this.phone, this.email, this.street, this.city, this.state, this.zipcode, this.publish, this.registration_date, this.user_id));
       resp.subscribe(data=>{
@@ -56,6 +59,5 @@ export class CreateStoreComponent implements OnInit {
       })
     }
   }
-
 
 }

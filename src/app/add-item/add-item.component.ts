@@ -26,6 +26,12 @@ export class AddItemComponent implements OnInit {
 
   user_id: string="";
 
+  items!: any;
+
+  isUpdateButtonVisible!: boolean;
+  isDeleteButtonVisible!: boolean;
+  isSaveButtonVisible!: boolean;
+
   item_nameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   descriptionFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   categoryFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
@@ -33,27 +39,56 @@ export class AddItemComponent implements OnInit {
   priceFormControl = new FormControl('',[Validators.required, Validators.pattern("/^-?\d*[.,]?\d{0,2}$/"),])
 
 
-  constructor(private service:ApiService, private router: Router, private tempData: TempdataService, private dialog: MatDialog, private dialogRef: MatDialog, private http: HttpClient) { }
+  constructor(private service:ApiService, private router: Router, private tempData: TempdataService, private dialog: MatDialog, private dialogRef: MatDialog, private http: HttpClient) 
+    {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
+    }
 
   ngOnInit(): void {
+      //preloads the data if the item already exists
+      if (this.tempData.getItemData().length != 0){
+        this.items = this.tempData.getItemData();
+        for  (var item of this.items){
+          if (this.tempData.getRowNumber() == item.itemId) {
+            this.itemId = item.itemId;
+            this.itemName = item.itemName;
+            this.description = item.description;
+            this.category = item.category;
+            this.inventoryQty = item.inventoryQty;
+            this.price = item.price;
+            this.itemImage = item.itemImage;
+              if (this.itemImage != null){
+                this.selectedFile = new File([this.dataURItoBlob(this.itemImage)], "NotAvailable.Jpg", { type: 'image/jpeg' }); //new Blob([this.itemImage], { type: 'application/image' });
+                this.url = 'data:image/jpeg;base64,' + this.itemImage;
+              }
+            this.storeId = item.storeId;
+            this.isUpdateButtonVisible = true;
+            this.isDeleteButtonVisible = true;
+            this.isSaveButtonVisible = false;
+            this.tempData.setRowNumber(0); //reset
+            break;
+          } else {
+            this.isUpdateButtonVisible = false;
+            this.isDeleteButtonVisible = false;
+            this.isSaveButtonVisible = true;
+          }
+        } 
+      } else {
+        this.isUpdateButtonVisible = false;
+        this.isDeleteButtonVisible = false;
+        this.isSaveButtonVisible = true;
+      }
   }
 
   fileToUpload: any | null = null;
 
-  // handleFileInput(files: FileList) {
-  //   console.log("Test");
-  //   console.log(files);
-  //   this.fileToUpload = files.item(0);
+  isCreateStore!: boolean;
  
-  // }
- 
-  //url; //Angular 8
-	url: any; //Angular 11, for stricter type
+	url: any; 
 	msg = "";
   selectedFile!: File;
 	
-	//selectFile(event) { //Angular 8
-	handleFileInput(event: any) { //Angular 11, for stricter type
+	handleFileInput(event: any) {
 		if(!event.target.files[0] || event.target.files[0].length == 0) {
 			this.msg = 'Image not selected!';
 			return;
@@ -70,10 +105,12 @@ export class AddItemComponent implements OnInit {
         this.tempData.setMessage("Please fill out all the information and resubmit again!");
         this.dialog.open(MessageComponent);
     } else {
-      this.storeId = this.tempData.getStoreData().store_id; //Id of the store will be used to create an item
+      this.storeId = this.tempData.getStoreData().storeId; //Id of the store will be used to create an item
       const uploadItemData = new FormData();
       //Image file and Item data are sent together
-      uploadItemData.append('imageFile', this.selectedFile, this.selectedFile.name);
+       uploadItemData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      //uploadItemData.append('imageFile', new Blob([this.selectedFile],{type: "application/image"}));
+      
       const itemWrapper = new ItemWrapper(this.itemId, this.itemName, this.description, this.category, this.inventoryQty, this.price, this.itemImage, this.storeId);
       uploadItemData.append('itemWrapper', new Blob([JSON.stringify(itemWrapper)],
         {
@@ -87,10 +124,35 @@ export class AddItemComponent implements OnInit {
         this.tempData.setMessage("The item has been successfully created!");
         this.dialogRef.closeAll();
         this.dialog.open(MessageComponent);
-        this.router.navigate(["/home"])
+        this.router.navigate(['/home']);
       })
     }
   }
+
+  DeleteItem(){
+    if (this.itemId != null){
+      console.log(this.itemId);
+      let resp = this.service.deleteItem(this.itemId);
+      resp.subscribe(data=>{
+        this.tempData.setResoponseStatus(data);
+        this.tempData.setMessage("The item has been successfully deleted!");
+        this.dialogRef.closeAll();
+        this.dialog.open(MessageComponent);
+        this.router.navigate(['/home']);
+      })
+    }
+  }
+
+  dataURItoBlob(dataURI: any) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/png' });    
+    return blob;
+ }
 
 
 
