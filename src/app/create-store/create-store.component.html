@@ -57,8 +57,21 @@
         </mat-card-content>
 
         <mat-card-actions align="start">
-            <button mat-raised-button value="Submit" (click)="CreateStore()">Submit</button>
-            <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
+            <div *ngIf="isSaveButtonVisible" id="inlinediv">
+                <button mat-raised-button value="Submit" (click)="CreateStore()">Submit</button>
+            </div>
+
+            <div *ngIf="isUpdateButtonVisible" id="inlinediv">
+                <button mat-raised-button value="Update" (click)="CreateStore()">Update</button>
+            </div>
+
+            <div *ngIf="isDeleteButtonVisible" id="inlinediv">
+                <button mat-raised-button value="Delete" (click)="DeleteStore()">Delete</button>
+            </div>
+
+            <div id="inlinediv">
+                <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
+            </div>
         </mat-card-actions>
     </mat-card> 
 </div>

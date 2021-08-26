@@ -121,7 +121,7 @@ export class AddItemComponent implements OnInit {
       let resp = this.service.addItem(uploadItemData);
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);
-        this.tempData.setMessage("The item has been successfully created!");
+        this.tempData.setMessage("The item has been successfully saved!");
         this.dialogRef.closeAll();
         this.dialog.open(MessageComponent);
         this.router.navigate(['/home']);

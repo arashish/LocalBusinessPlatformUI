@@ -18,20 +18,49 @@ export class CreateStoreComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }
 
+  storeData:any;
+  isUpdateButtonVisible!: boolean;
+  isDeleteButtonVisible!: boolean;
+  isSaveButtonVisible!: boolean;
+
   ngOnInit(): void {
+    if (this.tempData.getStoreData() != null){
+          this.storeData = this.tempData.getStoreData();
+          this.store_id = this.storeData.storeId;
+          this.store_name = this.storeData.storeName;
+          this.phone = this.storeData.phone;
+          this.email = this.storeData.email;
+          this.street = this.storeData.street;
+          this.city = this.storeData.city;
+          this.state = this.storeData.state;
+          this.zipcode = this.storeData.zipcode;
+          this.publish = this.storeData.publish;
+          this.registration_date = this.storeData.registrationDate;
+          this.user_id = this.storeData.userId;
+
+          this.isUpdateButtonVisible = true;
+          this.isDeleteButtonVisible = true;
+          this.isSaveButtonVisible = false;
+        } 
+
+      else {
+      this.isUpdateButtonVisible = false;
+      this.isDeleteButtonVisible = false;
+      this.isSaveButtonVisible = true;
+    }
   }
 
-  store_id: String="";
-	store_name: String="";
-	phone: String="";
-	email: String="";
-	street: String="";
-	city: String="";
-	state: String="";
-	zipcode: String="";
-	publish: String="";
-	registration_date: String="";
-  user_id: String="";
+  store_id: string="";
+	store_name: string="";
+	phone: string="";
+	email: string="";
+	street: string="";
+	city: string="";
+	state: string="";
+	zipcode: string="";
+	publish: string="";
+	registration_date: string="";
+  user_id: string="";
 
   store_nameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9 ]{10}"),])
@@ -52,10 +81,24 @@ export class CreateStoreComponent implements OnInit {
       let resp = this.service.createstore(new Store(this.store_id,this.store_name, this.phone, this.email, this.street, this.city, this.state, this.zipcode, this.publish, this.registration_date, this.user_id));
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);
-        this.tempData.setMessage("The store has been successfully created!");
+        this.tempData.setMessage("The store has been successfully saved!");
         this.dialogRef.closeAll();
         this.dialog.open(MessageComponent);
         this.router.navigate(["/home"])
+      })
+    }
+  }
+
+  DeleteStore(){
+    if (this.store_id != null){
+      console.log(this.store_id);
+      let resp = this.service.deleteStore(this.store_id);
+      resp.subscribe(data=>{
+        this.tempData.setResoponseStatus(data);
+        this.tempData.setMessage("The store has been successfully deleted!");
+        this.dialogRef.closeAll();
+        this.dialog.open(MessageComponent);
+        this.router.navigate(['/home']);
       })
     }
   }

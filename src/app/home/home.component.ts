@@ -115,4 +115,8 @@ export class HomeComponent implements OnInit {
     this.dialog.open(AddItemComponent);
   }
 
+  editStore(){
+    this.dialog.open(CreateStoreComponent);
+  }
+
 }

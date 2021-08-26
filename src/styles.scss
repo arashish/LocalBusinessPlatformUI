@@ -46,3 +46,11 @@ li a:hover:not(.active) {
     display: inline-block;
     padding-right: 15px;
 }
+
+a.editlink {
+  text-decoration: underline;
+  text-decoration-color: green;
+  color: green;
+  cursor: pointer;
+}
+
