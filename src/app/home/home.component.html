@@ -8,10 +8,32 @@
   </nav>
   
   <div class="center" *ngIf="user.usertype === 'buyer'">
-    <mat-card>
+    <!-- <mat-card>
       <mat-form-field class="full-width">
         <input matInput type = "search" placeholder="Search an Iiem">
       </mat-form-field>
+    </mat-card> -->
+    <mat-card>
+      <mat-form-field appearance="fill" id="inlinespace">
+        <mat-label >Select a category</mat-label>
+        <mat-select [(value)]="categoryName" >
+          <mat-option>None</mat-option>
+          <mat-option value="books">Books</mat-option>
+          <mat-option value="electronics">Electronics</mat-option>
+          <mat-option value="sports">Sports</mat-option>
+          <mat-option value="computers">Computers</mat-option>
+          <mat-option value="instruments">Instruments</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" id="inlinespace" class="full-width">  
+        <input matInput type = "search" [(ngModel)]="itemName" placeholder="Search an Iiem">
+      </mat-form-field>
+
+      <mat-card-actions id="inlinespace" align="end">
+        <button mat-raised-button color="accent" value="Search" (click)="searchItem()">search</button>
+      </mat-card-actions>
+
     </mat-card>
   </div>
 

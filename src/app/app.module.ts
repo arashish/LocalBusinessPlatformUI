@@ -21,6 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule } from '@angular/material/select';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -63,7 +64,8 @@ import { AddItemComponent } from './add-item/add-item.component';
     MatRadioModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [ApiService, LoginComponent],
   bootstrap: [AppComponent]

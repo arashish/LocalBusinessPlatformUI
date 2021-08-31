@@ -14,6 +14,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { TempdataService } from '../tempdata.service';
 
 
+
 export interface ItemFields{
   itemId: number;
   name: string;
@@ -52,6 +53,9 @@ export class HomeComponent implements OnInit {
   usertype: string ="";
   active: string ="";
   registrationdate: string ="";
+
+  categoryName: string="";
+  itemName: string="";
 
   //defining the columns
   displayedColumns: string[] = ['itemId', 'name', 'description', 'category', 'inventoryQty', 'price', 'itemImage', 'storeId'];
@@ -117,6 +121,11 @@ export class HomeComponent implements OnInit {
 
   editStore(){
     this.dialog.open(CreateStoreComponent);
+  }
+
+  searchItem(){
+    console.log(this.categoryName);
+    console.log(this.itemName);
   }
 
 }
