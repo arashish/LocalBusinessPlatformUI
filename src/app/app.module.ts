@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { CreateStoreComponent } from './create-store/create-store.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { OrderItemComponent } from './order-item/order-item.component';
 
 
 
@@ -45,7 +46,8 @@ import { AddItemComponent } from './add-item/add-item.component';
     MessageComponent,
     LogoutComponent,
     CreateStoreComponent,
-    AddItemComponent
+    AddItemComponent,
+    OrderItemComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

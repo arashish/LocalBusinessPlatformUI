@@ -38,6 +38,30 @@
                 <mat-radio-button value="buyer">Buyer</mat-radio-button>
                 <mat-radio-button value="seller" [checked]="true">Seller</mat-radio-button>
             </mat-radio-group>
+
+            <mat-form-field>
+                <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone">
+              </mat-form-field>
+    
+              <mat-form-field>
+                <input matInput placeholder="Address" name="address" [(ngModel)]="address" required>
+              </mat-form-field>
+    
+              <mat-form-field>
+                <input matInput placeholder="City" name="city" [(ngModel)]="city" required>
+              </mat-form-field>
+    
+              <mat-form-field>
+                <input matInput placeholder="State" name="state" [(ngModel)]="state" required>
+              </mat-form-field>
+    
+              <mat-form-field>
+                <input matInput placeholder="Country" name="country" [(ngModel)]="country" required>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Search Distance in miles" name="searchdistance" [(ngModel)]="searchdistance" required>
+              </mat-form-field>
             
         </mat-card-content>
 

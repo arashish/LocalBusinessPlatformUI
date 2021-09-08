@@ -10,6 +10,7 @@ import { LoginComponent } from '../login/login.component';
 import { Store } from '../models/store';
 import { User } from '../models/User';
 import { UserData } from '../models/UserData';
+import { OrderItemComponent } from '../order-item/order-item.component';
 import { SignupComponent } from '../signup/signup.component';
 import { TempdataService } from '../tempdata.service';
 
@@ -24,9 +25,7 @@ export interface ItemFields{
   price: number;
 }
 
-const ELEMENT_DATA: ItemFields[]= [
-  {itemId:1, name:'Baby Shampoo', description: 'No chemicals no cry', category: 'Shampoo', inventoryQty: 50, price: 17.50}
-];
+const ELEMENT_DATA: ItemFields[]= [];
 
 @Injectable({ providedIn: 'root' })
 
@@ -44,6 +43,8 @@ export class HomeComponent implements OnInit {
   public user!:any;
   public store!:any;
   public item!: any;
+
+  public items!: any;
 
   id: string ="";
   firstname: string ="";
@@ -98,10 +99,7 @@ export class HomeComponent implements OnInit {
               this.retrievedImage = image.itemImage;
             }
      
-            //let objectURL = 'data:image/jpeg;base64,' + this.retrievedImage;
-            //this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
-           //this.user_id = this.tempData.getloginData().id; //Id of the user will be used to create a store
           })
   }
 
@@ -123,9 +121,35 @@ export class HomeComponent implements OnInit {
     this.dialog.open(CreateStoreComponent);
   }
 
+  itemIsSearched: boolean = false;
   searchItem(){
     console.log(this.categoryName);
     console.log(this.itemName);
+    let resp = this.service.searchItem(this.itemName,this.categoryName );
+    resp.subscribe(data=>{
+      this.items = data;
+      this.tempdata.setItemData(this.items); //Item data will be stored in ItemData tempvariable
+      this.retrievedImages = this.tempdata.getItemData();
+      for  (var image of this.retrievedImages){
+        this.retrievedImage = image.itemImage;
+      }
+     this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
+     this.itemIsSearched = true;
+    })
   }
 
+  orderQty!: any;
+  createRange(getNumber: number){
+    var qty: number[] = [];
+    for(var i = 1; i <= getNumber; i++){
+       qty.push(i);
+     }
+     return qty;
+  }
+
+  orderItem(numb : number){
+    console.log(numb);
+    this.tempdata.setRowNumber(numb);
+    this.dialog.open(OrderItemComponent);
+  }
 }

@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Item Ordering Screen:</mat-card-title>
+    </mat-card-header>
+
+    <img [src]="'data:image/jpeg;base64,'+ itemImage" class="thumbnail2" align="left">
+
+    <h2>{{description}}</h2><br>
+    <h1>Price: ${{price}}</h1><br>
+    <h3>Category: {{category}}</h3><br>
+    <h3>Name: {{itemName}}</h3><br>
+    <h3>Id# {{itemId}}</h3><br>
+    <h3>Quantity available: {{item.inventoryQty}}</h3>
+    
+        <mat-card-actions align="start">
+            <div id="inlinediv">
+                <button mat-raised-button value="Submit" (click)="AddToCart()">Add to cart</button>
+            </div>
+            
+            <div id="inlinediv">
+                <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
+            </div>
+        </mat-card-actions>
+
+</mat-card> 
+

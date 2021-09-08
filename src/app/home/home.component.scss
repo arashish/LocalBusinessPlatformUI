@@ -1,5 +1,5 @@
 .center {
-    text-align: center;
+    //text-align: center;
     margin: auto;
     margin-top: 10%;
     width: 100%;
@@ -36,3 +36,15 @@ table {
     margin-left: 15px;
     display: inline-block;
 }
+
+.styleWidth {
+    width: 100px;
+}
+
+a.orderLink {
+    text-decoration: underline;
+    text-decoration-color: black;
+    color: Black;
+    cursor: pointer;
+  }
+

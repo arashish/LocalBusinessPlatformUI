@@ -27,6 +27,7 @@ export class ApiService {
   }
   
   public signup(user: User): Observable<User>{
+    console.log(user);
     return this.http.post<User>('http://localhost:8080/signup', user);
   }
 
@@ -60,7 +61,15 @@ export class ApiService {
     return this.http.post<User>('http://localhost:8080/updateprofile', user, {headers, responseType: 'text' as 'json'});
   }
 
-  public logout(){
+
+  public searchItem(itemName: string, category:string){
+    let token = 'Bearer '+ this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    //let body = JSON.stringify({ 'itemName': itemName, 'category': category});
+    return this.http.get('http://localhost:8080/searchitem'+ "?itemName="+itemName +"&category="+ category, {headers});
+  }
+
+    public logout(){
     return this.http.get('http://localhost:8080/logout');
   }
 

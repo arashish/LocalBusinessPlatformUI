@@ -17,12 +17,14 @@
       <mat-form-field appearance="fill" id="inlinespace">
         <mat-label >Select a category</mat-label>
         <mat-select [(value)]="categoryName" >
-          <mat-option>None</mat-option>
+          <mat-option value="">All Category</mat-option>
           <mat-option value="books">Books</mat-option>
           <mat-option value="electronics">Electronics</mat-option>
           <mat-option value="sports">Sports</mat-option>
           <mat-option value="computers">Computers</mat-option>
           <mat-option value="instruments">Instruments</mat-option>
+          <mat-option value="entertainment">Entertainment</mat-option>
+          
         </mat-select>
       </mat-form-field>
 
@@ -35,6 +37,32 @@
       </mat-card-actions>
 
     </mat-card>
+
+
+    <div *ngIf="itemIsSearched">
+        <div *ngFor="let item of items">
+          <br>
+          <mat-card>
+            <img [src]="'data:image/jpeg;base64,'+ item.itemImage" class="thumbnail2" align="left">
+            <h2><a class="orderLink" (click)="orderItem(item.itemId)">{{item.description}}</a></h2><br>
+            <h1>${{item.price}}</h1><br>
+            <h3>{{item.category}}</h3><br>
+            <h3>{{item.itemName}}</h3><br>
+            <h3>Quantity available: {{item.inventoryQty}}</h3>
+              <!-- <mat-form-field appearance="fill" class="styleWidth">
+                  <mat-select placeholder="Qty" [(value)]="orderQty">
+                    <mat-option *ngFor="let number of createRange(item.inventoryQty)" class="styleWidth"  value="number">
+                        {{number}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field> -->
+            <!-- <mat-card-actions align="start">
+              <button mat-raised-button color="accent" value="AddToCart" (click)="searchItem()">Add to cart</button>
+            </mat-card-actions> -->
+          </mat-card>
+        </div>
+    </div>
+
   </div>
 
   <div *ngIf="user.usertype === 'seller'">
