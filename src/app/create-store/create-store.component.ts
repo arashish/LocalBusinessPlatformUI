@@ -34,6 +34,7 @@ export class CreateStoreComponent implements OnInit {
           this.city = this.storeData.city;
           this.state = this.storeData.state;
           this.zipcode = this.storeData.zipcode;
+          this.country = this.storeData.country;
           this.publish = this.storeData.publish;
           this.registration_date = this.storeData.registrationDate;
           this.user_id = this.storeData.userId;
@@ -58,6 +59,7 @@ export class CreateStoreComponent implements OnInit {
 	city: string="";
 	state: string="";
 	zipcode: string="";
+  country: string="";
 	publish: string="";
 	registration_date: string="";
   user_id: string="";
@@ -68,6 +70,7 @@ export class CreateStoreComponent implements OnInit {
   streetFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9,. ]*"),])
   cityFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   stateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z]*"),])
+  countryFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   zipcodeFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9]{5}"),])
 
   CreateStore(){
@@ -78,7 +81,7 @@ export class CreateStoreComponent implements OnInit {
       this.user_id = this.tempData.getloginData().id; //Id of the user will be used to create a store
       console.log(this.tempData);
       console.log(this.user_id);  
-      let resp = this.service.createstore(new Store(this.store_id,this.store_name, this.phone, this.email, this.street, this.city, this.state, this.zipcode, this.publish, this.registration_date, this.user_id));
+      let resp = this.service.createstore(new Store(this.store_id,this.store_name, this.phone, this.email, this.street, this.city, this.state, this.zipcode, this.country, this.publish, this.registration_date, this.user_id));
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);
         this.tempData.setMessage("The store has been successfully saved!");

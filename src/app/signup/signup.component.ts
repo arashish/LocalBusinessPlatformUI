@@ -27,6 +27,7 @@ export class SignupComponent implements OnInit {
   address: string ="";
   city: string = "";
   state: string = "";
+  zipcode: string =""; 
   country: string = "";
   rating: string = "0";
   searchdistance: string = "5";
@@ -49,7 +50,7 @@ export class SignupComponent implements OnInit {
         this.tempData.setMessage("Please fill out all the information and resubmit again!");
         this.dialog.open(MessageComponent);
     } else {
-      let resp = this.service.signup(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone, this.address, this.city, this.state, this.country, this.rating, this.searchdistance));
+      let resp = this.service.signup(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone, this.address, this.city, this.state, this.zipcode, this.country, this.rating, this.searchdistance));
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);
         this.tempData.setMessage("The accound has been successfully created!");

@@ -53,6 +53,13 @@
                     Zipcode should only contain 10 letters.
                 </mat-error>    
             </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Country" name="country" [(ngModel)]="country" [formControl]="countryFormControl">
+                <mat-error *ngIf="countryFormControl.hasError">
+                    Country should only contain 2 alphabets!
+                </mat-error>    
+            </mat-form-field>
             
         </mat-card-content>
 

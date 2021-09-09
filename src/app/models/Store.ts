@@ -7,12 +7,13 @@ export class Store {
 	private city: String="";
 	private state: String="";
 	private zipcode: String="";
+    private country: String="";
 	private publish: String="";
 	private registrationDate: String="";
     private userId: String=""
     
     
-    constructor (store_id: String, store_name: String, phone: String, email: String, street: String, city: String, state: String, zipcode: String, publish: String, registration_date: String, user_id: String){
+    constructor (store_id: String, store_name: String, phone: String, email: String, street: String, city: String, state: String, zipcode: String, country: String, publish: String, registration_date: String, user_id: String){
         this.storeId = store_id;
         this.storeName = store_name;
         this.phone = phone;
@@ -21,6 +22,7 @@ export class Store {
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
+        this.country = country;
         this.publish = publish;
         this.registrationDate = registration_date;
         this.userId = user_id;
