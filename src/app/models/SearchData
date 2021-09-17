@@ -1,0 +1,12 @@
+import { ItemWrapper } from "./ItemWrapper";
+import { Store } from "./store";
+
+export class SearchData {
+    private store: Store;
+    private item: ItemWrapper[];
+
+    constructor (store: Store, item: ItemWrapper[]){
+        this.store = store;
+        this.item = item;
+    }
+}

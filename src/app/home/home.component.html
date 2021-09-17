@@ -40,25 +40,16 @@
 
 
     <div *ngIf="itemIsSearched">
-        <div *ngFor="let item of items">
+        <div *ngFor="let searchData of searchDatas">
           <br>
           <mat-card>
-            <img [src]="'data:image/jpeg;base64,'+ item.itemImage" class="thumbnail2" align="left">
-            <h2><a class="orderLink" (click)="orderItem(item.itemId)">{{item.description}}</a></h2><br>
-            <h1>${{item.price}}</h1><br>
-            <h3>{{item.category}}</h3><br>
-            <h3>{{item.itemName}}</h3><br>
-            <h3>Quantity available: {{item.inventoryQty}}</h3>
-              <!-- <mat-form-field appearance="fill" class="styleWidth">
-                  <mat-select placeholder="Qty" [(value)]="orderQty">
-                    <mat-option *ngFor="let number of createRange(item.inventoryQty)" class="styleWidth"  value="number">
-                        {{number}}
-                    </mat-option>
-                  </mat-select>
-              </mat-form-field> -->
-            <!-- <mat-card-actions align="start">
-              <button mat-raised-button color="accent" value="AddToCart" (click)="searchItem()">Add to cart</button>
-            </mat-card-actions> -->
+            <img [src]="'data:image/jpeg;base64,'+ searchData.item.itemImage" class="thumbnail2" align="left">
+            <h2><a class="orderLink" (click)="orderItem(searchData.item.itemId)">{{searchData.item.description}}</a></h2><br>
+            <h1>${{searchData.item.price}}</h1><br>
+            <h3>{{searchData.item.category}}</h3><br>
+            <h3>{{searchData.item.itemName}}</h3><br>
+            <h3>Quantity available: {{searchData.item.inventoryQty}}</h3><br>
+            <h3>Seller: {{searchData.store.storeName}}</h3> <h3> (within {{searchData.distance}} miles)</h3> 
           </mat-card>
         </div>
     </div>

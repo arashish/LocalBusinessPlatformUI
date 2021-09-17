@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   public item!: any;
 
   public items!: any;
+  public searchDatas!:any;
 
   id: string ="";
   firstname: string ="";
@@ -127,14 +128,22 @@ export class HomeComponent implements OnInit {
     console.log(this.itemName);
     let resp = this.service.searchItem(this.itemName,this.categoryName );
     resp.subscribe(data=>{
-      this.items = data;
-      this.tempdata.setItemData(this.items); //Item data will be stored in ItemData tempvariable
-      this.retrievedImages = this.tempdata.getItemData();
-      for  (var image of this.retrievedImages){
-        this.retrievedImage = image.itemImage;
-      }
-     this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
-     this.itemIsSearched = true;
+    //   this.items = data;
+    //   this.tempdata.setItemData(this.items); //Item data will be stored in ItemData tempvariable
+    //   this.retrievedImages = this.tempdata.getItemData();
+    //   for  (var image of this.retrievedImages){
+    //     this.retrievedImage = image.itemImage;
+    //   }
+    //  this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
+    //  this.itemIsSearched = true;
+
+     this.searchDatas = data;
+     this.tempdata.setSearchData(this.searchDatas); //Item data will be stored in ItemData tempvariable
+     console.log(this.tempdata.getSearchData());
+     this.retrievedImages = this.tempdata.getItemData();
+    
+    this.itemIsSearched = true;
+
     })
   }
 

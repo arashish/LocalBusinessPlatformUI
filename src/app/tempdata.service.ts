@@ -10,6 +10,7 @@ export class TempdataService {
   private loginData: any;
   private storeData: any;
   private itemData!: any;
+  private searchData!: any;
   private token: any;
   private responseStatus: any;
   private message: string="";
@@ -37,6 +38,14 @@ public setStoreData(storeData: any){
 
 public  getItemData(){
   return this.itemData;
+}
+
+public setSearchData(searchData: any){
+  this.searchData = searchData;
+}
+
+public  getSearchData(){
+  return this.searchData;
 }
 
 public setItemData(itemData: any){

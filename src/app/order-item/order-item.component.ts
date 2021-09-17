@@ -25,24 +25,26 @@ export class OrderItemComponent implements OnInit {
   storeId: string="";
 
   public item!: any;
+  public searchDatas: any;
   public url: any;
 
 
     ngOnInit(): void {
-        this.items = this.tempData.getItemData(); //Item data will be stored in ItemData tempvariable
-        for  (var item of this.items){
-          if (this.tempData.getRowNumber() == item.itemId) {
-            this.itemId = item.itemId;
-            this.itemName = item.itemName;
-            this.description = item.description;
-            this.category = item.category;
-            this.inventoryQty = item.inventoryQty;
-            this.price = item.price;
-            this.itemImage = item.itemImage;
+        this.searchDatas = this.tempData.getSearchData(); //Item data will be stored in ItemData tempvariable
+        console.log(this.searchDatas);
+        for  (var searchData of this.searchDatas){
+          if (this.tempData.getRowNumber() == searchData.item.itemId) {
+            this.itemId = searchData.item.itemId;
+            this.itemName = searchData.item.itemName;
+            this.description = searchData.item.description;
+            this.category = searchData.item.category;
+            this.inventoryQty = searchData.item.inventoryQty;
+            this.price = searchData.item.price;
+            this.itemImage = searchData.item.itemImage;
               if (this.itemImage != null){
                 this.url = 'data:image/jpeg;base64,' + this.itemImage;
               }
-            this.storeId = item.storeId;
+            this.storeId = searchData.item.storeId;
             this.tempData.setRowNumber(0); //reset
             break;
           } 
