@@ -15,6 +15,7 @@ export class TempdataService {
   private responseStatus: any;
   private message: string="";
   private rowNumber!: number;
+  private cartItems: any = [ ];
 
   constructor() {
     this.token = "";
@@ -75,6 +76,14 @@ this.itemData = itemData;
 
   public setMessage(message: any){
     this.message = message;
+  }
+
+  public  getCartItems(){
+    return this.cartItems;
+  }
+
+  public setCartItems(cartItems: any){
+    this.cartItems = cartItems;
   }
 
   public  getRowNumber(){

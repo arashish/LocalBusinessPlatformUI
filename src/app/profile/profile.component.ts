@@ -32,11 +32,13 @@ export class ProfileComponent implements OnInit {
   searchdistance: string ="";
 
   loginData: any;
+  user: any;
 
   constructor(private service:ApiService, private tempdata:TempdataService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loginData = this.tempdata.getloginData();
+    this.user = this.loginData;
     this.id = this.loginData.id;
     this.firstname = this.loginData.firstname;
     this.lastname = this.loginData.lastname;

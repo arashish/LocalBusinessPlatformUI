@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { Order } from '../models/Order';
 import { TempdataService } from '../tempdata.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class OrderItemComponent implements OnInit {
 	itemName: string="";
 	description: string="";
 	category: string="";
-	inventoryQty: string="";
+	inventoryQty: number=0;
 	price: string="";
   itemImage: any="";
   storeId: string="";
@@ -51,7 +52,22 @@ export class OrderItemComponent implements OnInit {
         } 
   } 
 
-  AddToCart(){
-    
+  orderQty!: string;
+  cartItems: any = [ ];
+
+
+  AddToCart(itemId: string){
+    this.cartItems = this.tempData.getCartItems();
+    this.cartItems.push(new Order(this.itemId, this.orderQty));
+    this.tempData.setCartItems(this.cartItems);
+    console.log(this.tempData.getCartItems());
+  }
+
+  createRange(getNumber: number){
+    var qty: number[] = [];
+    for(var i = 1; i <= getNumber; i++){
+       qty.push(i);
+     }
+     return qty;
   }
 }

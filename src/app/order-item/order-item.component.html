@@ -11,16 +11,24 @@
     <h3>Name: {{itemName}}</h3><br>
     <h3>Id# {{itemId}}</h3><br>
     <h3>Quantity available: {{inventoryQty}}</h3>
+
+    <mat-form-field appearance="fill" class="styleWidth">
+        <mat-select placeholder="Qty" [(ngModel)]="orderQty">
+            <mat-option *ngFor="let number of createRange(inventoryQty)" class="styleWidth" [value]="number">
+                {{number}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
     
-        <mat-card-actions align="start">
-            <div id="inlinediv">
-                <button mat-raised-button value="Submit" (click)="AddToCart()">Add to cart</button>
-            </div>
-            
-            <div id="inlinediv">
-                <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
-            </div>
-        </mat-card-actions>
+    <mat-card-actions align="start">
+        <div id="inlinediv">
+            <button mat-raised-button value="Submit" (click)="AddToCart(itemId)">Add to cart</button>
+        </div>
+        
+        <div id="inlinediv">
+            <button mat-raised-button value="Close" [mat-dialog-close]=true>Close</button>
+        </div>
+    </mat-card-actions>
 
 </mat-card> 
 
