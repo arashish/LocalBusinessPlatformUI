@@ -24,6 +24,7 @@ export class OrderItemComponent implements OnInit {
 	price: string="";
   itemImage: any="";
   storeId: string="";
+  storeName: string= "";
 
   public item!: any;
   public searchDatas: any;
@@ -46,6 +47,7 @@ export class OrderItemComponent implements OnInit {
                 this.url = 'data:image/jpeg;base64,' + this.itemImage;
               }
             this.storeId = searchData.item.storeId;
+            this.storeName = searchData.store.storeName;
             this.tempData.setRowNumber(0); //reset
             break;
           } 
@@ -55,10 +57,11 @@ export class OrderItemComponent implements OnInit {
   orderQty!: string;
   cartItems: any = [ ];
 
+ 
 
-  AddToCart(itemId: string){
+  AddToCart(){
     this.cartItems = this.tempData.getCartItems();
-    this.cartItems.push(new Order(this.itemId, this.orderQty));
+    this.cartItems.push(new Order( this.itemId, this.itemName, this.itemImage, this.description, this.orderQty, this.price, this.storeId, this.storeName));
     this.tempData.setCartItems(this.cartItems);
     console.log(this.tempData.getCartItems());
   }

@@ -33,6 +33,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { CreateStoreComponent } from './create-store/create-store.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { OrderItemComponent } from './order-item/order-item.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -47,7 +48,8 @@ import { OrderItemComponent } from './order-item/order-item.component';
     LogoutComponent,
     CreateStoreComponent,
     AddItemComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    CartComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

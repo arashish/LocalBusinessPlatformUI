@@ -1,9 +1,22 @@
 export class Order {
-    private orderItemId: string;
+    private itemId: string;
+    private itemName: string;
+    private itemImage: string;
+    private description: string;
     private orderQty: string;
+    private price: string;
+    private sellerId: string;
+    private sellerName: string;
 
-    constructor (orderItemId: string, orderQty: string){
-        this.orderItemId = orderItemId;
+
+    constructor (itemId: string, itemName: string, itemImage: string, description: string, orderQty: string, price: string, sellerId: string, sellerName: string){
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.itemImage = itemImage;
+        this.description = description;
         this.orderQty = orderQty;
+        this.price = price;
+        this.sellerId = sellerId;
+        this.sellerName = sellerName;
     }
 }

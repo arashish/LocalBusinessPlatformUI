@@ -1,0 +1,26 @@
+<div class="container">
+    <nav>
+        <ul>
+          <li><a href="#" routerLink="/logout">logout</a></li>
+          <li><a href="#" routerLink="/cart">Cart</a></li>
+          <li><a href="#" routerLink="/profile">Profile</a></li>
+          <li><a href="#" class="active" routerLink="/home">Home</a></li>
+        </ul>
+    </nav>
+
+    <h1 [ngStyle]="{'color':'green'}">Shopping Cart</h1>
+
+    <div *ngFor="let cartItem of cartItems">
+        <br>
+        <mat-card>
+          <img [src]="'data:image/jpeg;base64,'+ cartItem.itemImage" class="thumbnail2" align="left">
+          <h2><a class="orderLink" (click)="Checkout()">{{cartItem.description}}</a></h2><br>
+          <h1>${{cartItem.price}}</h1><br>
+          <h3>{{cartItem.category}}</h3><br>
+          <h3>{{cartItem.itemName}}</h3><br>
+          <h3>Quantity available: {{cartItem.orderQty}}</h3><br>
+          <h3>Seller: {{cartItem.storeName}}</h3>
+        </mat-card>
+      </div>
+    
+</div>
