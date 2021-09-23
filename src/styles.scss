@@ -84,5 +84,23 @@ h1, h2,h3{
 
 .mat-button, .mat-raised-button{
   background-color:#4CAF50;
-} 
+}
+
+div.a {
+  font-size: 12px;
+  }
+
+a.link {
+    text-decoration: underline;
+    text-decoration-color: blue;
+    color: blue;
+    cursor: pointer;
+  }
+
+  d.link {
+    text-decoration: underline;
+    text-decoration-color: skyblue;
+    color: skyblue;
+    cursor: pointer;
+  }
 

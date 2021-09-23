@@ -23,4 +23,8 @@ export class CartComponent implements OnInit {
   Checkout(){
     
   }
+
+  delete(){
+
+  }
 }

@@ -8,18 +8,45 @@
         </ul>
     </nav>
 
-    <h1 [ngStyle]="{'color':'green'}">Shopping Cart</h1>
+    <div style="text-align:center">
+      <h1 [ngStyle]="{'color':'green'}">Shopping Cart</h1>
+    </div>
 
     <div *ngFor="let cartItem of cartItems">
         <br>
         <mat-card>
-          <img [src]="'data:image/jpeg;base64,'+ cartItem.itemImage" class="thumbnail2" align="left">
-          <h2><a class="orderLink" (click)="Checkout()">{{cartItem.description}}</a></h2><br>
-          <h1>${{cartItem.price}}</h1><br>
-          <h3>{{cartItem.category}}</h3><br>
-          <h3>{{cartItem.itemName}}</h3><br>
-          <h3>Quantity available: {{cartItem.orderQty}}</h3><br>
-          <h3>Seller: {{cartItem.storeName}}</h3>
+          <table style="width:100%">
+            <tr>
+              <th style="width:70%"></th>
+              <th style="width:15%;text-align:right">Ordered Qty</th>
+              <th style="width:15%;text-align:right">Price</th>
+            </tr>
+            <tr>
+              <td style="width:70%">
+                <img [src]="'data:image/jpeg;base64,'+ cartItem.itemImage" class="thumbnail2" align="left">
+                <h2>{{cartItem.description}}</h2><br>
+                <h3>{{cartItem.category}}</h3><br>
+                <h3>{{cartItem.itemName}}</h3><br>
+                <h3>Seller: {{cartItem.sellerName}}</h3>
+                <div class="d">
+                  <a class="link" (click)="delete()">Delete</a>
+                </div>
+
+              </td>
+              <td style="vertical-align:top;width:15%;text-align:right">
+                <h3>{{cartItem.orderQty}}</h3><br>
+              </td>
+              <td style="vertical-align:top;width:15%; text-align:right">
+                <h2>${{cartItem.price}}</h2><br>
+              </td>
+
+            </tr>
+          </table>
+        </mat-card>
+      </div>
+      <div style="text-align:right">
+        <mat-card>
+            <h2>Subtotal (# item):</h2>
         </mat-card>
       </div>
     

@@ -61,7 +61,7 @@ export class OrderItemComponent implements OnInit {
 
   AddToCart(){
     this.cartItems = this.tempData.getCartItems();
-    this.cartItems.push(new Order( this.itemId, this.itemName, this.itemImage, this.description, this.orderQty, this.price, this.storeId, this.storeName));
+    this.cartItems.push(new Order( this.itemId, this.itemName, this.itemImage, this.description, this.category, this.orderQty, this.price, this.storeId, this.storeName));
     this.tempData.setCartItems(this.cartItems);
     console.log(this.tempData.getCartItems());
   }

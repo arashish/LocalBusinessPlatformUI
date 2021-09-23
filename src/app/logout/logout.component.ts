@@ -14,7 +14,9 @@ export class LogoutComponent implements OnInit {
   constructor(private service:ApiService, private tempdata:TempdataService, private router: Router) { }
 
   ngOnInit(): void {
-    this.tempdata.setToken(null);
+    //this.tempdata.setToken(null);
+    this.tempdata.resetData();
+    console.log(this.tempdata);
     this.router.navigate(["/"]);
   }
 

@@ -17,8 +17,19 @@ export class TempdataService {
   private rowNumber!: number;
   private cartItems: any = [ ];
 
-  constructor() {
+  constructor() { 
+  }
+
+  public resetData(){ //for resetting temps when the user logs out
+    this.loginData = "";
+    this.storeData = "";
+    this.itemData = "";
+    this.searchData = "";
     this.token = "";
+    this.responseStatus = "";
+    this.message = "";
+    this.rowNumber = 0;
+    this.cartItems = [];
   }
 
   public  getloginData(){
