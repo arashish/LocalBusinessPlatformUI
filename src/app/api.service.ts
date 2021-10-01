@@ -6,6 +6,7 @@ import { TempdataService } from './tempdata.service';
 import { User } from './models/User';
 import { UserData } from './models/UserData';
 import { ItemWrapper } from './models/ItemWrapper';
+import { Order } from './models/Order';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,12 @@ export class ApiService {
     const headers = new HttpHeaders().set("Authorization", token);
     //let body = JSON.stringify({ 'itemName': itemName, 'category': category});
     return this.http.get('http://localhost:8080/searchitem'+ "?itemName="+itemName +"&category="+ category, {headers});
+  }
+
+  public createorder(orders: any = []): Observable<Order>{
+    let token = 'Bearer ' + this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.post<Order>('http://localhost:8080/createorder', orders, {headers, responseType: 'text' as 'json'});
   }
 
     public logout(){

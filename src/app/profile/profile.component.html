@@ -1,117 +1,118 @@
 <div class="container">
-    <nav>
-        <ul>
-          <li><a href="#" routerLink="/logout">logout</a></li>
-          <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/cart">Cart</a></li>
-          <li *ngIf="user.usertype === 'seller'"><a href="#" routerLink="/order">Order</a></li>
-          <li><a href="#" class="active" routerLink="/profile">Profile</a></li>
-          <li><a href="#" routerLink="/home">Home</a></li>
-        </ul>
-    </nav>
-</div>
+  <nav>
+    <ul>
+      <li><a href="#" routerLink="/logout">logout</a></li>
+      <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/cart">Cart</a></li>
+      <li *ngIf="user.usertype === 'seller'"><a href="#" routerLink="/order">Order</a></li>
+      <li><a href="#" class="active" routerLink="/profile">Profile</a></li>
+      <li><a href="#" routerLink="/home">Home</a></li>
+    </ul>
+</nav>
 
-<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
-  <mat-card>
-      <mat-card-header>
-          <mat-card-title>Please update the information below:</mat-card-title>
-      </mat-card-header>
+  <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Please update the information below:</mat-card-title>
+        </mat-card-header>
 
-      <mat-card-content fxLayout="column">
-          <mat-form-field>
-          <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" required>
-          </mat-form-field>
-          
-          <mat-form-field>
-          <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" required>
-          </mat-form-field>
+        <mat-card-content fxLayout="column">
+            <mat-form-field>
+            <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" required>
+            </mat-form-field>
+            
+            <mat-form-field>
+            <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" required>
+            </mat-form-field>
+        
+            <mat-form-field>
+            <input matInput placeholder="password" name="password" [(ngModel)]="password" required>
+            </mat-form-field>
       
-          <mat-form-field>
-          <input matInput placeholder="password" name="password" [(ngModel)]="password" required>
-          </mat-form-field>
-    
-          <mat-form-field>
-          <input matInput placeholder="Email" name="username" [(ngModel)]="username" readonly>
-          </mat-form-field>
-         
-          <br>
-          <fieldset>
-            <legend>
-                <label>User Type</label>
-            </legend>
-
-            <mat-radio-group [(ngModel)]="usertype">
-                <mat-radio-button value="buyer">Buyer</mat-radio-button>
-                <mat-radio-button value="seller">Seller</mat-radio-button>
-            </mat-radio-group>
-          </fieldset>
-    
-          <br>
-          <mat-form-field>
-          <input matInput placeholder="Registration Date" name="registrationdate" [(ngModel)]="registrationdate" readonly>
-          </mat-form-field>
-    
-          <fieldset>
-          <legend>
-              <label>Active</label>
-          </legend>
-          <mat-slide-toggle [(ngModel)]="active"></mat-slide-toggle> 
-          </fieldset>
+            <mat-form-field>
+            <input matInput placeholder="Email" name="username" [(ngModel)]="username" readonly>
+            </mat-form-field>
           
-          <br>
-          <mat-form-field>
-            <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone">
-          </mat-form-field>
+            <br>
+            <fieldset>
+              <legend>
+                  <label>User Type</label>
+              </legend>
 
-          <mat-form-field>
-            <input matInput placeholder="Address" name="address" [(ngModel)]="address" required>
-          </mat-form-field>
+              <mat-radio-group [(ngModel)]="usertype">
+                  <mat-radio-button value="buyer">Buyer</mat-radio-button>
+                  <mat-radio-button value="seller">Seller</mat-radio-button>
+              </mat-radio-group>
+            </fieldset>
+      
+            <br>
+            <mat-form-field>
+            <input matInput placeholder="Registration Date" name="registrationdate" [(ngModel)]="registrationdate" readonly>
+            </mat-form-field>
+      
+            <fieldset>
+            <legend>
+                <label>Active</label>
+            </legend>
+            <mat-slide-toggle [(ngModel)]="active"></mat-slide-toggle> 
+            </fieldset>
+            
+            <br>
+            <mat-form-field>
+              <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone">
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="City" name="city" [(ngModel)]="city" required>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Address" name="address" [(ngModel)]="address" required>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="State" name="state" [(ngModel)]="state" required>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="City" name="city" [(ngModel)]="city" required>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Zipcode" name="zipcode" [(ngModel)]="zipcode" required>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="State" name="state" [(ngModel)]="state" required>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Country" name="country" [(ngModel)]="country" required>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Zipcode" name="zipcode" [(ngModel)]="zipcode" required>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Search Distance in miles" name="searchdistance" [(ngModel)]="searchdistance" required>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Country" name="country" [(ngModel)]="country" required>
+            </mat-form-field>
 
-          <!-- <mat-form-field>
-            <input matInput placeholder="Address" name="address" [(ngModel)]="address">
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Search Distance in miles" name="searchdistance" [(ngModel)]="searchdistance" required>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="City" name="city" [(ngModel)]="city">
-          </mat-form-field>
+            <!-- <mat-form-field>
+              <input matInput placeholder="Address" name="address" [(ngModel)]="address">
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="State" name="state" [(ngModel)]="state">
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="City" name="city" [(ngModel)]="city">
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Country" name="country" [(ngModel)]="country">
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="State" name="state" [(ngModel)]="state">
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Zip" name="zip" [(ngModel)]="zip">
-          </mat-form-field> -->
+            <mat-form-field>
+              <input matInput placeholder="Country" name="country" [(ngModel)]="country">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Zip" name="zip" [(ngModel)]="zip">
+            </mat-form-field> -->
 
 
-          </mat-card-content>
+            </mat-card-content>
 
-      <mat-card-actions align="start">
-          <button mat-raised-button value="Update" (click)="Update()">Update</button>
-          <button mat-raised-button value="Close" (click)="HomePage()">Close</button>
-      </mat-card-actions>
-  </mat-card> 
+        <mat-card-actions align="start">
+            <button mat-raised-button value="Update" (click)="Update()">Update</button>
+            <button mat-raised-button value="Close" (click)="HomePage()">Close</button>
+        </mat-card-actions>
+    </mat-card> 
+  </div>
+
 </div>

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { Order } from '../models/Order';
+import {Cart} from '../models/Cart';
 import { TempdataService } from '../tempdata.service';
 
 @Component({
@@ -61,7 +61,7 @@ export class OrderItemComponent implements OnInit {
 
   AddToCart(){
     this.cartItems = this.tempData.getCartItems();
-    this.cartItems.push(new Order( this.itemId, this.itemName, this.itemImage, this.description, this.category, this.orderQty, this.price, this.storeId, this.storeName));
+    this.cartItems.push(new Cart( this.itemId, this.itemName, this.itemImage, this.description, this.category, this.orderQty, this.price, this.storeId, this.storeName));
     this.tempData.setCartItems(this.cartItems);
     console.log(this.tempData.getCartItems());
   }

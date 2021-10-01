@@ -34,6 +34,7 @@ import { CreateStoreComponent } from './create-store/create-store.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { OrderItemComponent } from './order-item/order-item.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -49,7 +50,8 @@ import { CartComponent } from './cart/cart.component';
     CreateStoreComponent,
     AddItemComponent,
     OrderItemComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

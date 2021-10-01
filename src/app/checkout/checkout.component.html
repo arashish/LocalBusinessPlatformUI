@@ -1,0 +1,80 @@
+<div style="text-align:center;background-color: lightgray;">
+    <h1 [ngStyle]="{'color':'green'}">Checkout</h1>
+</div>
+
+<mat-dialog-content>
+    <table style="width:800px">
+        <tr>
+            <td style="width:30%;vertical-align:top"><h2>Shipping address</h2></td>
+            <td style="width:70%">
+                <h3>
+                {{userData.firstname}} {{userData.lastname}} <br>
+                {{userData.address}} <br>
+                {{userData.city}}, {{userData.state}} {{userData.zipcode}}
+                </h3>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:30%;vertical-align:top"><h2>Payment Method</h2></td>
+            <td style="width:70%">
+                <h3>
+                    Cash
+                </h3>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:30%;vertical-align:top"><h2>Shipping</h2></td>
+            <td style="width:70%">
+                <h3>
+                    Pick Up
+                </h3>
+            </td>
+        </tr>
+        </table>
+
+        <div *ngFor="let cartItem of cartItems">
+            <br>
+            <mat-card>
+              <table style="width:100%">
+                <tr>
+                  <th style="width:70%"></th>
+                  <th style="width:15%;text-align:right">Ordered Qty</th>
+                  <th style="width:15%;text-align:right">Price</th>
+                </tr>
+                <tr>
+                  <td style="width:70%">
+                    <img [src]="'data:image/jpeg;base64,'+ cartItem.itemImage" class="thumbnail2" align="left">
+                    <h2>{{cartItem.description}}</h2><br>
+                    <h3>{{cartItem.category}}</h3><br>
+                    <h3>{{cartItem.itemName}}</h3><br>
+                    <h3>Seller: {{cartItem.storeName}}</h3>
+                  </td>
+                  <td style="vertical-align:top;width:15%;text-align:right">
+                    <h3>{{cartItem.orderQty}}</h3><br>
+                  </td>
+                  <td style="vertical-align:top;width:15%; text-align:right">
+                    <h2>${{cartItem.price}}</h2><br>
+                  </td>
+    
+                </tr>
+              </table>
+            </mat-card>
+          </div>
+          <div style="text-align:right">
+            <mat-card>
+                <h2>Order total: ${{subTotal}}</h2>
+            </mat-card>
+          </div>
+
+          <mat-card>
+            <mat-card-actions align="end">
+                <button mat-raised-button value="placeyourorder" (click)="placeyourorder()">Place Your Order</button>
+            </mat-card-actions>
+          </mat-card>
+
+     
+</mat-dialog-content>
+
+

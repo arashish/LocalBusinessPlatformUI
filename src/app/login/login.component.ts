@@ -6,6 +6,7 @@ import { TempdataService } from '../tempdata.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { SignupComponent } from '../signup/signup.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-login',
