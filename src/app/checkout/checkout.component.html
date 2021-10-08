@@ -11,6 +11,16 @@
                 {{userData.firstname}} {{userData.lastname}} <br>
                 {{userData.address}} <br>
                 {{userData.city}}, {{userData.state}} {{userData.zipcode}}
+                <!-- <input placeholder="Street Address" name="userData.address" [(ngModel)]="userData.address" size="40" required><br>
+                <div id="inputinlinediv">
+                  <input placeholder="City" name="userData.city" [(ngModel)]="userData.city" size="15" required>
+                </div>
+                <div id="inputinlinediv">
+                  <input placeholder="State" name="userData.state" [(ngModel)]="userData.state" size="4" required>
+                </div>
+                <div id="inputinlinediv">
+                  <input placeholder="Zip Code" name="userData.zipcode" [(ngModel)]="userData.zipcode" size="7" required>
+                </div> -->
                 </h3>
             </td>
         </tr>
@@ -19,7 +29,7 @@
             <td style="width:30%;vertical-align:top"><h2>Payment Method</h2></td>
             <td style="width:70%">
                 <h3>
-                    Cash
+                    Credit Card
                 </h3>
             </td>
         </tr>
@@ -27,9 +37,18 @@
         <tr>
             <td style="width:30%;vertical-align:top"><h2>Shipping</h2></td>
             <td style="width:70%">
-                <h3>
-                    Pick Up
-                </h3>
+
+              <select [(ngModel)] ="shipMethod">
+                  <option value="LBP Delivery">LBP Delivery</option>
+                  <option value="Pick Up" selected>Pick Up</option>
+              </select>
+<!-- 
+              <mat-form-field appearance="fill" id="inlinespace">
+                  <mat-select [(value)] ="shipMethod">
+                    <mat-option value="LBP Delivery">LBP Delivery</mat-option>
+                    <mat-option value="Pick Up">Pick Up</mat-option>
+                  </mat-select>
+              </mat-form-field> -->
             </td>
         </tr>
         </table>

@@ -21,6 +21,9 @@ export class CheckoutComponent implements OnInit {
   subTotal: number =0;
   
   orders: any =[];
+
+  paymentMethod: string = "";
+  shipMethod: string = "Pick Up";
  
   ngOnInit(): void {
       this.userData = this.tempdata.getloginData();
@@ -33,19 +36,24 @@ export class CheckoutComponent implements OnInit {
       var calcOrderQty = cartItem.orderQty;
       var calcTotalPrice = calcPrice * calcOrderQty;
       this.subTotal = this.subTotal + calcTotalPrice;
-
-   
-      const pipe = new DatePipe('en-US');
-      const now = Date.now();
-      const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
-      this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate,"",""));
-    
+      // const pipe = new DatePipe('en-US');
+      // const now = Date.now();
+      // const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
+      // this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate, "Credit Card", this.shipMethod, "",""));
     }
 
     this.subTotal.toFixed(2);
   }
 
   placeyourorder(){
+    for (let cartItem of this.cartItems){
+      const pipe = new DatePipe('en-US');
+      const now = Date.now();
+      const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
+      this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate, "Credit Card", this.shipMethod, "",""));
+    
+    }
+
     console.log(this.orders);
     let resp = this.service.createorder(this.orders);
     resp.subscribe(data=>{

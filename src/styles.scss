@@ -69,7 +69,12 @@ li a:hover:not(.active) {
   #inlinediv {
     display: inline-block;
     padding-right: 15px;
-}
+  }
+
+  #inputinlinediv {
+    display: inline-block;
+    padding-right: 10px;
+  }
 
 a.editlink {
   text-decoration: underline;
