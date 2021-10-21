@@ -35,6 +35,9 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { OrderItemComponent } from './order-item/order-item.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderCheckComponent } from './order-check/order-check.component';
+import { OrderShipComponent } from './order-ship/order-ship.component';
+import { OrderStatusComponent } from './order-status/order-status.component';
 
 
 
@@ -51,7 +54,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AddItemComponent,
     OrderItemComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrderCheckComponent,
+    OrderShipComponent,
+    OrderStatusComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

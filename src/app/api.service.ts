@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Store } from './models/store';
 import { TempdataService } from './tempdata.service';
 import { User } from './models/User';
 import { UserData } from './models/UserData';
 import { ItemWrapper } from './models/ItemWrapper';
 import { Order } from './models/Order';
+import { Store } from './models/store';
+import { OrderData} from './models/OrderData'
 
 @Injectable({
   providedIn: 'root'
@@ -76,8 +77,28 @@ export class ApiService {
     return this.http.post<Order>('http://localhost:8080/createorder', orders, {headers, responseType: 'text' as 'json'});
   }
 
+  public shiporder(order: Order): Observable<Order>{
+    let token = 'Bearer ' + this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.post<Order>('http://localhost:8080/shiporder', order, {headers, responseType: 'text' as 'json'});
+  }
+
+  public checkorder(){
+    let token = 'Bearer '+ this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.get('http://localhost:8080/checkorder', {headers});
+  }
+
+  public orderstatus(){
+    let token = 'Bearer '+ this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.get('http://localhost:8080/orderstatus', {headers});
+  }
+
     public logout(){
     return this.http.get('http://localhost:8080/logout');
   }
+
+
 
 }

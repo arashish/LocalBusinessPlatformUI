@@ -3,7 +3,8 @@
       <ul>
         <li><a href="#" routerLink="/logout">logout</a></li>
         <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/cart">Cart</a></li>
-        <li *ngIf="user.usertype === 'seller'"><a href="#" routerLink="/order">Order</a></li>
+        <li *ngIf="user.usertype === 'seller'"><a href="#" routerLink="/ordercheck">Order</a></li>
+        <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/orderstatus">Order Status</a></li>
         <li><a href="#" routerLink="/profile">Profile</a></li>
         <li><a href="#" class="active" routerLink="/home">Home</a></li>
       </ul>

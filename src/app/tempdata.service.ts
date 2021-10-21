@@ -11,11 +11,13 @@ export class TempdataService {
   private storeData: any;
   private itemData!: any;
   private searchData!: any;
+  private orderData!: any;
   private token: any;
   private responseStatus: any;
   private message: string="";
   private rowNumber!: number;
   private cartItems: any = [ ];
+  private orderId!: number;
 
   constructor() { 
   }
@@ -30,6 +32,8 @@ export class TempdataService {
     this.message = "";
     this.rowNumber = 0;
     this.cartItems = [];
+    this.orderData = "";
+    this.orderId =0;
   }
 
   public  getloginData(){
@@ -105,5 +109,21 @@ this.itemData = itemData;
     this.rowNumber = rowNumber;
   }
 
+  public getOrderData(){
+    return this.orderData;
+  }
+
+  public setOrderData(orderData: any){
+    this.orderData = orderData;
+  }
+
+
+  public getOrderId(){
+    return this.orderId;
+  }
+
+  public setOrderNumber(orderId: number){
+    this.orderId = orderId;
+  }
 
 }

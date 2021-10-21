@@ -1,0 +1,48 @@
+<div class="container">
+    <nav>
+        <ul>
+          <li><a href="#" routerLink="/logout">logout</a></li>
+          <li><a href="#" class="active" routerLink="/ordercheck">Order</a></li>
+          <li><a href="#" routerLink="/profile">Profile</a></li>
+          <li><a href="#" routerLink="/home">Home</a></li>
+        </ul>
+    </nav>
+
+    <div style="text-align:center">
+      <h1 [ngStyle]="{'color':'green'}">Orders Received</h1>
+    </div>
+
+    <div *ngFor="let orderData of orderDatas">
+        <div *ngIf="orderData.order.orderStatus === 'Order Submitted'">
+          <br>
+          <mat-card>
+            <table>
+              <tr>
+                <td style="vertical-align:top">
+                  <img [src]="'data:image/jpeg;base64,'+ orderData.item.itemImage" class="thumbnail2" align="left">
+                </td>
+
+                <td style="vertical-align:top"> 
+
+                  <h3>Order Id# {{orderData.order.orderId}}</h3><br>
+                  <h2><a class="orderLink">{{orderData.item.description}}</a></h2><br>
+                  <h3>Item Name: {{orderData.item.itemName}}</h3><br>
+                  <h3>Item Price: ${{orderData.item.price}}</h3><br>
+                  <h3>Ordered Quantity: {{orderData.order.orderQty}}</h3><br>
+                  <h3>Customer Name: {{orderData.customer.firstname}} {{orderData.customer.lastname}}</h3><br>
+                  <h3>Shipping Address:  {{orderData.customer.address}}, {{orderData.customer.city}}, {{orderData.customer.state}}, {{orderData.customer.zipcode}}</h3><br>
+                  <h3>Payment Method: {{orderData.order.paymentMethod}}</h3><br>
+                  <h3>Ship Method: {{orderData.order.shipMethod}}</h3><br>
+                  
+                  <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)">Ship Order</button>
+                </td>
+              </tr>
+            </table>
+          </mat-card>
+        </div>
+
+      </div>
+
+    
+</div>
+

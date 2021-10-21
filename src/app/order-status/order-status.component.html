@@ -1,0 +1,61 @@
+<div class="container">
+    <nav>
+        <ul>
+          <li><a href="#" routerLink="/logout">logout</a></li>
+          <li><a href="#" routerLink="/cart">Cart</a></li>
+          <li><a href="#" class="active" routerLink="/orderstatus">Order Status</a></li>
+          <li><a href="#" routerLink="/profile">Profile</a></li>
+          <li><a href="#" routerLink="/home">Home</a></li>
+        </ul>
+    </nav>
+
+    <div style="text-align:center">
+      <h1 [ngStyle]="{'color':'green'}">Orders Status</h1>
+    </div>
+
+    <div *ngFor="let orderData of orderDatas">
+          <br>
+          <mat-card>
+            <table>
+              <tr>
+                <td style="vertical-align:top">
+                  <img [src]="'data:image/jpeg;base64,'+ orderData.item.itemImage" class="thumbnail2" align="left">
+                </td>
+
+                <td style="vertical-align:top">
+                    
+                  <div *ngIf="orderData.order.orderStatus === 'Order Submitted'">
+                      <h1 id="redstatus">{{orderData.order.orderStatus}}</h1><br>
+                  </div>
+
+                  <div *ngIf="orderData.order.orderStatus === 'Order Shipped'">
+                    <h1 id="greenstatus">{{orderData.order.orderStatus}} </h1><br> 
+                  </div>
+
+                  <h3>Order Id# {{orderData.order.orderId}}</h3><br>
+                  <h2><a class="orderLink">{{orderData.item.description}}</a></h2><br>
+                  <h3>Store Name: </h3> <h3 class="link">{{orderData.store.storeName}}</h3><br>
+                  <h3>Item Name: {{orderData.item.itemName}}</h3><br>
+                  <h3>Item Price: ${{orderData.item.price}}</h3><br>
+                  <h3>Ordered Quantity: {{orderData.order.orderQty}}</h3><br>
+                  <h3>Shipping Address:  {{orderData.customer.address}}, {{orderData.customer.city}}, {{orderData.customer.state}}, {{orderData.customer.zipcode}}</h3><br>
+                  <h3>Payment Method: {{orderData.order.paymentMethod}}</h3><br>
+                  <h3>Ship Method: {{orderData.order.shipMethod}}</h3><br>
+                  <h3>Shipping Company: {{orderData.order.shipVia}}</h3><br>
+                  <h3>Shipping Tracking: </h3><h3 class="link">{{orderData.order.shipTracking}}</h3><br>
+                  <h3>Shipped Date: {{orderData.order.shippedDate}}</h3><br>
+
+                  <div *ngIf="orderData.order.orderStatus === 'Order Shipped'">
+                     <h2>(Delivered within 3 days)</h2><br> 
+                  </div>
+
+                </td>
+              </tr>
+            </table>
+          </mat-card>
+      </div>
+
+    
+</div>
+
+

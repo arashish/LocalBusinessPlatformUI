@@ -102,9 +102,30 @@ a.link {
     cursor: pointer;
   }
 
+  .link {
+    text-decoration: underline;
+    text-decoration-color:gray;
+    color:rgb(58, 52, 52);
+    cursor: pointer;
+  }
+
   d.link {
     text-decoration: underline;
     text-decoration-color: skyblue;
     color: skyblue;
     cursor: pointer;
+  }
+
+  .mat-button, .mat-raised-button{
+    background-color:#4CAF50;
+    }
+    
+  #greenstatus{
+    color: white;
+    background-color: #4CAF50;
+  }
+
+  #redstatus{
+    color: white;
+    background-color: red;
   }

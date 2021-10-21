@@ -50,7 +50,7 @@ export class CheckoutComponent implements OnInit {
       const pipe = new DatePipe('en-US');
       const now = Date.now();
       const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
-      this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate, "Credit Card", this.shipMethod, "",""));
+      this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate, "Credit Card", this.shipMethod, "","",""));
     
     }
 

@@ -11,8 +11,10 @@ export class Order {
     private shipMethod: string;
     private shippedDate: string;
     private shipVia: string;
+    private shipTracking: string;
+    
 
-    constructor (orderId: string, customerId: string, storeId: string, itemId: string, itemPrice: string, orderQty: string, orderStatus: string, orderDate: string, paymentMethod: string, shipMethod: string, shippedDate: string, shipVia: string){
+    constructor (orderId: string, customerId: string, storeId: string, itemId: string, itemPrice: string, orderQty: string, orderStatus: string, orderDate: string, paymentMethod: string, shipMethod: string, shippedDate: string, shipVia: string, shipTracking: string){
         this.orderId = orderId;
         this.customerId = customerId;
         this.storeId = storeId;
@@ -23,8 +25,9 @@ export class Order {
         this.orderDate = orderDate;
         this.paymentMethod = paymentMethod;
         this.shipMethod =shipMethod;
-        this.shippedDate = shippedDate
-        this.shipVia = shipVia
+        this.shippedDate = shippedDate;
+        this.shipVia = shipVia;
+        this.shipTracking = shipTracking;
     }
 
 }
