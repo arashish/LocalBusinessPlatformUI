@@ -52,7 +52,7 @@
             <h3>{{searchData.item.category}}</h3><br>
             <h3>{{searchData.item.itemName}}</h3><br>
             <h3>Quantity available: {{searchData.item.inventoryQty}}</h3><br>
-            <h3>Seller: {{searchData.store.storeName}}</h3> <h3> (within {{searchData.distance}} miles)</h3> 
+            <h3>Seller:</h3> <h3 class="link" (click)="displayStore(searchData.store.storeId)">{{searchData.store.storeName}}</h3> <h3> (within {{searchData.distance}} miles)</h3> 
           </mat-card>
         </div>
     </div>

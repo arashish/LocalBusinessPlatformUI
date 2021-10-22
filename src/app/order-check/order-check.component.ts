@@ -25,7 +25,7 @@ export class OrderCheckComponent implements OnInit {
   }
 
   ShipOrder(orderId: number){
-    this.tempdata.setOrderNumber(orderId);
+    this.tempdata.setOrderId(orderId);
     this.dialog.open(OrderShipComponent);
   }
 

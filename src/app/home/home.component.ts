@@ -6,6 +6,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AddItemComponent } from '../add-item/add-item.component';
 import { ApiService } from '../api.service';
 import { CreateStoreComponent } from '../create-store/create-store.component';
+import { DisplayStoreComponent } from '../display-store/display-store.component';
 import { LoginComponent } from '../login/login.component';
 import { Store } from '../models/store';
 import { User } from '../models/User';
@@ -121,6 +122,12 @@ export class HomeComponent implements OnInit {
   editStore(){
     this.dialog.open(CreateStoreComponent);
   }
+
+  displayStore(storeId: number){
+    this.tempdata.setStoreId(storeId);
+    this.dialog.open(DisplayStoreComponent);
+  }
+
 
   itemIsSearched: boolean = false;
   searchItem(){

@@ -18,6 +18,7 @@ export class TempdataService {
   private rowNumber!: number;
   private cartItems: any = [ ];
   private orderId!: number;
+  private storeId!: number;
 
   constructor() { 
   }
@@ -122,8 +123,16 @@ this.itemData = itemData;
     return this.orderId;
   }
 
-  public setOrderNumber(orderId: number){
+  public setOrderId(orderId: number){
     this.orderId = orderId;
+  }
+
+  public getStoreId(){
+    return this.storeId;
+  }
+
+  public setStoreId(storeId: number){
+    this.storeId = storeId;
   }
 
 }

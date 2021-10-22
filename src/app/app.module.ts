@@ -38,6 +38,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderCheckComponent } from './order-check/order-check.component';
 import { OrderShipComponent } from './order-ship/order-ship.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
+import { DisplayStoreComponent } from './display-store/display-store.component';
 
 
 
@@ -57,7 +58,8 @@ import { OrderStatusComponent } from './order-status/order-status.component';
     CheckoutComponent,
     OrderCheckComponent,
     OrderShipComponent,
-    OrderStatusComponent
+    OrderStatusComponent,
+    DisplayStoreComponent
   ],
   entryComponents:[SignupComponent],
   imports: [
