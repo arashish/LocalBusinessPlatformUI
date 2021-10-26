@@ -39,6 +39,8 @@ import { OrderCheckComponent } from './order-check/order-check.component';
 import { OrderShipComponent } from './order-ship/order-ship.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { DisplayStoreComponent } from './display-store/display-store.component';
+import { MessageCenterComponent } from './message-center/message-center.component';
+import { MessageWindowComponent } from './message-window/message-window.component';
 
 
 
@@ -59,7 +61,9 @@ import { DisplayStoreComponent } from './display-store/display-store.component';
     OrderCheckComponent,
     OrderShipComponent,
     OrderStatusComponent,
-    DisplayStoreComponent
+    DisplayStoreComponent,
+    MessageCenterComponent,
+    MessageWindowComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

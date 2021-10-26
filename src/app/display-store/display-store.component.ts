@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MessageWindowComponent } from '../message-window/message-window.component';
 import { TempdataService } from '../tempdata.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class DisplayStoreComponent implements OnInit {
 
 
   searchDatas: any;
-  storeId!: string;
+  storeId!: number;
   storeName!: string;
   phone!: string;
   email!: string;
@@ -26,10 +27,8 @@ export class DisplayStoreComponent implements OnInit {
   registrationDate!: string;
 
   ngOnInit(): void {
-
     this.searchDatas = this.tempData.getSearchData();
     console.log(this.tempData.getStoreId());
-
     for  (var searchData of this.searchDatas){
         console.log(searchData);
         if (searchData.store.storeId == this.tempData.getStoreId())
@@ -44,11 +43,13 @@ export class DisplayStoreComponent implements OnInit {
             this.zipcode = searchData.store.zipcode;
             this.country = searchData.store.country;
             this.registrationDate = searchData.store.registrationDate;
-
           }
-      
     }
+  }
 
+  messageWindow(storeId: number){
+    this.tempData.setStoreId(storeId);
+    this.dialog.open(MessageWindowComponent);
   }
 
 }

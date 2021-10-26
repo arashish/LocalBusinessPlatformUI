@@ -8,6 +8,7 @@ import { ItemWrapper } from './models/ItemWrapper';
 import { Order } from './models/Order';
 import { Store } from './models/store';
 import { OrderData} from './models/OrderData'
+import { MessageCenter } from './models/MessageCenter';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,12 @@ export class ApiService {
     let token = 'Bearer ' + this.tempdata.getToken();
     const headers = new HttpHeaders().set("Authorization", token);
     return this.http.post<Order>('http://localhost:8080/createorder', orders, {headers, responseType: 'text' as 'json'});
+  }
+
+  public createmessage(messageCenter: MessageCenter): Observable<MessageCenter>{
+    let token = 'Bearer ' + this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.post<MessageCenter>('http://localhost:8080/createmessage', messageCenter, {headers, responseType: 'text' as 'json'});
   }
 
   public shiporder(order: Order): Observable<Order>{

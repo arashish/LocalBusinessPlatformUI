@@ -4,6 +4,7 @@ import { CartComponent } from './cart/cart.component';
 import {HomeComponent} from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { MessageCenterComponent } from './message-center/message-center.component';
 import { OrderCheckComponent } from './order-check/order-check.component';
 import { OrderShipComponent } from './order-ship/order-ship.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'profile', component:ProfileComponent},
   {path: 'signup', component:SignupComponent},
   {path: 'cart', component:CartComponent},
+  {path: 'messagecenter', component:MessageCenterComponent},
   {path: 'ordercheck', component:OrderCheckComponent},
   {path: 'ordership', component:OrderShipComponent},
   {path: 'orderstatus', component:OrderStatusComponent},
