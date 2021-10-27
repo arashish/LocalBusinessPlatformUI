@@ -13,7 +13,7 @@
 
     <table style="border: none;">
         <tr style="border: none;">
-            <td style="border: none;">
+            <td style="border: none; vertical-align:top">
                 <h3 class="link" (click)="inbox()">Inbox</h3><br>
                 <h3 class="link" (click)="sent()">Sent</h3><br>
                 <h3 class="link" (click)="deleted()">Deleted</h3><br>
@@ -21,18 +21,44 @@
 
             <td style="border: none;">
                 <div style="padding:16px 16px;">
-                    <table>
+                    <table style="width:400px;">
                         <tr>
                             <th style="width:50px; text-align:left">From</th>
-                            <th style="width:500px; text-align:left">Message Description</th>
-                            <th style="width:50px; text-align: left">Date</th>
+                            <th style="width:100px; text-align:left">Message Description</th>
+                            <th style="width:5px; text-align: left">Date</th>
+                        </tr>
+
+                            <tr *ngFor="let inboxMessage of inboxMessages" class="cursor">
+                                <td (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientId}}</td>
+                                <td (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
+                                <td (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
+                            </tr>
+                    </table>
+                </div>
+                    
+                <div *ngIf="messageClicked" style="padding:16px 16px;">
+                    <table style="width:100%;border: none;">
+                        <tr>
+                            <th style="width:10%;border:none;"></th>
+                            <th style="width:90%;border:none;"></th>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
+                            <td style="width:10%;border:none;">Sender:</td>
+                            <td style="width:90%;border:none;">{{sender}}</td>
                         </tr>
-                    </table>    
+                        <tr>
+                            <td style="width:10%;border:none;">Date:</td>
+                            <td style="width:90%;border:none;">{{messageDate}}</td>
+                        </tr>                        
+                        <tr>
+                            <td style="width:10%;border:none;">Time:</td>
+                            <td style="width:90%;border:none;">{{messageTime}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;border:none;">Message:</td>
+                            <td style="width:90%;border:none;">{{message}}</td>
+                        </tr>
+                    </table> 
                 </div>
             </td>
         </tr>

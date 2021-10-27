@@ -10,6 +10,7 @@ export class TempdataService {
   private loginData: any;
   private storeData: any;
   private itemData!: any;
+  private messageCenterData!: any;
   private searchData!: any;
   private orderData!: any;
   private token: any;
@@ -28,6 +29,7 @@ export class TempdataService {
     this.storeData = "";
     this.itemData = "";
     this.searchData = "";
+    this.messageCenterData = "";
     this.token = "";
     this.responseStatus = "";
     this.message = "";
@@ -70,6 +72,13 @@ this.itemData = itemData;
 }
 
 
+public getMessageCenterData(){
+  return this.messageCenterData;
+}
+
+public setMessageCenterData(messageCenterData: any){
+  this.messageCenterData = messageCenterData;
+}
   public  getResponseStatus(){
     return this.responseStatus;
   }

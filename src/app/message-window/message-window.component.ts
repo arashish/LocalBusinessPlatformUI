@@ -40,7 +40,7 @@ export class MessageWindowComponent implements OnInit {
     const messageDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
     const messagetime: string = pipe.transform(now, 'HH:mm:ss') as string
     
-    this.messageObject = new MessageCenter(0,this.senderId,this.storeId,this.message, messageDate, messagetime,"U");
+    this.messageObject = new MessageCenter(0,this.senderId,this.storeId,this.message, messageDate, messagetime,"U","INBOX");
 
     console.log(this.messageObject);
     let resp = this.service.createmessage(this.messageObject);

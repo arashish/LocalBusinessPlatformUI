@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
   public user!:any;
   public store!:any;
   public item!: any;
+  public messageCenter!: any;
 
   public items!: any;
   public searchDatas!:any;
@@ -86,11 +87,12 @@ export class HomeComponent implements OnInit {
             this.user = this.userData.user;
             this.store = this.userData.store;
             this.item = this.userData.item;
-     
+            this.messageCenter = this.userData.messageCenter;
      
             this.tempdata.setLoginData(this.user); //login credentials are stored in LoginData tempvariable
             this.tempdata.setStoreData(this.store); //Store data will be stored in StoreData tempvariable
             this.tempdata.setItemData(this.item); //Item data will be stored in ItemData tempvariable
+            this.tempdata.setMessageCenterData(this.messageCenter);
             
             this.dataSource= this.item;
      
