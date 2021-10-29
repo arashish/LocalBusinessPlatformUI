@@ -17,21 +17,21 @@ import { TempdataService } from '../tempdata.service';
 })
 export class MessageWindowComponent implements OnInit {
 
-  storeId!: number;
-  senderId!: number;
+  storeUsername!: string;
+  senderUsername!: string;
   message!: string;
 
   messageObject: any;
 
-  storeIdFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
+  storeUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
 
   constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialogRef: MatDialogRef<LoginComponent>, private dialog: MatDialog) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }
 
   ngOnInit(): void {
-    this.storeId = this.tempData.getStoreId();
-    this.senderId = this.tempData.getloginData().id;
+    this.storeUsername = this.tempData.getStoreUsername();
+    this.senderUsername = this.tempData.getloginData().username;
   }
 
   sendMessage(){
@@ -40,7 +40,7 @@ export class MessageWindowComponent implements OnInit {
     const messageDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
     const messagetime: string = pipe.transform(now, 'HH:mm:ss') as string
     
-    this.messageObject = new MessageCenter(0,this.senderId,this.storeId,this.message, messageDate, messagetime,"U","INBOX");
+    this.messageObject = new MessageCenter(0,this.senderUsername,this.storeUsername,this.message, messageDate, messagetime,"U","INBOX");
 
     console.log(this.messageObject);
     let resp = this.service.createmessage(this.messageObject);

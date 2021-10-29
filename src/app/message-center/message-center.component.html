@@ -23,20 +23,23 @@
                 <div style="padding:16px 16px;">
                     <table style="width:400px;">
                         <tr>
-                            <th style="width:50px; text-align:left">From</th>
-                            <th style="width:100px; text-align:left">Message Description</th>
+                            <th style="width:50px; text-align:left" colspan="4">{{messageCategory}}</th>
+                            <!-- <th style="width:100px; text-align:left">Message Description</th>
                             <th style="width:5px; text-align: left">Date</th>
+                            <th style="width:5px; text-align: left">Time</th> -->
+                            
                         </tr>
 
                             <tr *ngFor="let inboxMessage of inboxMessages" class="cursor">
-                                <td (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientId}}</td>
-                                <td (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
-                                <td (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
+                                <td style="width:50px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientUsername}}</td>
+                                <td style="width:100px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
+                                <td style="width:5px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
+                                <td style="width:5px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageTime}}</td>
                             </tr>
                     </table>
                 </div>
                     
-                <div *ngIf="messageClicked" style="padding:16px 16px;">
+                <div *ngIf="messageCategory != ''" style="padding:16px 16px;">
                     <table style="width:100%;border: none;">
                         <tr>
                             <th style="width:10%;border:none;"></th>

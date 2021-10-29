@@ -28,10 +28,9 @@ export class DisplayStoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchDatas = this.tempData.getSearchData();
-    console.log(this.tempData.getStoreId());
     for  (var searchData of this.searchDatas){
         console.log(searchData);
-        if (searchData.store.storeId == this.tempData.getStoreId())
+        if (searchData.store.email == this.tempData.getStoreUsername())
           {
             this.storeId = searchData.store.storeId;
             this.storeName = searchData.store.storeName;
@@ -47,8 +46,8 @@ export class DisplayStoreComponent implements OnInit {
     }
   }
 
-  messageWindow(storeId: number){
-    this.tempData.setStoreId(storeId);
+  messageWindow(storeUsername: string){
+    this.tempData.setStoreUsername(storeUsername);
     this.dialog.open(MessageWindowComponent);
   }
 

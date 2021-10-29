@@ -19,7 +19,7 @@ export class TempdataService {
   private rowNumber!: number;
   private cartItems: any = [ ];
   private orderId!: number;
-  private storeId!: number;
+  private storeUsername!: string;
 
   constructor() { 
   }
@@ -136,12 +136,12 @@ public setMessageCenterData(messageCenterData: any){
     this.orderId = orderId;
   }
 
-  public getStoreId(){
-    return this.storeId;
+  public getStoreUsername(){
+    return this.storeUsername;
   }
 
-  public setStoreId(storeId: number){
-    this.storeId = storeId;
+  public setStoreUsername(storeUsername: string){
+    this.storeUsername = storeUsername;
   }
 
 }

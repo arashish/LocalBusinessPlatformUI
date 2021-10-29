@@ -125,8 +125,8 @@ export class HomeComponent implements OnInit {
     this.dialog.open(CreateStoreComponent);
   }
 
-  displayStore(storeId: number){
-    this.tempdata.setStoreId(storeId);
+  displayStore(storeUsername: string){
+    this.tempdata.setStoreUsername(storeUsername);
     this.dialog.open(DisplayStoreComponent);
   }
 

@@ -17,6 +17,7 @@ export class MessageCenterComponent implements OnInit {
   user: any;
   messageCenterDatas: any;
   messageCenterData: any;
+  messageCategory!: string;
 
   //inboxMessages: any = [ ];
   inboxMessages: Array<MessageCenter> = [];
@@ -28,21 +29,24 @@ export class MessageCenterComponent implements OnInit {
   }
 
   inbox(){
+    this.messageCategory = "Inbox";
+    this.inboxMessages = [];
+  }
+
+  sent(){
+    this.messageCategory = "Sent To";
     this.inboxMessages = [];
     for (var messageCenterData of this.messageCenterDatas) 
       {
-        if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderId === this.user.id)
+        if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.user.username)
           {
             this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
           }
       } 
   }
 
-  sent(){
-    console.log("clicked sent");
-  }
-
   deleted(){
+    this.messageCategory = "Deleted";
     console.log("clicked deleted");
   }
 
@@ -51,8 +55,6 @@ export class MessageCenterComponent implements OnInit {
   message!: string;
   messageDate!: string;
   messageTime!: string;
-
-  messageClicked: boolean = false;
 
   displayMessage(messageId: number){
     for (var messageCenterData of this.messageCenterDatas) 
@@ -63,7 +65,6 @@ export class MessageCenterComponent implements OnInit {
             this.message = messageCenterData.message;
             this.messageDate = messageCenterData.messageDate;
             this.messageTime = messageCenterData.messageTime;
-            this.messageClicked = true;
             break;
           }
       } 
