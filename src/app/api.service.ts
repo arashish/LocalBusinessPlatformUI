@@ -84,6 +84,12 @@ export class ApiService {
     return this.http.post<MessageCenter>('http://localhost:8080/createmessage', messageCenter, {headers, responseType: 'text' as 'json'});
   }
 
+  public updatemessage(messageCenter: MessageCenter): Observable<MessageCenter>{
+    let token = 'Bearer ' + this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.post<MessageCenter>('http://localhost:8080/updatemessage', messageCenter, {headers});
+  }
+
   public shiporder(order: Order): Observable<Order>{
     let token = 'Bearer ' + this.tempdata.getToken();
     const headers = new HttpHeaders().set("Authorization", token);
