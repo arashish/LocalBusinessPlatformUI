@@ -11,9 +11,9 @@
         </ul>
     </nav>
 
-    <table style="border: none;">
+    <table style="border: none; table-layout: auto; width:100%">
         <tr style="border: none;">
-            <td style="border: none; vertical-align:top">
+            <td style="border: none; vertical-align:top; text-align:left; width: 100px;">
                 <h3 class="link" (click)="inbox()">Inbox ({{unreadMessages}})</h3><br>
                 <h3 class="link" (click)="sent()">Sent</h3><br>
                 <h3 class="link" (click)="deleted()">Deleted</h3><br>
@@ -21,34 +21,20 @@
 
             <td style="border: none;">
                 <div style="padding:16px 16px;">
-                    <table width="270">
+                    <table style="border: none; table-layout: auto; width:470px">
                         <tr>
                             <th style="text-align:left" colspan="4">{{messageCategory}}</th>
-                            <!-- <th style="width:100px; text-align:left">Message Description</th>
-                            <th style="width:5px; text-align: left">Date</th>
-                            <th style="width:5px; text-align: left">Time</th> -->
-                            
                         </tr>
-
-                            <!-- <tr *ngFor="let inboxMessage of inboxMessages" class="cursor">
-                                <span *ngIf="inboxMessage.messageStatus == 'U'" [ngStyle]="{'background-color': 'lightgrey'}" >
-                                    <td style="width:50px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientUsername}}</td>
-                                    <td style="width:200px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
-                                    <td style="width:10px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
-                                    <td style="width:10px; text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageTime}}</td>
-                                </span>
-                            </tr> -->
-
                             <tr *ngFor="let inboxMessage of inboxMessages" class="cursor" [ngStyle]="{'background-color': (inboxMessage.messageStatus == 'U') ? 'lightgrey' : 'white'}">
-                                    <td width = "50" style="text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientUsername}}</td>
-                                    <td width = "200" style="text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
-                                    <td width = "10" style="text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
-                                    <td width = "10" style="text-align:left" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageTime}}</td>
+                                <td style="text-align:left; width:100px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientUsername}}</td>
+                                <td style="text-align:left; width:200px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
+                                <td style="text-align:left; width:10px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
+                                <td style="text-align:left; width:10px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageTime}}</td>
                             </tr>
                     </table>
                 </div>
                     
-                <div *ngIf="messageCategory != ''" style="padding:16px 16px;">
+                <div *ngIf="messageId != 0 && messageId != undefined" style="padding:16px 16px;">
                     <table style="width:100%;border: none;">
                         <tr>
                             <th style="width:10%;border:none;"></th>
@@ -70,6 +56,18 @@
                             <td style="width:10%;border:none;">Message:</td>
                             <td style="width:90%;border:none;">{{message}}</td>
                         </tr>
+
+                        <ng-container *ngIf="messageCategory =='Inbox' && messageId != 0">
+                            <tr>
+                                <td style="width:10%;border:none;"></td>
+                                <td style="width:90%;border:none;">
+                                    <mat-card-actions id="inlinespace" align="start">
+                                        <button mat-raised-button value="Reply" (click)="reply()">Reply</button>
+                                    </mat-card-actions>
+                                </td>
+                            </tr>
+                        </ng-container>
+
                     </table> 
                 </div>
             </td>

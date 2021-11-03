@@ -32,7 +32,7 @@ export class MessageCenterComponent implements OnInit {
     this.unreadMessages = 0;
     for (var messageCenterData of this.messageCenterDatas)
     {
-      if (this.tempdata.getStoreData().publish == false) {
+      if (this.tempdata.getStoreData() == null) {
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username && messageCenterData.messageStatus === 'U') {
           this.unreadMessages = this.unreadMessages + 1;  
         }
@@ -44,30 +44,30 @@ export class MessageCenterComponent implements OnInit {
     } 
     this.inbox();
     //To display the message after the message status changes from unread to read
-    this.tempMessageCenterData = this.tempdata.getTempMessageCenterData();
-    this.sender = this.tempMessageCenterData.senderUsername;
-    this.recipient = this.tempMessageCenterData.recipientUsername;
-    this.message = this.tempMessageCenterData.message;
-    this.messageDate = this.tempMessageCenterData.messageDate;
-    this.messageTime = this.tempMessageCenterData.messageTime;
-    this.messageCat = this.tempMessageCenterData.messageCategory;
+    if (this.tempdata.getTempMessageCenterData() != null) {
+      this.tempMessageCenterData = this.tempdata.getTempMessageCenterData();
+      this.messageId = this.tempMessageCenterData.messageId;
+      this.sender = this.tempMessageCenterData.senderUsername;
+      this.recipient = this.tempMessageCenterData.recipientUsername;
+      this.message = this.tempMessageCenterData.message;
+      this.messageDate = this.tempMessageCenterData.messageDate;
+      this.messageTime = this.tempMessageCenterData.messageTime;
+      this.messageCat = this.tempMessageCenterData.messageCategory;
+    }
     //************************************************************************* */
   }
 
   inbox(){
     this.messageCategory = "Inbox";
     this.inboxMessages = [];
+    this.messageId = 0; //reset
     for (var messageCenterData of this.messageCenterDatas)
     {
-      console.log(messageCenterData.messageCategory);
-      console.log(messageCenterData.recipientUsername);
-      if (this.tempdata.getStoreData().publish == false) {
-        if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username) {
+      if (this.tempdata.getStoreData() == null) { 
+            if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username) {
             this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
-          }
-      } else {
-        console.log(messageCenterData.messageCategory);
-        console.log(messageCenterData.recipientUsername);
+        }
+      } else if (this.tempdata.getStoreData() != null) {
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email) {
           this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
@@ -79,16 +79,17 @@ export class MessageCenterComponent implements OnInit {
   sent(){
     this.messageCategory = "Sent To";
     this.inboxMessages = [];
-    for (var messageCenterData of this.messageCenterDatas) 
-    if (this.tempdata.getStoreData().publish == false) {
-      if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.user.username) {
+    this.messageId = 0; //reset
+    for (var messageCenterData of this.messageCenterDatas)
+    {
+      if (this.tempdata.getStoreData() == null) { 
+            if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.user.username) {
+            this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
+        }
+      } else if (this.tempdata.getStoreData() != null) {
+        if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.tempdata.getStoreData().email) {
           this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
-    } else {
-      console.log(messageCenterData.messageCategory);
-      console.log(messageCenterData.recipientUsername);
-      if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.tempdata.getStoreData().email) {
-        this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
       }
     }
     this.clearDisplay();
@@ -96,11 +97,24 @@ export class MessageCenterComponent implements OnInit {
 
   deleted(){
     this.messageCategory = "Deleted";
-    console.log("clicked deleted");
+    this.inboxMessages = [];
+    this.messageId = 0; //reset
+    for (var messageCenterData of this.messageCenterDatas)
+    {
+      if (this.tempdata.getStoreData() == null) { 
+            if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.senderUsername === this.user.username) {
+            this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
+        }
+      } else if (this.tempdata.getStoreData() != null) {
+        if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.senderUsername === this.tempdata.getStoreData().email) {
+          this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
+        }
+      }
+    }
     this.clearDisplay();
   }
 
-
+  messageId: number=0;
   sender!: string;
   recipient!: string;
   message!: string;
@@ -110,10 +124,12 @@ export class MessageCenterComponent implements OnInit {
   messageCat!: string;
   
   displayMessage(messageId: number){
+
     for (var messageCenterData of this.messageCenterDatas) 
       {
         if (messageCenterData.messageId === messageId)
           {
+            this.messageId = messageCenterData.messageId;
             this.sender = messageCenterData.senderUsername;
             this.recipient = messageCenterData.recipientUsername;
             this.message = messageCenterData.message;
@@ -122,7 +138,9 @@ export class MessageCenterComponent implements OnInit {
             this.messageStatus = "R";
             this.messageCat = messageCenterData.messageCategory;
             this.tempdata.setTempMessageCenterData(new MessageCenter(messageId,this.sender,this.recipient,this.message, this.messageDate, this.messageTime,this.messageStatus,this.messageCat));
-            this.updateMessage(messageId);
+            if (this.messageCategory == "Inbox"){
+                this.updateMessage(messageId);
+            }
             break;
           }
       } 
@@ -146,5 +164,9 @@ export class MessageCenterComponent implements OnInit {
     this.messageTime = "";
     this.messageStatus = "";
     this.messageCat = "";
+  }
+
+  reply(){
+    console.log(this.messageId);
   }
 }
