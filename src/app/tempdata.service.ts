@@ -19,8 +19,9 @@ export class TempdataService {
   private rowNumber!: number;
   private cartItems: any = [ ];
   private orderId!: number;
-  private storeUsername!: string;
+  private messageUsername!: string;
   private tempMessageCenterData!: any;
+  private requestFrom!: string;
 
   constructor() { 
   }
@@ -38,8 +39,9 @@ export class TempdataService {
     this.cartItems = [];
     this.orderData = "";
     this.orderId =0;
-    this.storeUsername ="";
+    this.messageUsername ="";
     this.tempMessageCenterData = "";
+    this.requestFrom = "";
   }
 
   public  getloginData(){
@@ -139,12 +141,12 @@ public setMessageCenterData(messageCenterData: any){
     this.orderId = orderId;
   }
 
-  public getStoreUsername(){
-    return this.storeUsername;
+  public getMessageUsername(){
+    return this.messageUsername;
   }
 
-  public setStoreUsername(storeUsername: string){
-    this.storeUsername = storeUsername;
+  public setMessageUsername(messageUsername: string){
+    this.messageUsername = messageUsername;
   }
 
   public getTempMessageCenterData(){
@@ -153,5 +155,13 @@ public setMessageCenterData(messageCenterData: any){
 
   public setTempMessageCenterData(tempMessageCenterData: any){
     return this.tempMessageCenterData = tempMessageCenterData;
+  }
+
+  public setRequestFrom(requestFrom: string){
+    this.requestFrom = requestFrom;
+  }
+
+  public getRequestFrom(){
+    return this.requestFrom;
   }
 }

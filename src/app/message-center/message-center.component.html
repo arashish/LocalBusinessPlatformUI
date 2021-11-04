@@ -25,8 +25,10 @@
                         <tr>
                             <th style="text-align:left" colspan="4">{{messageCategory}}</th>
                         </tr>
-                            <tr *ngFor="let inboxMessage of inboxMessages" class="cursor" [ngStyle]="{'background-color': (inboxMessage.messageStatus == 'U') ? 'lightgrey' : 'white'}">
-                                <td style="text-align:left; width:100px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientUsername}}</td>
+                            <tr *ngFor="let inboxMessage of inboxMessages" class="cursor" [ngStyle]="{'background-color': (inboxMessage.messageStatus == 'U' && messageCategory== 'Inbox') ? 'lightgrey' : 'white'}">
+                                <td *ngIf="messageCategory == 'Inbox'" style="text-align:left; width:100px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.senderUsername}}</td>
+                                <td *ngIf="messageCategory == 'Sent To'" style="text-align:left; width:100px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.recipientUsername}}</td>
+                                <td *ngIf="messageCategory == 'Deleted'" style="text-align:left; width:100px" (click)="displayMessage(inboxMessage.messageId)">From: {{inboxMessage.senderUsername}} <br> To: {{inboxMessage.recipientUsername}}</td>
                                 <td style="text-align:left; width:200px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.message}}</td>
                                 <td style="text-align:left; width:10px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageDate}}</td>
                                 <td style="text-align:left; width:10px" (click)="displayMessage(inboxMessage.messageId)">{{inboxMessage.messageTime}}</td>
@@ -41,9 +43,21 @@
                             <th style="width:90%;border:none;"></th>
                         </tr>
                         <tr>
-                            <td style="width:10%;border:none;">Sender:</td>
-                            <td style="width:90%;border:none;">{{sender}}</td>
+                            <td *ngIf="messageCategory == 'Inbox'" style="width:10%;border:none;">Sender:</td>
+                            <td *ngIf="messageCategory == 'Inbox'" style="width:90%;border:none;">{{sender}}</td>
+
+                            <td *ngIf="messageCategory == 'Sent To'" style="width:10%;border:none;">Recipient:</td>
+                            <td *ngIf="messageCategory == 'Sent To'" style="width:90%;border:none;">{{recipient}}</td>
                         </tr>
+                        <tr>
+                            <td *ngIf="messageCategory == 'Deleted'" style="width:10%;border:none;">Recipient:</td>
+                            <td *ngIf="messageCategory == 'Deleted'" style="width:90%;border:none;">{{recipient}}</td>
+                        </tr>
+                        <tr>
+                            <td *ngIf="messageCategory == 'Deleted'" style="width:10%;border:none;">Sender:</td>
+                            <td *ngIf="messageCategory == 'Deleted'" style="width:90%;border:none;">{{sender}}</td>
+                        </tr>
+                        
                         <tr>
                             <td style="width:10%;border:none;">Date:</td>
                             <td style="width:90%;border:none;">{{messageDate}}</td>
@@ -62,7 +76,19 @@
                                 <td style="width:10%;border:none;"></td>
                                 <td style="width:90%;border:none;">
                                     <mat-card-actions id="inlinespace" align="start">
-                                        <button mat-raised-button value="Reply" (click)="reply()">Reply</button>
+                                        <button mat-raised-button value="delete" (click)="delete()">Delete</button>
+                                        <button mat-raised-button value="reply" (click)="reply()">Reply</button>
+                                    </mat-card-actions>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                        <ng-container *ngIf="messageCategory=='Deleted'">
+                            <tr>
+                                <td style="width:10%;border:none;"></td>
+                                <td style="width:90%;border:none;">
+                                    <mat-card-actions id="inlinespace" align="start">
+                                        <button mat-raised-button value="deletePermanently" (click)="deletePermanently()">Delete Permanently</button>
                                     </mat-card-actions>
                                 </td>
                             </tr>

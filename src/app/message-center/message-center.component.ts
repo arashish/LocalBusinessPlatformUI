@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MessageWindowComponent } from '../message-window/message-window.component';
 import { MessageCenter } from '../models/MessageCenter';
 import { TempdataService } from '../tempdata.service';
 
@@ -52,6 +53,7 @@ export class MessageCenterComponent implements OnInit {
       this.message = this.tempMessageCenterData.message;
       this.messageDate = this.tempMessageCenterData.messageDate;
       this.messageTime = this.tempMessageCenterData.messageTime;
+      this.messageStatus = this.tempMessageCenterData.messageStatus;
       this.messageCat = this.tempMessageCenterData.messageCategory;
     }
     //************************************************************************* */
@@ -99,14 +101,16 @@ export class MessageCenterComponent implements OnInit {
     this.messageCategory = "Deleted";
     this.inboxMessages = [];
     this.messageId = 0; //reset
+    console.log(this.messageCenterDatas);
+
     for (var messageCenterData of this.messageCenterDatas)
     {
       if (this.tempdata.getStoreData() == null) { 
-            if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.senderUsername === this.user.username) {
+            if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.recipientUsername === this.user.username) {
             this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
       } else if (this.tempdata.getStoreData() != null) {
-        if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.senderUsername === this.tempdata.getStoreData().email) {
+        if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email) {
           this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
       }
@@ -167,6 +171,40 @@ export class MessageCenterComponent implements OnInit {
   }
 
   reply(){
-    console.log(this.messageId);
+    this.tempdata.setRequestFrom("MessageCenter");
+    this.tempdata.setMessageUsername(this.sender);
+    this.dialog.open(MessageWindowComponent);
   }
+
+  delete(){
+    if(confirm("Are you sure to delete?")) {
+      this.messageObject = new MessageCenter(this.messageId,this.sender,this.recipient,this.message, this.messageDate, this.messageTime,this.messageStatus,"DELETED");
+      let resp = this.service.updatemessage(this.messageObject);
+      resp.subscribe(data=>{
+        this.tempdata.setMessageCenterData(data);
+        this.tempdata.setMessage("The message has been deleted!");
+        this.messageId = 0; //reset
+        this.tempdata.setTempMessageCenterData(null);
+        this.clearDisplay();
+        this.router.navigate(['/messagecenter']);
+       })
+    }
+  }
+
+  deletePermanently(){
+    if(confirm("Are you sure you want to delete this permanenlty?")) {
+      this.messageObject = new MessageCenter(this.messageId,this.sender,this.recipient,this.message, this.messageDate, this.messageTime,this.messageStatus,"DELETED");
+      let resp = this.service.deletemessage(this.messageObject);
+      resp.subscribe(data=>{
+        this.tempdata.setMessageCenterData(data);
+        this.messageCenterDatas = data;
+        this.tempdata.setMessage("The message has been deleted permanently!");
+        this.messageId = 0; //reset
+        this.tempdata.setTempMessageCenterData(null);
+        this.clearDisplay();
+        this.deleted();
+       })
+    }
+  }
+
 }

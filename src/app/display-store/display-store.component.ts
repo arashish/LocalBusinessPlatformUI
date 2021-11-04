@@ -30,7 +30,7 @@ export class DisplayStoreComponent implements OnInit {
     this.searchDatas = this.tempData.getSearchData();
     for  (var searchData of this.searchDatas){
         console.log(searchData);
-        if (searchData.store.email == this.tempData.getStoreUsername())
+        if (searchData.store.email == this.tempData.getMessageUsername())
           {
             this.storeId = searchData.store.storeId;
             this.storeName = searchData.store.storeName;
@@ -47,7 +47,8 @@ export class DisplayStoreComponent implements OnInit {
   }
 
   messageWindow(storeUsername: string){
-    this.tempData.setStoreUsername(storeUsername);
+    this.tempData.setMessageUsername(storeUsername);
+    this.tempData.setRequestFrom("DisplayStore");
     this.dialog.open(MessageWindowComponent);
   }
 

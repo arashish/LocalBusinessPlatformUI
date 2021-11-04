@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
   }
 
   displayStore(storeUsername: string){
-    this.tempdata.setStoreUsername(storeUsername);
+    this.tempdata.setMessageUsername(storeUsername);
     this.dialog.open(DisplayStoreComponent);
   }
 

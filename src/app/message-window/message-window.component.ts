@@ -17,21 +17,26 @@ import { TempdataService } from '../tempdata.service';
 })
 export class MessageWindowComponent implements OnInit {
 
-  storeUsername!: string;
+  recipientUsername!: string;
   senderUsername!: string;
   message!: string;
 
   messageObject: any;
 
-  storeUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
+  recipientUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
 
   constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialogRef: MatDialogRef<LoginComponent>, private dialog: MatDialog) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }
 
   ngOnInit(): void {
-    this.storeUsername = this.tempData.getStoreUsername();
-    this.senderUsername = this.tempData.getloginData().username;
+      this.recipientUsername = this.tempData.getMessageUsername();
+
+      if (this.tempData.getStoreData() != null){
+        this.senderUsername = this.tempData.getStoreData().email; //if a store is sending it
+      } else {
+        this.senderUsername = this.tempData.getloginData().username; //if a non-store people sending it
+      }
   }
 
   sendMessage(){
@@ -40,17 +45,18 @@ export class MessageWindowComponent implements OnInit {
     const messageDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
     const messagetime: string = pipe.transform(now, 'HH:mm:ss') as string
     
-    this.messageObject = new MessageCenter(0,this.senderUsername,this.storeUsername,this.message, messageDate, messagetime,"U","INBOX");
+    this.messageObject = new MessageCenter(0,this.senderUsername,this.recipientUsername,this.message, messageDate, messagetime,"U","INBOX");
 
-    console.log(this.messageObject);
-    let resp = this.service.createmessage(this.messageObject);
+    let resp = this.service.updatemessage(this.messageObject);
     resp.subscribe(data=>{
-      this.tempData.setResoponseStatus(data);
-      this.tempData.setMessage("Your message has been sent. The store representative will get back to you!");
+      this.tempData.setMessageCenterData(data);
+      this.tempData.setMessage("Your message has been sent successfully!");
       this.dialogRef.close();
       this.dialog.open(MessageComponent);
+      if (this.tempData.getRequestFrom() == "MessageCenter"){ //refresh the page if the request is coming from MessageCenter
+          this.router.navigate(['/messagecenter']);
+      }
     })
-
 
   }
 
