@@ -45,11 +45,14 @@
                   <h3>Shipping Company: {{orderData.order.shipVia}}</h3><br>
                   <h3>Shipping Tracking: </h3><h3 class="link">{{orderData.order.shipTracking}}</h3><br>
                   <h3>Shipped Date: {{orderData.order.shippedDate}}</h3><br>
-
                   <div *ngIf="orderData.order.orderStatus === 'Order Shipped'">
                      <h2>(Delivered within 3 days)</h2><br> 
                   </div>
-
+                  <mat-card-actions align="start">
+                    <div id="inlinediv">
+                        <button mat-raised-button (click)="LeaveFeedback(orderData.store.email)">Leave Feedback</button>
+                    </div>
+                  </mat-card-actions>
                 </td>
               </tr>
             </table>

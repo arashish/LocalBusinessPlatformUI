@@ -41,6 +41,8 @@ import { OrderStatusComponent } from './order-status/order-status.component';
 import { DisplayStoreComponent } from './display-store/display-store.component';
 import { MessageCenterComponent } from './message-center/message-center.component';
 import { MessageWindowComponent } from './message-window/message-window.component';
+import { RatingWindowComponent } from './rating-window/rating-window.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -63,7 +65,8 @@ import { MessageWindowComponent } from './message-window/message-window.componen
     OrderStatusComponent,
     DisplayStoreComponent,
     MessageCenterComponent,
-    MessageWindowComponent
+    MessageWindowComponent,
+    RatingWindowComponent
   ],
   entryComponents:[SignupComponent],
   imports: [
@@ -83,7 +86,8 @@ import { MessageWindowComponent } from './message-window/message-window.componen
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule
   ],
   providers: [ApiService, LoginComponent],
   bootstrap: [AppComponent]

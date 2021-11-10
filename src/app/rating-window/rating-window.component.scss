@@ -1,0 +1,36 @@
+.rate {
+    float: left;
+    height: 30px;
+    padding: 0 0px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+
+.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
+.w3-border{border:1px solid #ccc!important}
+.w3-sand{color:#000!important;background-color:rgb(240, 240, 240)!important}
+
+// mat-card {
+//     max-width: 500px;
+//     max-height: 100%;
+//     padding-top: 0px;
+//     padding-bottom: 0px;
+//     box-sizing: border-box;
+// }
