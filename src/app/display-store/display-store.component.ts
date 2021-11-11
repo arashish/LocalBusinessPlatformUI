@@ -26,6 +26,9 @@ export class DisplayStoreComponent implements OnInit {
   country!: string;
   registrationDate!: string;
 
+  reviews: any;
+  ratingValue: number =0;
+
   ngOnInit(): void {
     this.searchDatas = this.tempData.getSearchData();
     for  (var searchData of this.searchDatas){
@@ -42,6 +45,14 @@ export class DisplayStoreComponent implements OnInit {
             this.zipcode = searchData.store.zipcode;
             this.country = searchData.store.country;
             this.registrationDate = searchData.store.registrationDate;
+
+            this.reviews = searchData.review;
+            for (var review of this.reviews)
+              {
+                this.ratingValue = Number(review.ratingValue) + this.ratingValue;
+              }
+            this.ratingValue = this.ratingValue / this.reviews.length;
+          break;
           }
     }
   }

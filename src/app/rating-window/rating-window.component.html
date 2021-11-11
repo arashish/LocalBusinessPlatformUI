@@ -1,18 +1,18 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Feedback for {{name}}</mat-card-title>
+        <mat-card-title>Feedback for {{revieweeName}}</mat-card-title>
     </mat-card-header>
 
     <div class="rate">
-        <input type="radio" id="fiveStar" [(ngModel)]="currentRate" value="5" />
+        <input type="radio" id="fiveStar" [(ngModel)]="ratingValue" (click)="enableSubmitButton()" value="5" />
         <label for="fiveStar" title="Excellent"></label>
-        <input type="radio" id="fourStar" [(ngModel)]="currentRate" value="4" />
+        <input type="radio" id="fourStar" [(ngModel)]="ratingValue" (click)="enableSubmitButton()" value="4" />
         <label for="fourStar" title="Good"></label>
-        <input type="radio" id="threeStar" [(ngModel)]="currentRate" value="3" />
+        <input type="radio" id="threeStar" [(ngModel)]="ratingValue" (click)="enableSubmitButton()" value="3" />
         <label for="threeStar" title="Okay"></label>
-        <input type="radio" id="twoStar" [(ngModel)]="currentRate" value="2" />
+        <input type="radio" id="twoStar" [(ngModel)]="ratingValue" (click)="enableSubmitButton()" value="2" />
         <label for="twoStar" title="Bad"></label>
-        <input type="radio" id="oneStar" [(ngModel)]="currentRate" value="1" />
+        <input type="radio" id="oneStar" [(ngModel)]="ratingValue" (click)="enableSubmitButton()" value="1" />
         <label for="oneStar" title="Terrible"></label>
     </div>
 
@@ -24,7 +24,7 @@
 
     <mat-card-actions align="start">
         <div id="inlinediv">
-            <button mat-raised-button value="Submit" (click)="SendRating()">Submit</button>
+            <button mat-raised-button value="Submit" (click)="SendRating()" [disabled]="!disableButton">Submit</button>
         </div>
         
         <div id="inlinediv">

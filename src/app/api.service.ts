@@ -9,6 +9,7 @@ import { Order } from './models/Order';
 import { Store } from './models/store';
 import { OrderData} from './models/OrderData'
 import { MessageCenter } from './models/MessageCenter';
+import { Review } from './models/Review';
 
 @Injectable({
   providedIn: 'root'
@@ -112,6 +113,12 @@ export class ApiService {
     let token = 'Bearer '+ this.tempdata.getToken();
     const headers = new HttpHeaders().set("Authorization", token);
     return this.http.get('http://localhost:8080/orderstatus', {headers});
+  }
+
+  public createreview(review: any): Observable<Review>{
+    let token = 'Bearer ' + this.tempdata.getToken();
+    const headers = new HttpHeaders().set("Authorization", token);
+    return this.http.post<Review>('http://localhost:8080/createreview', review, {headers, responseType: 'text' as 'json'});
   }
 
     public logout(){

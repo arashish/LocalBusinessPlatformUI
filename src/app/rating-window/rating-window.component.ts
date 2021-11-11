@@ -1,8 +1,12 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { LoginComponent } from '../login/login.component';
+import { MessageComponent } from '../message/message.component';
+import { Review } from '../models/Review';
 import { TempdataService } from '../tempdata.service';
 
 @Component({
@@ -12,20 +16,23 @@ import { TempdataService } from '../tempdata.service';
 })
 export class RatingWindowComponent implements OnInit {
 
-  constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialog: MatDialog) { }
+  constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialog: MatDialog,  private dialogRef: MatDialogRef<LoginComponent>) { }
 
   recipientUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
 
-  recipientUsername!: string;
+  revieweeUsername!: string;
   comment!: string;
-  currentRate!: number;
-  name!: string;
+  ratingValue!: string;
+  revieweeName!: string;
   orderDatas: any;
-  senderUsername!: string;
+  reviewerUsername!: string;
+  reviewDate !: string;
+
+  disableButton !: boolean;
 
   ngOnInit(): void {
     this.orderDatas = this.tempData.getOrderData();
-    this.senderUsername = this.tempData.getloginData().username;
+    this.reviewerUsername = this.tempData.getloginData().username;
     console.log(this.tempData.getOrderData());
     for  (var orderData of this.orderDatas){
       console.log(orderData.store.email);
@@ -33,18 +40,30 @@ export class RatingWindowComponent implements OnInit {
 
         if (orderData.store.email == this.tempData.getMessageUsername())
           {
-            this.name = orderData.store.storeName;
-            this.recipientUsername = orderData.store.email;
+            this.revieweeName = orderData.store.storeName;
+            this.revieweeUsername = orderData.store.email;
           }
     }
   }
 
+  enableSubmitButton(){
+    this.disableButton = true;
+  }
+
 
   SendRating(){
-    console.log(this.senderUsername);
-    console.log(this.recipientUsername);
-    console.log(this.currentRate);
-    console.log(this.comment);
+    const pipe = new DatePipe('en-US');
+    const now = Date.now();
+    this.reviewDate = pipe.transform(now, 'MM/dd/yyyy') as string;
+    let resp = this.service.createreview(new Review("",this.reviewerUsername, this.revieweeUsername,this.comment, this.ratingValue, this.reviewDate));
+    resp.subscribe(data=>{
+      this.tempData.setResoponseStatus(data);
+      this.tempData.setMessage("Thank you for your feedback!");
+      this.dialogRef.close();
+      this.dialog.open(MessageComponent);
+      this.router.navigate(['/orderstatus']);
+    })
+
   }
 
 }
