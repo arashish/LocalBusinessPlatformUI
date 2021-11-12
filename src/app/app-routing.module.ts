@@ -9,6 +9,7 @@ import { OrderCheckComponent } from './order-check/order-check.component';
 import { OrderShipComponent } from './order-ship/order-ship.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RatingListComponent } from './rating-list/rating-list.component';
 import { RatingWindowComponent } from './rating-window/rating-window.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'ordership', component:OrderShipComponent},
   {path: 'orderstatus', component:OrderStatusComponent},
   {path: 'ratingwindow', component:RatingWindowComponent},
+  {path: 'ratinglist', component:RatingListComponent},
   {path: 'logout', component:LogoutComponent}
 ];
 

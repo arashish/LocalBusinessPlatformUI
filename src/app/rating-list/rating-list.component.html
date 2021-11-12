@@ -1,0 +1,76 @@
+<div *ngFor="let review of reviews">
+    <br>
+    <mat-card>
+        <table>
+            <tr>
+                <td>Reviewer:</td>
+                <td>{{review.reviewerUsername}}</td>
+            </tr>
+
+            <tr>
+                <td style="vertical-align:top;">Feedback:</td>
+                <td><textarea rows="7" cols="40" disabled>{{review.comment}}</textarea></td>
+            </tr>
+
+            <tr>
+                <td>Rating:</td>
+                <td>
+                    <h3 *ngIf="review.ratingValue=='0'">
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                    </h3>
+            
+                    <h3 *ngIf="review.ratingValue=='1'">
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                    </h3>
+            
+            
+                    <h3 *ngIf="review.ratingValue=='2'">
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                    </h3>
+            
+                    <h3 *ngIf="review.ratingValue=='3'">
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                    </h3>
+                    
+                    <h3 *ngIf="review.ratingValue=='4'">
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                    </h3>
+            
+                    
+                    <h3 *ngIf="review.ratingValue=='5'">
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                    </h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Reviewed Date:</td>
+                <td>{{review.reviewDate}}</td>
+            </tr>
+        </table>
+    </mat-card>
+  </div>

@@ -43,6 +43,7 @@ import { MessageCenterComponent } from './message-center/message-center.componen
 import { MessageWindowComponent } from './message-window/message-window.component';
 import { RatingWindowComponent } from './rating-window/rating-window.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RatingListComponent } from './rating-list/rating-list.component';
 
 
 
@@ -66,7 +67,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DisplayStoreComponent,
     MessageCenterComponent,
     MessageWindowComponent,
-    RatingWindowComponent
+    RatingWindowComponent,
+    RatingListComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

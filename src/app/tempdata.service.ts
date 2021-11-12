@@ -164,4 +164,5 @@ public setMessageCenterData(messageCenterData: any){
   public getRequestFrom(){
     return this.requestFrom;
   }
+
 }
