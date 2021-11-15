@@ -21,14 +21,15 @@ export class RatingListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.searchDatas = this.tempData.getSearchData();
-    for  (var searchData of this.searchDatas){
-        if (searchData.store.email == this.tempData.getMessageUsername())
-          {
-            this.reviews = searchData.review;
-               break;
-          }
-    }
+    // this.searchDatas = this.tempData.getSearchData();
+    // for  (var searchData of this.searchDatas){
+    //     if (searchData.store.email == this.tempData.getMessageUsername())
+    //       {
+    //         this.reviews = searchData.review;
+    //            break;
+    //       }
+    // }
+    this.reviews = this.tempData.getReviews();
   }
 
 }

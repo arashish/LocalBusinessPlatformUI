@@ -12,6 +12,7 @@ import { Store } from '../models/store';
 import { User } from '../models/User';
 import { UserData } from '../models/UserData';
 import { OrderItemComponent } from '../order-item/order-item.component';
+import { RatingListComponent } from '../rating-list/rating-list.component';
 import { SignupComponent } from '../signup/signup.component';
 import { TempdataService } from '../tempdata.service';
 
@@ -48,6 +49,10 @@ export class HomeComponent implements OnInit {
 
   public items!: any;
   public searchDatas!:any;
+
+  reviews: any;
+  totalReviews: number = 0;
+  ratingValue: number =0;
 
   id: string ="";
   firstname: string ="";
@@ -98,12 +103,25 @@ export class HomeComponent implements OnInit {
      
             console.log(this.userData);
             this.retrievedImages = this.tempdata.getItemData();
-            
             for  (var image of this.retrievedImages){
               this.retrievedImage = image.itemImage;
             }
-     
             this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
+
+            this.reviews = this.userData.review;
+            for (var review of this.reviews)
+              {
+                this.ratingValue = Number(review.ratingValue) + this.ratingValue;
+                this.totalReviews = this.totalReviews + 1;
+              }
+            
+              this.ratingValue = this.roundToHalf(this.ratingValue / this.reviews.length);
+            
+            if (Number.isNaN(this.ratingValue))
+            {
+              this.ratingValue =0;
+            }
+            console.log(this.ratingValue);
           })
   }
 
@@ -169,5 +187,16 @@ export class HomeComponent implements OnInit {
     console.log(numb);
     this.tempdata.setRowNumber(numb);
     this.dialog.open(OrderItemComponent);
+  }
+
+  ratingList(){
+    this.tempdata.setReviews(this.reviews);
+    if (this.totalReviews != 0) {
+      this.dialog.open(RatingListComponent, {height: '600px'});
+    }
+  }
+
+  roundToHalf(num: number){
+    return Math.round(num * 2) /2.0; //rounds the nearest .5
   }
 }

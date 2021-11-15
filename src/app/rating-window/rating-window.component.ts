@@ -16,7 +16,9 @@ import { TempdataService } from '../tempdata.service';
 })
 export class RatingWindowComponent implements OnInit {
 
-  constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialog: MatDialog,  private dialogRef: MatDialogRef<LoginComponent>) { }
+  constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialog: MatDialog,  private dialogRef: MatDialogRef<LoginComponent>) { 
+
+  }
 
   recipientUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
 
@@ -35,14 +37,16 @@ export class RatingWindowComponent implements OnInit {
     this.reviewerUsername = this.tempData.getloginData().username;
     console.log(this.tempData.getOrderData());
     for  (var orderData of this.orderDatas){
-      console.log(orderData.store.email);
-      console.log(this.tempData.getMessageUsername());
+      console.log(orderData.customer.username);
+      console.log(this.tempData.getMessageUsername);
 
-        if (orderData.store.email == this.tempData.getMessageUsername())
-          {
+        if (orderData.store.email == this.tempData.getMessageUsername()){ //when a buyer is reviewing the seller
             this.revieweeName = orderData.store.storeName;
             this.revieweeUsername = orderData.store.email;
-          }
+        } else if (orderData.customer.username == this.tempData.getMessageUsername()) { // when a seller is reviewing the buyer
+            this.revieweeName = orderData.customer.firstname + " " + orderData.customer.lastname;
+            this.revieweeUsername = orderData.customer.username;
+        }
     }
   }
 
@@ -61,7 +65,10 @@ export class RatingWindowComponent implements OnInit {
       this.tempData.setMessage("Thank you for your feedback!");
       this.dialogRef.close();
       this.dialog.open(MessageComponent);
-      this.router.navigate(['/orderstatus']);
+      if (this.tempData.getRequestFrom() == "ordercheck"){
+        this.router.navigate(['/ordercheck']);
+      }
+      //this.router.navigate(['/orderstatus']);
     })
 
   }

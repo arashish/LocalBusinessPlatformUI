@@ -13,8 +13,7 @@
       <h1 [ngStyle]="{'color':'green'}">Orders Received</h1>
     </div>
 
-    <div *ngFor="let orderData of orderDatas">
-        <div *ngIf="orderData.order.orderStatus === 'Order Submitted'">
+    <div *ngFor="let orderData of orderDatas; let index = index">
           <br>
           <mat-card>
             <table>
@@ -30,18 +29,151 @@
                   <h3>Item Name: {{orderData.item.itemName}}</h3><br>
                   <h3>Item Price: ${{orderData.item.price}}</h3><br>
                   <h3>Ordered Quantity: {{orderData.order.orderQty}}</h3><br>
-                  <h3>Customer Name: {{orderData.customer.firstname}} {{orderData.customer.lastname}}</h3><br>
+                  <h3>Customer Name: {{orderData.customer.firstname}} {{orderData.customer.lastname}}
+
+                  Index: {{index}}
+
+                  <span *ngFor="let review of orderData.review">
+                      {{calcTotalReviews()}}
+                      {{calcTotalRatingValue(review.ratingValue)}}
+                      {{completeLoop()}}
+                  </span>
+                  
+                  <span *ngIf="cLoop == true">
+                      {{ratingValue}} / {{totalReviews}}
+                      {{calcTotal(index)}}
+                  </span>
+
+                  <table>
+                    <tr>
+                      <td>Rating:</td>
+                      <td *ngIf="ratingValueArray[index]==0">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==1">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==1.5">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==2">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==2.5">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>                     
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==3">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==3.5">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>    
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+                      
+                      <td *ngIf="ratingValueArray[index]==4">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+    
+                      <td *ngIf="ratingValueArray[index]==4.5">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+                      
+                      <td *ngIf="ratingValueArray[index]==5">
+                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
+                          <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"> </span>
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
+                      </td>
+                  </tr>
+                  </table> 
+
+                  </h3><br>
                   <h3>Shipping Address:  {{orderData.customer.address}}, {{orderData.customer.city}}, {{orderData.customer.state}}, {{orderData.customer.zipcode}}</h3><br>
                   <h3>Payment Method: {{orderData.order.paymentMethod}}</h3><br>
                   <h3>Ship Method: {{orderData.order.shipMethod}}</h3><br>
                   
-                  <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)">Ship Order</button>
+
+                  <mat-card-actions align="start">
+
+                  <div id="inlinediv">
+                      <button mat-raised-button (click)="LeaveFeedback(orderData.customer.username)">Feedback</button>
+                  </div>
+
+                  <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Submitted'">
+                      <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)">Ship Order</button>
+                  </div>
+
+                  <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Shipped'">
+                    <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)" disabled>Ship Order</button>
+                  </div>
+
+                  </mat-card-actions>
                 </td>
               </tr>
             </table>
           </mat-card>
-        </div>
-
       </div>
 
     

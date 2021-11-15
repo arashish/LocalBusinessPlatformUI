@@ -37,95 +37,105 @@
                 <tr>
                     <td>Rating:</td>
                     <td *ngIf="ratingValue==0">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==1">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==1.5">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==2">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==2.5">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>                     
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==3">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==3.5">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>    
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px" (click)="ratingList()">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
                     
                     <td *ngIf="ratingValue==4">
+                        <span style="font-size:15px">{{ratingValue}} </span>
+                        <span style="font-size:15px">({{ratingValue}})</span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
-                        <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-
+  
                     <td *ngIf="ratingValue==4.5">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
-                        <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span> 
+                        <span class="fa fa-star-half-full checked" style="color:#ffc700;font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
                     
                     <td *ngIf="ratingValue==5">
+                        <span style="font-size:15px">{{ratingValue}} </span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
                         <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
-                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"></span>
-                        <span class="link" style="font-size:15px">({{totalReviews}})</span>
+                        <span class="fa fa-star checked" style="color:#ffc700;font-size:20px"> </span>
+                        <span>(</span><span class="link" style="font-size:15px" (click)="ratingList()">{{totalReviews}} reviews</span><span>)</span>
                     </td>
-                    
                 </tr>
             </table>
         </mat-card-content>

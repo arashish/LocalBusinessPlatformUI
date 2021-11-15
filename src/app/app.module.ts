@@ -45,8 +45,6 @@ import { RatingWindowComponent } from './rating-window/rating-window.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingListComponent } from './rating-list/rating-list.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

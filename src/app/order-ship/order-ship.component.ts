@@ -80,6 +80,8 @@ export class OrderShipComponent implements OnInit {
       this.tempData.setMessage("The item has been successfully shipped!");
       this.dialogRef.closeAll();
       this.dialog.open(MessageComponent);
+      // this.tempData.setMessage("Would you like to leave a feedback to the buyer?");
+      // this.dialog.open(ConfirmBoxComponent);
       this.router.navigate(['/ordercheck']);
     })
 

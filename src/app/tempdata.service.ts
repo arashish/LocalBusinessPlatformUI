@@ -22,6 +22,8 @@ export class TempdataService {
   private messageUsername!: string;
   private tempMessageCenterData!: any;
   private requestFrom!: string;
+  private reviews!: any;
+  private confirmBoxValue!: string;
 
   constructor() { 
   }
@@ -165,4 +167,19 @@ public setMessageCenterData(messageCenterData: any){
     return this.requestFrom;
   }
 
+  public setReviews(reviews: any){
+    this.reviews = reviews;
+  }
+
+  public getReviews(){
+    return this.reviews;
+  }
+
+  public setConfirmBoxValue(confirmBoxValue: string){
+    this.confirmBoxValue = confirmBoxValue;
+  }
+
+  public getConfirmBoxValue(){
+    return this.confirmBoxValue;
+  }
 }
