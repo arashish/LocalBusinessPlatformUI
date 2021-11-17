@@ -1,5 +1,9 @@
 body{
-  background-image: url("./images/background.jpg");
+  // background-image: url("./images/aaa.jpg");
+  // background-repeat:repeat;
+
+  background: linear-gradient(to bottom, #ffffff 5%, #33cc33 100%);
+  background-attachment: fixed;
 }
 
 
@@ -134,3 +138,16 @@ a.link {
     color: white;
     background-color: red;
   }
+
+
+  .footer {
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 20px;
+    width: 100%;
+    background-color:white;
+    color: green;
+    text-align: center;
+ }
