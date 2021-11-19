@@ -20,12 +20,29 @@
                 </mat-error>
             </mat-form-field>
         
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <input matInput placeholder="Category" name="category" [(ngModel)]="category" [formControl]="categoryFormControl">
                 <mat-error *ngIf="categoryFormControl.hasError">
                     Store name should only contain alphabets!
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="fill" id="inlinespace">
+                <mat-label >Select a category</mat-label>
+                <mat-select [(value)]="category" >
+                  <mat-option value="All Category">All Category</mat-option>
+                  <mat-option value="Books">Books</mat-option>
+                  <mat-option value="Computers">Computers</mat-option>
+                  <mat-option value="Electronics">Electronics</mat-option>
+                  <mat-option value="Entertainment">Entertainment</mat-option>
+                  <mat-option value="Instruments">Instruments</mat-option>
+                  <mat-option value="Sports">Sports</mat-option>
+                  <mat-option value="Well being">Well being</mat-option>
+                </mat-select>
+                <mat-error *ngIf="categoryFormControl.hasError">
+                    Store name should only contain alphabets!
+                </mat-error>
+              </mat-form-field>
 
             <mat-form-field>
                 <input matInput placeholder="Available Qty" name="inventoryqty" [(ngModel)]="inventoryQty" [formControl]="inventoryqtyFormControl">

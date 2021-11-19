@@ -16,8 +16,6 @@ import { RatingListComponent } from '../rating-list/rating-list.component';
 import { SignupComponent } from '../signup/signup.component';
 import { TempdataService } from '../tempdata.service';
 
-
-
 export interface ItemFields{
   itemId: number;
   name: string;
@@ -148,29 +146,21 @@ export class HomeComponent implements OnInit {
     this.dialog.open(DisplayStoreComponent);
   }
 
-
   itemIsSearched: boolean = false;
+  isWait: boolean = false;
   searchItem(){
-    console.log(this.categoryName);
-    console.log(this.itemName);
+    if (!this.categoryName){
+      this.categoryName = "All Category";
+    }
+    this.isWait = true;
     let resp = this.service.searchItem(this.itemName,this.categoryName );
     resp.subscribe(data=>{
-    //   this.items = data;
-    //   this.tempdata.setItemData(this.items); //Item data will be stored in ItemData tempvariable
-    //   this.retrievedImages = this.tempdata.getItemData();
-    //   for  (var image of this.retrievedImages){
-    //     this.retrievedImage = image.itemImage;
-    //   }
-    //  this.retrievedImage = 'data:image/jpeg;base64,' + this.retrievedImage;
-    //  this.itemIsSearched = true;
-
-     this.searchDatas = data;
-     this.tempdata.setSearchData(this.searchDatas); //Item data will be stored in ItemData tempvariable
-     console.log(this.tempdata.getSearchData());
-     this.retrievedImages = this.tempdata.getItemData();
-    
+    this.searchDatas = data;
+    this.tempdata.setSearchData(this.searchDatas); //Item data will be stored in ItemData tempvariable
+    console.log(this.tempdata.getSearchData());
+    this.retrievedImages = this.tempdata.getItemData();
     this.itemIsSearched = true;
-
+    this.isWait = false;
     })
   }
 

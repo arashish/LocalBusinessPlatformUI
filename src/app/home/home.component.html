@@ -130,24 +130,26 @@
       <mat-form-field appearance="fill" id="inlinespace">
         <mat-label >Select a category</mat-label>
         <mat-select [(value)]="categoryName" >
-          <mat-option value="">All Category</mat-option>
-          <mat-option value="books">Books</mat-option>
-          <mat-option value="electronics">Electronics</mat-option>
-          <mat-option value="sports">Sports</mat-option>
-          <mat-option value="computers">Computers</mat-option>
-          <mat-option value="instruments">Instruments</mat-option>
-          <mat-option value="entertainment">Entertainment</mat-option>
-          
+          <mat-option value="All Category">All Category</mat-option>
+          <mat-option value="Books">Books</mat-option>
+          <mat-option value="Computers">Computers</mat-option>
+          <mat-option value="Electronics">Electronics</mat-option>
+          <mat-option value="Entertainment">Entertainment</mat-option>
+          <mat-option value="Instruments">Instruments</mat-option>
+          <mat-option value="Sports">Sports</mat-option>
+          <mat-option value="Well being">Well being</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="fill" id="inlinespace" class="full-width">  
-        <input matInput type = "search" [(ngModel)]="itemName" placeholder="Search an Iiem">
+        <input matInput type = "search" [(ngModel)]="itemName" (keydown.enter)="searchItem()" placeholder="Search an item">
       </mat-form-field>
 
       <mat-card-actions id="inlinespace" align="end">
         <button mat-raised-button color="accent" value="Search" (click)="searchItem()">search</button>
       </mat-card-actions>
+
+      <mat-progress-bar mode="indeterminate" *ngIf="isWait"></mat-progress-bar>
 
     </mat-card>
 
@@ -165,6 +167,15 @@
             <h3>Seller:</h3> <h3 class="link" (click)="displayStore(searchData.store.email)">{{searchData.store.storeName}}</h3> <h3> (within {{searchData.distance}} miles)</h3> 
           </mat-card>
         </div>
+
+        <div *ngIf="searchDatas.length==0" style="text-align: center;">
+          <br>
+          <mat-card>
+            <h2>Results Not found!</h2> <br>
+            <h3>Sorry, we could not find any matches for the item you are looking for.</h3>
+          </mat-card>
+        </div>
+
     </div>
 
   </div>
