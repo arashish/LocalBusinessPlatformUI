@@ -143,6 +143,7 @@ export class HomeComponent implements OnInit {
 
   displayStore(storeUsername: string){
     this.tempdata.setMessageUsername(storeUsername);
+    this.tempdata.setRequestFrom("search");
     this.dialog.open(DisplayStoreComponent);
   }
 

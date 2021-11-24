@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
       var calcOrderQty = cartItem.orderQty;
       var calcTotalPrice = calcPrice * calcOrderQty;
       this.subTotal = this.subTotal + calcTotalPrice;
-      this.subTotalItems = this.subTotalItems + 1;
+      this.subTotalItems = this.subTotalItems + calcOrderQty;
     }
     this.subTotal.toFixed(2);
   }

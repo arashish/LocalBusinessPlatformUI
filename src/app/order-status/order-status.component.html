@@ -35,7 +35,7 @@
 
                   <h3>Order Id# {{orderData.order.orderId}}</h3><br>
                   <h2><a class="orderLink">{{orderData.item.description}}</a></h2><br>
-                  <h3>Store Name: </h3> <h3 class="link">{{orderData.store.storeName}}</h3><br>
+                  <h3>Store Name: </h3> <h3 class="link" (click)="displayStore(orderData.store.email)">{{orderData.store.storeName}}</h3><br>
                   <h3>Item Name: {{orderData.item.itemName}}</h3><br>
                   <h3>Item Price: ${{orderData.item.price}}</h3><br>
                   <h3>Ordered Quantity: {{orderData.order.orderQty}}</h3><br>

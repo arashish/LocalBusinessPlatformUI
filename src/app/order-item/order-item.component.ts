@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { MessageComponent } from '../message/message.component';
 import {Cart} from '../models/Cart';
 import { TempdataService } from '../tempdata.service';
 
@@ -40,7 +41,7 @@ export class OrderItemComponent implements OnInit {
             this.itemName = searchData.item.itemName;
             this.description = searchData.item.description;
             this.category = searchData.item.category;
-            this.inventoryQty = searchData.item.inventoryQty;
+            this.inventoryQty = Number(searchData.item.inventoryQty);
             this.price = searchData.item.price;
             this.itemImage = searchData.item.itemImage;
               if (this.itemImage != null){
@@ -60,10 +61,38 @@ export class OrderItemComponent implements OnInit {
  
 
   AddToCart(){
+    var temp_cart = [];
+    var existingItem: Boolean = false;
     this.cartItems = this.tempData.getCartItems();
-    this.cartItems.push(new Cart( this.itemId, this.itemName, this.itemImage, this.description, this.category, this.orderQty, this.price, this.storeId, this.storeName));
+    for (var cartItem of this.cartItems){
+      var totalQty : number = 0;
+      if (cartItem.itemId == this.itemId){
+        existingItem = true;
+        totalQty = Number(this.orderQty) + Number(cartItem.orderQty);
+        if (totalQty > this.inventoryQty){
+          this.tempData.setMessage("The item quantity exceed the available quantity!");
+          this.dialog.open(MessageComponent);
+          return;
+        }else{
+          temp_cart.push(new Cart( this.itemId, this.itemName, this.itemImage, this.description, this.category, String(totalQty), this.price, this.storeId, this.storeName)); //updating the existing item
+          continue;
+        }
+      }
+      temp_cart.push(cartItem);
+    }
+
+    
+    if (existingItem == true) {
+      this.cartItems = temp_cart; //updated the existing cart
+      //do not do anything more
+    }else{
+      this.cartItems.push(new Cart( this.itemId, this.itemName, this.itemImage, this.description, this.category, this.orderQty, this.price, this.storeId, this.storeName)); //adding new item to the cart
+    }
+
     this.tempData.setCartItems(this.cartItems);
-    console.log(this.tempData.getCartItems());
+    this.tempData.setMessage("The item has been successfully added to your cart!");
+    this.dialogRef.closeAll();
+    this.dialog.open(MessageComponent);
   }
 
   createRange(getNumber: number){

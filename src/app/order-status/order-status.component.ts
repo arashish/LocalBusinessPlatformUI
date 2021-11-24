@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { DisplayStoreComponent } from '../display-store/display-store.component';
 import { RatingWindowComponent } from '../rating-window/rating-window.component';
 import { TempdataService } from '../tempdata.service';
 
@@ -32,6 +33,12 @@ export class OrderStatusComponent implements OnInit {
   LeaveFeedback(email : string){
     this.tempData.setMessageUsername(email);
     this.dialog.open(RatingWindowComponent);
+  }
+
+  displayStore(storeUsername: string){
+    this.tempData.setMessageUsername(storeUsername);
+    this.tempData.setRequestFrom("order");
+    this.dialog.open(DisplayStoreComponent);
   }
 
 }

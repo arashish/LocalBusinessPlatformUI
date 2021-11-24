@@ -22,8 +22,8 @@ export class CheckoutComponent implements OnInit {
   
   orders: any =[];
 
-  paymentMethod: string = "";
-  shipMethod: string = "Pick Up";
+  paymentMethod: string = "Cash"; //default value
+  shipMethod: string = "Pick Up"; //default value
  
   ngOnInit(): void {
       this.userData = this.tempdata.getloginData();
@@ -50,15 +50,15 @@ export class CheckoutComponent implements OnInit {
       const pipe = new DatePipe('en-US');
       const now = Date.now();
       const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
-      this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate, "Credit Card", this.shipMethod, "","",""));
-    
+      this.orders.push(new Order("", this.tempdata.getloginData().id, cartItem.storeId, cartItem.itemId, cartItem.price, cartItem.orderQty, "Order Submitted", orderDate, this.paymentMethod, this.shipMethod, "","",""));
     }
 
-    console.log(this.orders);
     let resp = this.service.createorder(this.orders);
     resp.subscribe(data=>{
       this.tempdata.setResoponseStatus(data);
+      this.tempdata.setCartItems([]);
       this.tempdata.setMessage("Your items has been place for order. Please check your order section to get the order status");
+      this.dialog.closeAll();
       this.dialog.open(MessageComponent);
       this.router.navigate(["/home"])
     })
