@@ -6,24 +6,24 @@
 
         <mat-card-content fxLayout="column">
             <mat-form-field>
-            <input matInput placeholder="Store Name" name="store_name" [(ngModel)]="store_name" [formControl]="store_nameFormControl">
-            <mat-error *ngIf="store_nameFormControl.hasError">
-                Store name should only contain alphabets!
-            </mat-error>
+                <input matInput placeholder="Store Name" name="store_name" [(ngModel)]="store_name" [formControl]="store_nameFormControl">
+                <mat-error *ngIf="store_nameFormControl.hasError">
+                    Store name should only contain alphabets!
+                </mat-error>
             </mat-form-field>
             
             <mat-form-field>
-            <input matInput placeholder="Phone Number" name="phone" [(ngModel)]="phone" [formControl]="phoneFormControl">
-            <mat-error *ngIf="phoneFormControl.hasError">
-                Invalid Phone number!
-            </mat-error>    
+                <input matInput placeholder="Phone Number" name="phone" [(ngModel)]="phone" [formControl]="phoneFormControl">
+                <mat-error *ngIf="phoneFormControl.hasError">
+                    Invalid Phone number!
+                </mat-error>    
             </mat-form-field>
         
             <mat-form-field>
-            <input matInput placeholder="Email" name="email" [(ngModel)]="email" [formControl]="emailFormControl">
-            <mat-error *ngIf="emailFormControl.hasError">
-                Invalid email!
-            </mat-error> 
+                <input matInput placeholder="Email" name="email" [(ngModel)]="email" [formControl]="emailFormControl">
+                <mat-error *ngIf="emailFormControl.hasError">
+                    Invalid email!
+                </mat-error> 
             </mat-form-field>
 
             <mat-form-field>
@@ -35,22 +35,22 @@
 
             <mat-form-field>
                 <input matInput placeholder="City" name="city" [(ngModel)]="city" [formControl]="cityFormControl">
-                <mat-error *ngIf="phoneFormControl.hasError">
+                <mat-error *ngIf="cityFormControl.hasError">
                     Invalid city name!
                 </mat-error>    
             </mat-form-field>
 
             <mat-form-field>
                 <input matInput placeholder="State" name="state" [(ngModel)]="state" [formControl]="stateFormControl">
-                <mat-error *ngIf="phoneFormControl.hasError">
+                <mat-error *ngIf="stateFormControl.hasError">
                     State should only contain 2 alphabets!
                 </mat-error>    
             </mat-form-field>
 
             <mat-form-field>
                 <input matInput placeholder="Zipcode" name="zipcode" [(ngModel)]="zipcode" [formControl]="zipcodeFormControl">
-                <mat-error *ngIf="phoneFormControl.hasError">
-                    Zipcode should only contain 10 letters.
+                <mat-error *ngIf="zipcodeFormControl.hasError">
+                    Zipcode should contain atleast 5 digits and not more than 10 digits.
                 </mat-error>    
             </mat-form-field>
 
@@ -60,6 +60,13 @@
                     Country should only contain 2 alphabets!
                 </mat-error>    
             </mat-form-field>
+
+            <fieldset>
+                <legend>
+                    <label>Publish</label>
+                </legend>
+                <mat-slide-toggle [(ngModel)]="publish"></mat-slide-toggle> 
+            </fieldset>
             
         </mat-card-content>
 

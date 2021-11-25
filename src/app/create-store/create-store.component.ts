@@ -69,9 +69,9 @@ export class CreateStoreComponent implements OnInit {
   emailFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
   streetFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9,. ]*"),])
   cityFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
-  stateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z]*"),])
+  stateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z]{2}"),])
   countryFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
-  zipcodeFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9]{5}"),])
+  zipcodeFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9-]{5,10}$"),])
 
   CreateStore(){
     if (!this.store_name || !this.phone || !this.email || !this.street || !this.city || !this.state || !this.zipcode) {

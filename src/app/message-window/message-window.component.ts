@@ -23,7 +23,7 @@ export class MessageWindowComponent implements OnInit {
 
   messageObject: any;
 
-  recipientUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
+  recipientUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
 
   constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialogRef: MatDialogRef<LoginComponent>, private dialog: MatDialog) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
@@ -45,19 +45,22 @@ export class MessageWindowComponent implements OnInit {
     const messageDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
     const messagetime: string = pipe.transform(now, 'HH:mm:ss') as string
     
-    this.messageObject = new MessageCenter(0,this.senderUsername,this.recipientUsername,this.message, messageDate, messagetime,"U","INBOX");
-
-    let resp = this.service.updatemessage(this.messageObject);
-    resp.subscribe(data=>{
-      this.tempData.setMessageCenterData(data);
-      this.tempData.setMessage("Your message has been sent successfully!");
-      this.dialogRef.close();
+    if (!this.recipientUsername) {
+      this.tempData.setMessage("Please enter a valid email address!");
       this.dialog.open(MessageComponent);
-      if (this.tempData.getRequestFrom() == "MessageCenter"){ //refresh the page if the request is coming from MessageCenter
-          this.router.navigate(['/messagecenter']);
-      }
-    })
-
+    } else {
+      this.messageObject = new MessageCenter(0,this.senderUsername,this.recipientUsername,this.message, messageDate, messagetime,"U","INBOX");
+      let resp = this.service.updatemessage(this.messageObject);
+      resp.subscribe(data=>{
+        this.tempData.setMessageCenterData(data);
+        this.tempData.setMessage("Your message has been sent successfully!");
+        this.dialogRef.close();
+        this.dialog.open(MessageComponent);
+        if (this.tempData.getRequestFrom() == "MessageCenter"){ //refresh the page if the request is coming from MessageCenter
+            this.router.navigate(['/messagecenter']);
+        }
+      })
+    }
   }
 
   remainingText: number=500;

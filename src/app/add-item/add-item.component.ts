@@ -101,8 +101,8 @@ export class AddItemComponent implements OnInit {
 	}
 
   AddItem(){
-    if (!this.itemName || !this.description || !this.category || !this.inventoryQty || !this.price) {
-        this.tempData.setMessage("Please fill out all the information and resubmit again!");
+    if (!this.itemName || !this.description || !this.category || !this.inventoryQty || !this.price || !this.itemImage) {
+        this.tempData.setMessage("Please make sure to fill out at these fields before submitting: <br> -Item name <br> -Description<br> -Category <br> -Inventory Qty <br> -Item image ");
         this.dialog.open(MessageComponent);
     } else {
       this.storeId = this.tempData.getStoreData().storeId; //Id of the store will be used to create an item

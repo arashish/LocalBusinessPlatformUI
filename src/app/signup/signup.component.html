@@ -6,66 +6,87 @@
 
         <mat-card-content fxLayout="column">
             <mat-form-field>
-            <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" [formControl]="firstnameFormControl">
-            <mat-error *ngIf="firstnameFormControl.hasError">
-                Firstname should only contain alphabets!
-            </mat-error>
+              <input matInput placeholder="Firstname" name="firstname" [(ngModel)]="firstname" [formControl]="firstnameFormControl">
+              <mat-error *ngIf="firstnameFormControl.hasError">
+                  Firstname should only contain alphabets!
+              </mat-error>
             </mat-form-field>
             
             <mat-form-field>
-            <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" [formControl]="lastnameFormControl">
-            <mat-error *ngIf="lastnameFormControl.hasError">
-                Lastname should only contain alphabets!
-            </mat-error>    
+              <input matInput placeholder="Lastname" name="lastname" [(ngModel)]="lastname" [formControl]="lastnameFormControl">
+              <mat-error *ngIf="lastnameFormControl.hasError">
+                  Lastname should only contain alphabets!
+              </mat-error>    
             </mat-form-field>
         
             <mat-form-field>
-            <input matInput placeholder="Email" name="username" [(ngModel)]="username" [formControl]="emailFormControl">
-            <mat-error *ngIf="emailFormControl.hasError">
-                Invalid email!
-            </mat-error> 
+              <input matInput placeholder="Email" name="username" [(ngModel)]="username" [formControl]="emailFormControl">
+              <mat-error *ngIf="emailFormControl.hasError">
+                  Invalid email!
+              </mat-error> 
             </mat-form-field>
 
             <mat-form-field>
-            <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" [formControl]="passwordFormControl">
-            <mat-error *ngIf="passwordFormControl.hasError">
-                Invalid password! The password length should be atleast 8 characters long!
-            </mat-error> 
+              <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" [formControl]="passwordFormControl">
+              <mat-error *ngIf="passwordFormControl.hasError">
+                  Invalid password! The password length should be atleast 8 characters long!
+              </mat-error> 
             </mat-form-field>
             
             <label> User Type: </label>
             <mat-radio-group [(ngModel)]="usertype">
                 <mat-radio-button value="buyer">Buyer</mat-radio-button>
-                <mat-radio-button value="seller" [checked]="true">Seller</mat-radio-button>
+                <mat-radio-button value="seller">Seller</mat-radio-button>
             </mat-radio-group>
 
             <mat-form-field>
-                <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone">
-              </mat-form-field>
+              <input matInput placeholder="Phone" name="phone" [(ngModel)]="phone" [formControl]="phoneFormControl">
+              <mat-error *ngIf="phoneFormControl.hasError">
+                Invalid Phone number!
+              </mat-error>   
+            </mat-form-field>
     
-              <mat-form-field>
-                <input matInput placeholder="Address" name="address" [(ngModel)]="address" required>
-              </mat-form-field>
-    
-              <mat-form-field>
-                <input matInput placeholder="City" name="city" [(ngModel)]="city" required>
-              </mat-form-field>
-    
-              <mat-form-field>
-                <input matInput placeholder="State" name="state" [(ngModel)]="state" required>
-              </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Address" name="address" [(ngModel)]="address" [formControl]="addressFormControl">
+              <mat-error *ngIf="addressFormControl.hasError">
+                Invalid address name!
+              </mat-error> 
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input matInput placeholder="City" name="city" [(ngModel)]="city" [formControl]="cityFormControl">
+              <mat-error *ngIf="cityFormControl.hasError">
+                Invalid city name!
+              </mat-error> 
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input matInput placeholder="State" name="state" [(ngModel)]="state" [formControl]="stateFormControl">
+              <mat-error *ngIf="stateFormControl.hasError">
+                State should only contain 2 alphabets!
+              </mat-error> 
+            </mat-form-field>
 
-              <mat-form-field>
-                <input matInput placeholder="Zipcode" name="zipcode" [(ngModel)]="zipcode" required>
-              </mat-form-field>
-    
-              <mat-form-field>
-                <input matInput placeholder="Country" name="country" [(ngModel)]="country" required>
-              </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Zipcode" name="zipcode" [(ngModel)]="zipcode" [formControl]="zipcodeFormControl">
+              <mat-error *ngIf="zipcodeFormControl.hasError">
+                Zipcode should contain atleast 5 digits and not more than 10 digits.
+              </mat-error> 
+            </mat-form-field>
+  
+            <mat-form-field>
+              <input matInput placeholder="Country" name="country" [(ngModel)]="country" [formControl]="countryFormControl">
+              <mat-error *ngIf="countryFormControl.hasError">
+                Country should only contain alphabets!
+              </mat-error> 
+            </mat-form-field>
 
-              <mat-form-field>
-                <input matInput placeholder="Search Distance in miles" name="searchdistance" [(ngModel)]="searchdistance" required>
-              </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Search Distance in miles" name="searchdistance" [(ngModel)]="searchdistance" [formControl]="searchdistanceFormControl">
+              <mat-error *ngIf="searchdistanceFormControl.hasError">
+                Invalid distance!
+              </mat-error>
+            </mat-form-field>
             
         </mat-card-content>
 

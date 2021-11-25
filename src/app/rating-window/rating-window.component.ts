@@ -54,7 +54,6 @@ export class RatingWindowComponent implements OnInit {
     this.disableButton = true;
   }
 
-
   SendRating(){
     const pipe = new DatePipe('en-US');
     const now = Date.now();

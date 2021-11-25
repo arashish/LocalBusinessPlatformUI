@@ -18,9 +18,9 @@ export class OrderShipComponent implements OnInit {
 
 
 
-  shippedDateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
-  shipViaFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
-  shipTrackingFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  shippedDateFormControl = new FormControl('',[Validators.required, Validators.pattern("(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)[0-9]{2}"),])
+  shipViaFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z- ]*"),])
+  shipTrackingFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9 ]*"),])
 
 
 

@@ -5,6 +5,7 @@ import { TempdataService } from '../tempdata.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageComponent } from '../message/message.component';
 import { User } from '../models/User';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,6 @@ export class ProfileComponent implements OnInit {
   username: string ="";
   password: string ="";
   usertype: string ="";
-  active: string ="";
   registrationdate: string ="";
   phone: string="";
 
@@ -36,6 +36,19 @@ export class ProfileComponent implements OnInit {
 
   constructor(private service:ApiService, private tempdata:TempdataService, private router: Router, private dialog: MatDialog) { }
 
+  firstnameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  lastnameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  emailFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
+  passwordFormControl = new FormControl('',[Validators.required, Validators.minLength(8)],)
+  userTypeFormControl = new FormControl('1')
+  phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9 ]{10}"),]) //was "^[0-9]+$"
+  addressFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9,. ]*"),])
+  cityFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  stateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z]{2}"),])
+  countryFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  zipcodeFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9-]{5,10}$"),])
+  searchdistanceFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]+$"),]) //was "^[0-9]+$"
+
   ngOnInit(): void {
     this.loginData = this.tempdata.getloginData();
     this.user = this.loginData;
@@ -45,7 +58,6 @@ export class ProfileComponent implements OnInit {
     this.username = this.loginData.username;
     this.password = this.loginData.password;
     this.usertype = this.loginData.usertype;
-    this.active = this.loginData.active;
     this.registrationdate = this.loginData.registrationdate;
     this.phone = this.loginData.phone;
 
@@ -63,12 +75,17 @@ export class ProfileComponent implements OnInit {
   }
 
   Update(){
-    let resp = this.service.updateProfile(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.active, this.registrationdate, this.phone, this.address, this.city, this.state, this.zipcode, this.country, this.rating, this.searchdistance));
-    resp.subscribe(data=>{
-      this.tempdata.setMessage("The accound has been successfully updated!");
+    if (!this.firstname || !this.lastname || !this.username || !this.password || !this.usertype) {
+      this.tempdata.setMessage("Please make sure to fill out at least these four fields: <br> -Firstname <br> -Lastname <br> -Email <br> -Password");
       this.dialog.open(MessageComponent);
-      this.router.navigate(["/home"])
-    })
+    } else {
+      let resp = this.service.updateProfile(new User(this.id,this.firstname, this.lastname, this.username, this.password, this.usertype, this.registrationdate, this.phone, this.address, this.city, this.state, this.zipcode, this.country, this.rating, this.searchdistance));
+      resp.subscribe(data=>{
+        this.tempdata.setMessage("The accound has been successfully updated!");
+        this.dialog.open(MessageComponent);
+        this.router.navigate(["/home"])
+      })
+    }
   }
 
   HomePage(){

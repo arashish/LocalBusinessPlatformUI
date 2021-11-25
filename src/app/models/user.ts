@@ -5,7 +5,6 @@ export class User {
     private username: string ="";
     private password: string ="";
     private usertype: string ="";
-    private active: string ="";
     private registrationdate: string ="";
     private phone: string ="";
 
@@ -18,14 +17,13 @@ export class User {
     private searchdistance = "";
     
 
-    constructor (id: string, firstname: string, lastname: string, username: string, password: string, usertype: string, active: string, registrationdate: string, phone: string, address: string, city: string, state: string, zipcode: string, country: string, rating: string, searchdistance: string){
+    constructor (id: string, firstname: string, lastname: string, username: string, password: string, usertype: string, registrationdate: string, phone: string, address: string, city: string, state: string, zipcode: string, country: string, rating: string, searchdistance: string){
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
         this.usertype = usertype;
-        this.active = active;
         this.registrationdate = registrationdate;
         this.phone = phone;
         this.address = address;
