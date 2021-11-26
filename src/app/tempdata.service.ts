@@ -24,6 +24,8 @@ export class TempdataService {
   private requestFrom!: string;
   private reviews!: any;
   private confirmBoxValue!: string;
+  private messageCenterNotifications!: number;
+  private orderCheckNotifications!: number;
 
   constructor() { 
   }
@@ -182,4 +184,24 @@ public setMessageCenterData(messageCenterData: any){
   public getConfirmBoxValue(){
     return this.confirmBoxValue;
   }
+
+  public setMessageCenterNotifications(messageCenterNotifications: number){
+    this.messageCenterNotifications = messageCenterNotifications;
+  }
+
+  public getMessageCenterNotifications(){
+    return this.messageCenterNotifications;
+  }
+
+  public setOrderCheckNotifications(orderCheckNotifications: number){
+    this.orderCheckNotifications = orderCheckNotifications;
+  }
+
+  public getOrderCheckNotifications(){
+    return this.orderCheckNotifications;
+  }
+
+
+
+
 }

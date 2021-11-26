@@ -50,6 +50,7 @@ export class MessageWindowComponent implements OnInit {
       this.dialog.open(MessageComponent);
     } else {
       this.messageObject = new MessageCenter(0,this.senderUsername,this.recipientUsername,this.message, messageDate, messagetime,"U","INBOX");
+      console.log(this.messageObject);
       let resp = this.service.updatemessage(this.messageObject);
       resp.subscribe(data=>{
         this.tempData.setMessageCenterData(data);

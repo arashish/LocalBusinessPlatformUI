@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   public user!:any;
   public store!:any;
   public item!: any;
+  public orders!: any;
   public messageCenter!: any;
 
   public items!: any;
@@ -73,7 +74,7 @@ export class HomeComponent implements OnInit {
   retrievedImages: any;
   
 
-  constructor(route:ActivatedRoute, private service: ApiService ,private loginComponent:LoginComponent, private tempdata:TempdataService, public dialog: MatDialog, private sanitizer:DomSanitizer) { 
+  constructor(route:ActivatedRoute, private service: ApiService ,private loginComponent:LoginComponent, public tempdata:TempdataService, public dialog: MatDialog, private sanitizer:DomSanitizer) { 
     
   }
 
@@ -84,6 +85,7 @@ export class HomeComponent implements OnInit {
   loadOnstart(){
           let resp = this.service.home();
           resp.subscribe(data=>{
+            console.log(data);
             this.userData = data;
             this.userData = JSON.parse(this.userData);
      
@@ -91,15 +93,17 @@ export class HomeComponent implements OnInit {
             this.store = this.userData.store;
             this.item = this.userData.item;
             this.messageCenter = this.userData.messageCenter;
-     
+            this.orders = this.userData.order;
+                 
             this.tempdata.setLoginData(this.user); //login credentials are stored in LoginData tempvariable
             this.tempdata.setStoreData(this.store); //Store data will be stored in StoreData tempvariable
             this.tempdata.setItemData(this.item); //Item data will be stored in ItemData tempvariable
             this.tempdata.setMessageCenterData(this.messageCenter);
+            this.countUnreadMessages();
+            this.countNewOrders();
             
             this.dataSource= this.item;
      
-            console.log(this.userData);
             this.retrievedImages = this.tempdata.getItemData();
             for  (var image of this.retrievedImages){
               this.retrievedImage = image.itemImage;
@@ -119,7 +123,6 @@ export class HomeComponent implements OnInit {
             {
               this.ratingValue =0;
             }
-            console.log(this.ratingValue);
           })
   }
 
@@ -190,4 +193,35 @@ export class HomeComponent implements OnInit {
   roundToHalf(num: number){
     return Math.round(num * 2) /2.0; //rounds the nearest .5
   }
+
+  countUnreadMessages(){
+    var unreadMessages: number = 0;
+    for (var messageCenterData of this.tempdata.getMessageCenterData())
+    {
+      if (this.tempdata.getStoreData() == null) {
+        if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username && messageCenterData.messageStatus === 'U') {
+          unreadMessages = unreadMessages + 1;  
+        }
+      } else {
+        console.log("123");
+        if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email && messageCenterData.messageStatus === 'U') {
+          unreadMessages = unreadMessages + 1; 
+        }
+      }
+    }
+    this.tempdata.setMessageCenterNotifications(unreadMessages);
+  }
+
+  countNewOrders(){
+    var newOrders: number = 0;
+    console.log(this.orders);
+    for (var order of this.orders){
+      if (order.orderStatus ==='Order Submitted'){
+        newOrders = newOrders +1; 
+      }
+    }
+    this.tempdata.setOrderCheckNotifications(newOrders);
+  }
+
+
 }
