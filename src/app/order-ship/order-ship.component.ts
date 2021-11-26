@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -83,9 +84,12 @@ export class OrderShipComponent implements OnInit {
       // this.tempData.setMessage("Would you like to leave a feedback to the buyer?");
       // this.dialog.open(ConfirmBoxComponent);
       this.router.navigate(['/ordercheck']);
+    }, err => {
+      if (err instanceof HttpErrorResponse) {
+        this.tempData.setMessage("Error: This item cannot be shipped. Please check your inventory!");
+        this.dialog.open(MessageComponent);
+      }
     })
-
-
   }
 
 }

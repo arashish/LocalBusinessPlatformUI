@@ -22,6 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule } from '@angular/material/select';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -88,6 +89,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ReactiveFormsModule,
     MatTableModule,
     MatSelectModule,
+    MatBadgeModule,
     MatProgressBarModule,
     NgbModule
   ],

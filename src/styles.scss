@@ -128,6 +128,10 @@ a.link {
   .mat-button, .mat-raised-button{
     background-color:#4CAF50;
     }
+
+  .mat-badge-medium.mat-badge-above .mat-badge-content {
+      top: 3px;
+  }
     
   #greenstatus{
     color: white;
