@@ -46,6 +46,8 @@ import { RatingWindowComponent } from './rating-window/rating-window.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingListComponent } from './rating-list/rating-list.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AboutComponent } from './footer/about/about.component';
+import { ContactUsComponent } from './footer/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MessageCenterComponent,
     MessageWindowComponent,
     RatingWindowComponent,
-    RatingListComponent
+    RatingListComponent,
+    AboutComponent,
+    ContactUsComponent
   ],
   entryComponents:[SignupComponent],
   imports: [

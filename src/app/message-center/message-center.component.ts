@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { AboutComponent } from '../footer/about/about.component';
+import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 import { MessageWindowComponent } from '../message-window/message-window.component';
 import { MessageCenter } from '../models/MessageCenter';
 import { TempdataService } from '../tempdata.service';
@@ -13,7 +15,7 @@ import { TempdataService } from '../tempdata.service';
 })
 export class MessageCenterComponent implements OnInit {
 
-  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router, private dialog: MatDialog) { 
+  constructor(private service:ApiService, public tempdata:TempdataService, private router: Router, private dialog: MatDialog) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }
 
@@ -56,6 +58,7 @@ export class MessageCenterComponent implements OnInit {
       this.messageStatus = this.tempMessageCenterData.messageStatus;
       this.messageCat = this.tempMessageCenterData.messageCategory;
     }
+    this.tempdata.setMessageCenterNotifications(this.unreadMessages); //new notification after an update
     //************************************************************************* */
   }
 
@@ -205,6 +208,15 @@ export class MessageCenterComponent implements OnInit {
         this.deleted();
        })
     }
+  }
+
+  footerPage(pageName: string){
+    console.log(pageName);
+    if (pageName=="about"){
+      this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
+    }else if (pageName=="contactus"){
+      this.dialog.open(ContactUsComponent, {height: '350px',width: '650px'});
+    }    
   }
 
 }

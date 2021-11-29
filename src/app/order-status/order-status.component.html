@@ -3,7 +3,7 @@
         <ul>
           <li><a href="#" routerLink="/logout">logout</a></li>
           <li><a href="#" routerLink="/cart">Cart</a></li>
-          <li><a href="#" routerLink="/messagecenter">Messages</a></li>
+          <li><a href="#" routerLink="/messagecenter" matBadge="{{tempData.getMessageCenterNotifications()}}">Messages</a></li>
           <li><a href="#" class="active" routerLink="/orderstatus">Order Status</a></li>
           <li><a href="#" routerLink="/profile">Profile</a></li>
           <li><a href="#" routerLink="/home">Home</a></li>
@@ -34,6 +34,7 @@
                   </div>
 
                   <h3>Order Id# {{orderData.order.orderId}}</h3><br>
+                  <h3>Order Date: {{orderData.order.orderDate}}</h3><br>
                   <h2><a class="orderLink">{{orderData.item.description}}</a></h2><br>
                   <h3>Store Name: </h3> <h3 class="link" (click)="displayStore(orderData.store.email)">{{orderData.store.storeName}}</h3><br>
                   <h3>Item Name: {{orderData.item.itemName}}</h3><br>
@@ -43,7 +44,7 @@
                   <h3>Payment Method: {{orderData.order.paymentMethod}}</h3><br>
                   <h3>Ship Method: {{orderData.order.shipMethod}}</h3><br>
                   <h3>Shipping Company: {{orderData.order.shipVia}}</h3><br>
-                  <h3>Shipping Tracking: </h3><h3 class="link">{{orderData.order.shipTracking}}</h3><br>
+                  <h3>Shipping Tracking: </h3><h3 class="link" (click)="launchGoogle('https://www.google.com/search?q=' + orderData.order.shipVia + '+' + orderData.order.shipTracking)">{{orderData.order.shipTracking}}</h3><br>
                   <h3>Shipped Date: {{orderData.order.shippedDate}}</h3><br>
                   <div *ngIf="orderData.order.orderStatus === 'Order Shipped'">
                      <h2>(Delivered within 3 days)</h2><br> 
@@ -59,6 +60,11 @@
           </mat-card>
       </div>
 
+      <div class="footerMod">
+        <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+        <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
+        <a style="margin-right:15px;">© 2021 LBP, Inc</a>
+      </div>
     
 </div>
 

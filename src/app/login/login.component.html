@@ -1,5 +1,5 @@
-<div style="text-align:center">
-    <h1 [ngStyle]="{'color':'green'}">Local Business Platform</h1>
+<div style="text-align:center;margin-top:50px;">
+    <h1  style="color:green;font-size:30px">Local Business Platform</h1>
 </div>
 
 <br>
@@ -38,11 +38,9 @@
 
         <footer>
             <div class="footer">
-              <a style="margin-right:15px;">About</a>
-              <a style="margin-right:15px;">Help</a>
-              <a style="margin-right:15px;">Terms of Use</a>
+              <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+              <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
               <a style="margin-right:15px;">© 2021 LBP, Inc</a>
-              
             </div>
         </footer>
 

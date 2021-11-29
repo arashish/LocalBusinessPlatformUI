@@ -7,6 +7,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { SignupComponent } from '../signup/signup.component';
 import { DatePipe } from '@angular/common';
+import { AboutComponent } from '../footer/about/about.component';
+import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 
 @Component({
   selector: 'app-login',
@@ -46,6 +48,15 @@ export class LoginComponent implements OnInit {
       }
 
     })
+  }
+
+  footerPage(pageName: string){
+    console.log(pageName);
+    if (pageName=="about"){
+      this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
+    }else if (pageName=="contactus"){
+      this.dialog.open(ContactUsComponent, {height: '350px',width: '650px'});
+    }    
   }
 
 }

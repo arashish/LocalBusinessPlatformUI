@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
+import { AboutComponent } from './footer/about/about.component';
+import { ContactUsComponent } from './footer/contact-us/contact-us.component';
 import {HomeComponent} from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
   {path: 'orderstatus', component:OrderStatusComponent},
   {path: 'ratingwindow', component:RatingWindowComponent},
   {path: 'ratinglist', component:RatingListComponent},
+  {path: 'about',component:AboutComponent},
+  {path: 'contactus', component:ContactUsComponent},
   {path: 'logout', component:LogoutComponent}
 ];
 

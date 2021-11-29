@@ -153,6 +153,14 @@
 
     </mat-card>
 
+    <div *ngIf="!itemIsSearched">
+      <div class="footer">
+        <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+        <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
+        <a style="margin-right:15px;">© 2021 LBP, Inc</a>
+      </div>
+    </div>
+
 
     <div *ngIf="itemIsSearched">
         <div *ngFor="let searchData of searchDatas">
@@ -176,7 +184,13 @@
           </mat-card>
         </div>
 
-    </div>
+        <div class="footerMod">
+          <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+          <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
+          <a style="margin-right:15px;">© 2021 LBP, Inc</a>
+        </div>
+
+      </div>
 
   </div>
 
@@ -347,6 +361,13 @@
           </mat-card-actions>
 
         </mat-card>
+
+        <div class="footerMod">
+          <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+          <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
+          <a style="margin-right:15px;">© 2021 LBP, Inc</a>
+        </div>
+
       </div>  
 
       <div *ngIf="!store">
@@ -355,6 +376,8 @@
           <Span> Click here to create a store</Span>
         </mat-card-actions>
       </div>
+
+      
       
   </div>
 

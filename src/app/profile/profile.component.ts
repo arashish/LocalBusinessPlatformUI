@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessageComponent } from '../message/message.component';
 import { User } from '../models/User';
 import { FormControl, Validators } from '@angular/forms';
+import { AboutComponent } from '../footer/about/about.component';
+import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +36,7 @@ export class ProfileComponent implements OnInit {
   loginData: any;
   user: any;
 
-  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router, private dialog: MatDialog) { }
+  constructor(private service:ApiService, public tempdata:TempdataService, private router: Router, private dialog: MatDialog) { }
 
   firstnameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   lastnameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
@@ -69,9 +71,6 @@ export class ProfileComponent implements OnInit {
     this.country  = this.loginData.country;
     this.rating = this.loginData.rating;
     this.searchdistance = this.loginData.searchdistance;
-
-    console.log(this.tempdata.getloginData());
-    console.log(this.firstname);
   }
 
   Update(){
@@ -90,6 +89,15 @@ export class ProfileComponent implements OnInit {
 
   HomePage(){
     this.router.navigate(["/home"])
+  }
+
+  footerPage(pageName: string){
+    console.log(pageName);
+    if (pageName=="about"){
+      this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
+    }else if (pageName=="contactus"){
+      this.dialog.open(ContactUsComponent, {height: '350px',width: '650px'});
+    }    
   }
 
 

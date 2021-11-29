@@ -79,6 +79,7 @@ export class OrderShipComponent implements OnInit {
     resp.subscribe(data=>{
       this.tempData.setResoponseStatus(data);
       this.tempData.setMessage("The item has been successfully shipped!");
+      this.tempData.setOrderCheckNotifications(Number(this.tempData.getOrderCheckNotifications()) -1);
       this.dialogRef.closeAll();
       this.dialog.open(MessageComponent);
       // this.tempData.setMessage("Would you like to leave a feedback to the buyer?");

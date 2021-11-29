@@ -7,6 +7,8 @@ import { AddItemComponent } from '../add-item/add-item.component';
 import { ApiService } from '../api.service';
 import { CreateStoreComponent } from '../create-store/create-store.component';
 import { DisplayStoreComponent } from '../display-store/display-store.component';
+import { AboutComponent } from '../footer/about/about.component';
+import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 import { LoginComponent } from '../login/login.component';
 import { Store } from '../models/store';
 import { User } from '../models/User';
@@ -203,7 +205,6 @@ export class HomeComponent implements OnInit {
           unreadMessages = unreadMessages + 1;  
         }
       } else {
-        console.log("123");
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email && messageCenterData.messageStatus === 'U') {
           unreadMessages = unreadMessages + 1; 
         }
@@ -214,7 +215,6 @@ export class HomeComponent implements OnInit {
 
   countNewOrders(){
     var newOrders: number = 0;
-    console.log(this.orders);
     for (var order of this.orders){
       if (order.orderStatus ==='Order Submitted'){
         newOrders = newOrders +1; 
@@ -223,5 +223,13 @@ export class HomeComponent implements OnInit {
     this.tempdata.setOrderCheckNotifications(newOrders);
   }
 
+  footerPage(pageName: string){
+    console.log(pageName);
+    if (pageName=="about"){
+      this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
+    }else if (pageName=="contactus"){
+      this.dialog.open(ContactUsComponent, {height: '350px',width: '650px'});
+    }    
+  }
 
 }

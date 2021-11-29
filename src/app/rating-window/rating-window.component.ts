@@ -17,7 +17,7 @@ import { TempdataService } from '../tempdata.service';
 export class RatingWindowComponent implements OnInit {
 
   constructor(private tempData: TempdataService, private router: Router, private service: ApiService, private dialog: MatDialog,  private dialogRef: MatDialogRef<LoginComponent>) { 
-
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }
 
   recipientUsernameFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
@@ -66,6 +66,9 @@ export class RatingWindowComponent implements OnInit {
       this.dialog.open(MessageComponent);
       if (this.tempData.getRequestFrom() == "ordercheck"){
         this.router.navigate(['/ordercheck']);
+      }
+      if (this.tempData.getRequestFrom() == "orderstatus"){
+        this.router.navigate(['/orderstatus']);
       }
       //this.router.navigate(['/orderstatus']);
     })

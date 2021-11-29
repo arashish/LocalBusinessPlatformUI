@@ -2,8 +2,8 @@
     <nav>
         <ul>
           <li><a href="#" routerLink="/logout">logout</a></li>
-          <li><a href="#" routerLink="/messagecenter">Messages</a></li>
-          <li><a href="#" class="active" routerLink="/ordercheck">Order</a></li>
+          <li><a href="#" routerLink="/messagecenter" matBadge="{{tempData.getMessageCenterNotifications()}}">Messages</a></li>
+          <li><a href="#" routerLink="/ordercheck" class="active" matBadge="{{this.tempData.getOrderCheckNotifications()}}">Order</a></li>
           <li><a href="#" routerLink="/profile">Profile</a></li>
           <li><a href="#" routerLink="/home">Home</a></li>
         </ul>
@@ -25,11 +25,12 @@
                 <td style="vertical-align:top"> 
 
                   <h3>Order Id# {{orderData.order.orderId}}</h3><br>
+                  <h3>Order Date: {{orderData.order.orderDate}}</h3><br>
                   <h2><a class="orderLink">{{orderData.item.description}}</a></h2><br>
                   <h3>Item Name: {{orderData.item.itemName}}</h3><br>
                   <h3>Item Price: ${{orderData.item.price}}</h3><br>
                   <h3>Ordered Quantity: {{orderData.order.orderQty}}</h3><br>
-                  <h3>Customer Name: {{orderData.customer.firstname}} {{orderData.customer.lastname}}
+                  <h3>Customer Name: {{orderData.customer.firstname}} {{orderData.customer.lastname}}</h3>
 
                   <span *ngFor="let review of orderData.review">
                       {{calcTotalReviews()}}
@@ -43,7 +44,7 @@
 
                   <table>
                     <tr>
-                      <td>Rating:</td>
+                      <td><h3>Rating:</h3></td>
                       <td *ngIf="ratingValueArray[index]==0">
                           <span style="font-size:15px">{{ratingValueArray[index]}} </span>
                           <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
@@ -146,7 +147,6 @@
                   </tr>
                   </table> 
 
-                  </h3><br>
                   <h3>Shipping Address:  {{orderData.customer.address}}, {{orderData.customer.city}}, {{orderData.customer.state}}, {{orderData.customer.zipcode}}</h3><br>
                   <h3>Payment Method: {{orderData.order.paymentMethod}}</h3><br>
                   <h3>Ship Method: {{orderData.order.shipMethod}}</h3><br>
@@ -173,6 +173,11 @@
           </mat-card>
       </div>
 
+      <div class="footerMod">
+        <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+        <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
+        <a style="margin-right:15px;">© 2021 LBP, Inc</a>
+      </div>
     
 </div>
 

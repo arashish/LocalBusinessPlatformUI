@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { CalculateReviews } from '../models/calculateReviews';
+import { AboutComponent } from '../footer/about/about.component';
+import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 import { OrderShipComponent } from '../order-ship/order-ship.component';
 import { RatingListComponent } from '../rating-list/rating-list.component';
 import { RatingWindowComponent } from '../rating-window/rating-window.component';
@@ -15,7 +16,7 @@ import { TempdataService } from '../tempdata.service';
 })
 export class OrderCheckComponent implements OnInit {
 
-  constructor(route:ActivatedRoute, private router: Router, private service: ApiService, private tempData:TempdataService, public dialog: MatDialog) { 
+  constructor(route:ActivatedRoute, private router: Router, private service: ApiService, public tempData:TempdataService, public dialog: MatDialog) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }
 
@@ -87,6 +88,14 @@ export class OrderCheckComponent implements OnInit {
     this.totalReviews = 0;  //reset
   }
 
+  footerPage(pageName: string){
+    console.log(pageName);
+    if (pageName=="about"){
+      this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
+    }else if (pageName=="contactus"){
+      this.dialog.open(ContactUsComponent, {height: '350px',width: '650px'});
+    }    
+  }
 
 
 }

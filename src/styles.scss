@@ -75,6 +75,10 @@ li a:hover:not(.active) {
     box-sizing: border-box;
 }
 
+.mat-button, .mat-raised-button{
+  background-color:#4CAF50;
+  } 
+
   #inlinediv {
     display: inline-block;
     padding-right: 15px;
@@ -118,6 +122,13 @@ a.link {
     cursor: pointer;
   }
 
+  .footerlink {
+    text-decoration: none;
+    text-decoration-color:gray;
+    color:rgb(58, 52, 52);
+    cursor: pointer;
+  }
+
   d.link {
     text-decoration: underline;
     text-decoration-color: skyblue;
@@ -155,5 +166,19 @@ a.link {
     color: green;
     text-align: center;
  }
+
+ .footerMod {
+  padding: 10px;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  height: 20px;
+  background-color:white;
+  color: green;
+  text-align: center;
+  margin-top: 5px;
+}
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

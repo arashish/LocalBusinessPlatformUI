@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { AboutComponent } from '../footer/about/about.component';
+import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 import { MessageComponent } from '../message/message.component';
 import { Cart} from '../models/Cart';
 import { TempdataService } from '../tempdata.service';
@@ -57,6 +59,15 @@ export class CartComponent implements OnInit {
     this.dialog.open(MessageComponent);
     this.router.navigate(['/cart']);
 
+  }
+
+  footerPage(pageName: string){
+    console.log(pageName);
+    if (pageName=="about"){
+      this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
+    }else if (pageName=="contactus"){
+      this.dialog.open(ContactUsComponent, {height: '350px',width: '650px'});
+    }    
   }
 
 }
