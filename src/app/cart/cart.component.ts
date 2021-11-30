@@ -35,7 +35,6 @@ export class CartComponent implements OnInit {
       this.subTotal = this.subTotal + calcTotalPrice;
       this.subTotalItems = this.subTotalItems + calcOrderQty;
     }
-    this.subTotal.toFixed(2);
   }
 
   checkout(){

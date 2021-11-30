@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
@@ -75,7 +76,11 @@ export class OrderShipComponent implements OnInit {
     // const now = Date.now();
     // const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
 
-    let resp = this.service.shiporder(new Order(this.orderId, this.customerId, this.storeId, this.itemId, this.itemPrice, this.orderQty, "Order Shipped", this.orderDate, this.paymentMethod, this.shipMethod, this.shippedDate,this.shipVia,this.shipTracking));
+    const pipe = new DatePipe('en-US');
+    const now = new Date(this.shippedDate);
+    const shippedDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
+
+    let resp = this.service.shiporder(new Order(this.orderId, this.customerId, this.storeId, this.itemId, this.itemPrice, this.orderQty, "Order Shipped", this.orderDate, this.paymentMethod, this.shipMethod, shippedDate,this.shipVia,this.shipTracking));
     resp.subscribe(data=>{
       this.tempData.setResoponseStatus(data);
       this.tempData.setMessage("The item has been successfully shipped!");

@@ -61,6 +61,11 @@ export class OrderItemComponent implements OnInit {
  
 
   AddToCart(){
+    if (!this.orderQty) {
+      this.tempData.setMessage("Please select the quantity!");
+      this.dialog.open(MessageComponent);
+      return;
+    }
     var temp_cart = [];
     var existingItem: Boolean = false;
     this.cartItems = this.tempData.getCartItems();

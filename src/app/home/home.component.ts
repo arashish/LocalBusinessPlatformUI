@@ -87,7 +87,6 @@ export class HomeComponent implements OnInit {
   loadOnstart(){
           let resp = this.service.home();
           resp.subscribe(data=>{
-            console.log(data);
             this.userData = data;
             this.userData = JSON.parse(this.userData);
      
@@ -163,7 +162,6 @@ export class HomeComponent implements OnInit {
     resp.subscribe(data=>{
     this.searchDatas = data;
     this.tempdata.setSearchData(this.searchDatas); //Item data will be stored in ItemData tempvariable
-    console.log(this.tempdata.getSearchData());
     this.retrievedImages = this.tempdata.getItemData();
     this.itemIsSearched = true;
     this.isWait = false;
@@ -180,9 +178,8 @@ export class HomeComponent implements OnInit {
   }
 
   orderItem(numb : number){
-    console.log(numb);
     this.tempdata.setRowNumber(numb);
-    this.dialog.open(OrderItemComponent);
+    this.dialog.open(OrderItemComponent, {width: '700px'});
   }
 
   ratingList(){
@@ -224,7 +221,6 @@ export class HomeComponent implements OnInit {
   }
 
   footerPage(pageName: string){
-    console.log(pageName);
     if (pageName=="about"){
       this.dialog.open(AboutComponent, {height: '600px',width: '450px'});
     }else if (pageName=="contactus"){
