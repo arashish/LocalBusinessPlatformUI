@@ -101,7 +101,8 @@ export class AddItemComponent implements OnInit {
 	}
 
   AddItem(){
-    if (!this.itemName || !this.description || !this.category || !this.inventoryQty || !this.price || !this.itemImage) {
+    console.log(this.itemName + this.description + this.category + this.inventoryQty + this.price + this.selectedFile);
+    if (!this.itemName || !this.description || !this.category || !this.inventoryQty || !this.price || !this.selectedFile) {
         this.tempData.setMessage("Please make sure to fill out at these fields before submitting: <br> -Item name <br> -Description<br> -Category <br> -Inventory Qty <br> -Item image ");
         this.dialog.open(MessageComponent);
     } else {
