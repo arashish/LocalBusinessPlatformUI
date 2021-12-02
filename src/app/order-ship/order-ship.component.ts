@@ -24,8 +24,6 @@ export class OrderShipComponent implements OnInit {
   shipViaFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z- ]*"),])
   shipTrackingFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9 ]*"),])
 
-
-
   orderId!: string;
   customerId!: string;
   storeId!: string;
@@ -72,30 +70,36 @@ export class OrderShipComponent implements OnInit {
   }
 
   CompleteOrder(){
-    // const pipe = new DatePipe('en-US');
-    // const now = Date.now();
-    // const orderDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
-
-    const pipe = new DatePipe('en-US');
-    const now = new Date(this.shippedDate);
-    const shippedDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
-
-    let resp = this.service.shiporder(new Order(this.orderId, this.customerId, this.storeId, this.itemId, this.itemPrice, this.orderQty, "Order Shipped", this.orderDate, this.paymentMethod, this.shipMethod, shippedDate,this.shipVia,this.shipTracking));
-    resp.subscribe(data=>{
-      this.tempData.setResoponseStatus(data);
-      this.tempData.setMessage("The item has been successfully shipped!");
-      this.tempData.setOrderCheckNotifications(Number(this.tempData.getOrderCheckNotifications()) -1);
-      this.dialogRef.closeAll();
+    if (this.shippedDateFormControl.hasError('pattern') || this.shipViaFormControl.hasError('pattern') || this.shipTrackingFormControl.hasError('pattern')) {
+      this.tempData.setMessage("Please check your inputs and try again!");
       this.dialog.open(MessageComponent);
-      // this.tempData.setMessage("Would you like to leave a feedback to the buyer?");
-      // this.dialog.open(ConfirmBoxComponent);
-      this.router.navigate(['/ordercheck']);
-    }, err => {
-      if (err instanceof HttpErrorResponse) {
-        this.tempData.setMessage("Error: This item cannot be shipped. Please check your inventory!");
+      return;
+    }
+
+    if (!this.shipVia || !this.shippedDate || !this.shipTracking){
+      this.tempData.setMessage("Please fill out all the information and resubmit again!");
+      this.dialog.open(MessageComponent);
+    }else{
+      const pipe = new DatePipe('en-US');
+      const now = new Date(this.shippedDate);
+      const shippedDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
+      let resp = this.service.shiporder(new Order(this.orderId, this.customerId, this.storeId, this.itemId, this.itemPrice, this.orderQty, "Order Shipped", this.orderDate, this.paymentMethod, this.shipMethod, shippedDate,this.shipVia,this.shipTracking));
+      resp.subscribe(data=>{
+        this.tempData.setResoponseStatus(data);
+        this.tempData.setMessage("The item has been successfully shipped!");
+        this.tempData.setOrderCheckNotifications(Number(this.tempData.getOrderCheckNotifications()) -1);
+        this.dialogRef.closeAll();
         this.dialog.open(MessageComponent);
-      }
-    })
+        // this.tempData.setMessage("Would you like to leave a feedback to the buyer?");
+        // this.dialog.open(ConfirmBoxComponent);
+        this.router.navigate(['/ordercheck']);
+      }, err => {
+        if (err instanceof HttpErrorResponse) {
+          this.tempData.setMessage("Error: This item cannot be shipped. Please check your inventory!");
+          this.dialog.open(MessageComponent);
+        }
+      })
+    }
   }
 
 }

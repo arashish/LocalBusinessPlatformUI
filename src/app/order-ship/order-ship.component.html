@@ -15,14 +15,14 @@
             <mat-form-field>
                 <input matInput placeholder="Shipping Date (In mm/dd/yyyy format)" name="shipppedDate" [(ngModel)]="shippedDate" [formControl]="shippedDateFormControl">
                 <mat-error *ngIf="shippedDateFormControl.hasError">
-                    The field should only contain date!
+                    This field should only contain date!
                 </mat-error>
             </mat-form-field>
         
             <mat-form-field>
                 <input matInput placeholder="Ship Tracking" name="shipTracking" [(ngModel)]="shipTracking" [formControl]="shipTrackingFormControl">
                 <mat-error *ngIf="shipTrackingFormControl">
-                    The field should only contain alphabets!
+                    This field should only contain alphabets and numbers!
                 </mat-error>
             </mat-form-field>
            

@@ -20,17 +20,10 @@
                 </mat-error>
             </mat-form-field>
         
-            <!-- <mat-form-field>
-                <input matInput placeholder="Category" name="category" [(ngModel)]="category" [formControl]="categoryFormControl">
-                <mat-error *ngIf="categoryFormControl.hasError">
-                    Store name should only contain alphabets!
-                </mat-error>
-            </mat-form-field> -->
-
             <mat-form-field appearance="fill" id="inlinespace">
                 <mat-label >Select a category</mat-label>
                 <mat-select [(value)]="category" >
-                  <mat-option value="All Category">All Category</mat-option>
+                  <mat-option value="">All Category</mat-option>
                   <mat-option value="Books">Books</mat-option>
                   <mat-option value="Computers">Computers</mat-option>
                   <mat-option value="Electronics">Electronics</mat-option>
@@ -54,7 +47,7 @@
             <mat-form-field>
                 <input matInput placeholder="Price" name="price" [(ngModel)]="price" [formControl]="priceFormControl">
                 <mat-error *ngIf="priceFormControl.hasError">
-                    Price should be in decimal numbers!
+                    Price should be in 2 decimal places and no dollar($) sign!
                 </mat-error>    
             </mat-form-field>
 
@@ -62,16 +55,8 @@
                 <img [src]="url" width="100" height="100" alt="">
             </div>
 
-            <label for="file">Choose File</label>
-            <input type="file" id="file" name="imageFile" (change)="handleFileInput($any($event))">
-            
-            <!-- <picture>
-                <source media='(min-width:0px)' srcset="https://material.angular.io/assets/img/examples/shiba2.jpg">
-                <img mat-card-image src="" alt="Photo of a Shiba Inu">
-            </picture> -->
-
-
-
+            <label for="file"></label>
+            <input type="file" id="file" name="imageFile" title=" " (change)="handleFileInput($any($event))">
             
         </mat-card-content>
 

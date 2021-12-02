@@ -15,7 +15,7 @@
             </mat-form-field>
 
             <mat-form-field>
-            <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" required>
+            <input matInput placeholder="password" type="password" name="password" (keydown.enter)="doLogin()" [(ngModel)]="password" required>
             </mat-form-field>
 
             <div *ngIf="errorResponse" [ngStyle]="{'color':'red'}">Invalid username or password!</div>

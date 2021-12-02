@@ -6,9 +6,9 @@
 
         <mat-card-content fxLayout="column">
             <mat-form-field>
-                <input matInput placeholder="Recipient Username" name="Recipient Username" [(ngModel)]="recipientUsername" [formControl]="recipientUsernameFormControl">
+                <input matInput placeholder="Recipient Username" name="Recipient Username" [(ngModel)]="recipientUsername" [formControl]="recipientUsernameFormControl" readonly>
                 <mat-error *ngIf="recipientUsernameFormControl">
-                    The field should only contain alphabets!
+                    Invalid username!
                 </mat-error>
             </mat-form-field>
             

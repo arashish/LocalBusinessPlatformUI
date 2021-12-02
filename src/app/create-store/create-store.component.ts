@@ -67,25 +67,29 @@ export class CreateStoreComponent implements OnInit {
   store_nameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9 ]{10}"),])
   emailFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
-  streetFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9,. ]*"),])
+  streetFormControl = new FormControl('',[Validators.required, Validators.pattern("[-a-zA-Z0-9,. ]*"),])
   cityFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   stateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z]{2}"),])
   countryFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   zipcodeFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9-]{5,10}$"),])
 
   CreateStore(){
+    if (this.store_nameFormControl.hasError('pattern') || this.phoneFormControl.hasError('pattern') || this.emailFormControl.hasError('pattern') || this.streetFormControl.hasError('pattern') || this.cityFormControl.hasError('pattern') || this.stateFormControl.hasError('pattern') || this.countryFormControl.hasError('pattern') || this.zipcodeFormControl.hasError('pattern')){
+      this.tempData.setMessage("Please check your inputs and try again!");
+      this.dialog.open(MessageComponent);
+      return;
+    }
+
     if (!this.store_name || !this.phone || !this.email || !this.street || !this.city || !this.state || !this.zipcode) {
         this.tempData.setMessage("Please fill out all the information and resubmit again!");
         this.dialog.open(MessageComponent);
     } else {
       this.user_id = this.tempData.getloginData().id; //Id of the user will be used to create a store
-      console.log(this.tempData);
-      console.log(this.user_id);  
       let resp = this.service.createstore(new Store(this.store_id,this.store_name, this.phone, this.email, this.street, this.city, this.state, this.zipcode, this.country, this.publish, this.registration_date, this.user_id));
       resp.subscribe(data=>{
         this.tempData.setResoponseStatus(data);
-        this.tempData.setMessage("The store has been successfully saved!");
         this.dialogRef.closeAll();
+        this.tempData.setMessage("The store has been successfully saved!");
         this.dialog.open(MessageComponent);
         this.router.navigate(["/home"])
       })

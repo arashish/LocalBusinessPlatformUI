@@ -84,7 +84,7 @@
             <mat-form-field>
               <input matInput placeholder="Search Distance in miles" name="searchdistance" [(ngModel)]="searchdistance" [formControl]="searchdistanceFormControl">
               <mat-error *ngIf="searchdistanceFormControl.hasError">
-                Invalid distance!
+                The distance has to be greater than 0!
               </mat-error>
             </mat-form-field>
             

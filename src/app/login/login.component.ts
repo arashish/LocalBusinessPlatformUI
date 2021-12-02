@@ -9,6 +9,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { DatePipe } from '@angular/common';
 import { AboutComponent } from '../footer/about/about.component';
 import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,12 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin(){
+    if (!this.username || !this.password){
+      this.tempdata.setMessage("Error: Please check your username and password!");
+      this.dialog.open(MessageComponent);
+      return;
+    }
+
     let resp = this.service.login(this.username,this.password);
     resp.subscribe(data=>{
       this.tempdata.setToken(data);

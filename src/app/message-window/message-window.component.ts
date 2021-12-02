@@ -43,7 +43,7 @@ export class MessageWindowComponent implements OnInit {
     const pipe = new DatePipe('en-US');
     const now = Date.now();
     const messageDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
-    const messagetime: string = pipe.transform(now, 'HH:mm:ss') as string
+    const messagetime: string = pipe.transform(now, 'HH:mm:ss') as string;
     
     if (!this.recipientUsername) {
       this.tempData.setMessage("Please enter a valid email address!");

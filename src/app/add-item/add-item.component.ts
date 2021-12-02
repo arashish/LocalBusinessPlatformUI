@@ -33,10 +33,10 @@ export class AddItemComponent implements OnInit {
   isSaveButtonVisible!: boolean;
 
   item_nameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
-  descriptionFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  descriptionFormControl = new FormControl('',[Validators.required, Validators.pattern("[^]*"),])
   categoryFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   inventoryqtyFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"),])
-  priceFormControl = new FormControl('',[Validators.required, Validators.pattern("/^-?\d*[.,]?\d{0,2}$/"),])
+  priceFormControl = new FormControl('',[Validators.required, Validators.pattern("^[0-9]*\.[0-9]{2}$"),])
 
 
   constructor(private service:ApiService, private router: Router, private tempData: TempdataService, private dialog: MatDialog, private dialogRef: MatDialog, private http: HttpClient) 
@@ -101,7 +101,12 @@ export class AddItemComponent implements OnInit {
 	}
 
   AddItem(){
-    console.log(this.itemName + this.description + this.category + this.inventoryQty + this.price + this.selectedFile);
+    if (this.item_nameFormControl.hasError('pattern') || this.descriptionFormControl.hasError('pattern') || this.categoryFormControl.hasError('pattern') || this.inventoryqtyFormControl.hasError('pattern') || this.priceFormControl.hasError('pattern') ){
+      this.tempData.setMessage("Error: Please check your inputs and try again!");
+      this.dialog.open(MessageComponent);
+      return;
+    }
+
     if (!this.itemName || !this.description || !this.category || !this.inventoryQty || !this.price || !this.selectedFile) {
         this.tempData.setMessage("Please make sure to fill out at these fields before submitting: <br> -Item name <br> -Description<br> -Category <br> -Inventory Qty <br> -Item image ");
         this.dialog.open(MessageComponent);

@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
   firstnameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   lastnameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   emailFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
-  passwordFormControl = new FormControl('',[Validators.required, Validators.minLength(8)],)
+  passwordFormControl = new FormControl('',[Validators.required, Validators.pattern("^.{8,}$"),]) //new FormControl('',[Validators.required, Validators.minLength(8)],)
   userTypeFormControl = new FormControl('1')
   phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9 ]{10}"),]) //was "^[0-9]+$"
   addressFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z0-9,. ]*"),])
@@ -74,6 +74,12 @@ export class ProfileComponent implements OnInit {
   }
 
   Update(){
+    if (this.firstnameFormControl.hasError('pattern') || this.lastnameFormControl.hasError('pattern')  || this.emailFormControl.hasError('pattern') || this.lastnameFormControl.hasError('pattern') || this.passwordFormControl.hasError('pattern') || this.phoneFormControl.hasError('pattern') || this.addressFormControl.hasError('pattern') || this.cityFormControl.hasError('pattern') || this.stateFormControl.hasError('pattern') || this.zipcodeFormControl.hasError('pattern') || this.countryFormControl.hasError('pattern') || this.searchdistanceFormControl.hasError('pattern')){
+      this.tempdata.setMessage("Error: Please check your inputs and try again!");
+      this.dialog.open(MessageComponent);
+      return;
+    }
+
     if (!this.firstname || !this.lastname || !this.username || !this.password || !this.usertype) {
       this.tempdata.setMessage("Please make sure to fill out at least these four fields: <br> -Firstname <br> -Lastname <br> -Email <br> -Password");
       this.dialog.open(MessageComponent);
