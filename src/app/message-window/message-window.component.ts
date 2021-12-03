@@ -31,8 +31,7 @@ export class MessageWindowComponent implements OnInit {
 
   ngOnInit(): void {
       this.recipientUsername = this.tempData.getMessageUsername();
-
-      if (this.tempData.getStoreData() != null){
+      if (this.tempData.getloginData().usertype == 'seller'){
         this.senderUsername = this.tempData.getStoreData().email; //if a store is sending it
       } else {
         this.senderUsername = this.tempData.getloginData().username; //if a non-store people sending it

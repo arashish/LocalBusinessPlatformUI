@@ -110,8 +110,10 @@ export class DisplayStoreComponent implements OnInit {
   }
 
   ratingList(){
-    this.tempData.setReviews(this.reviews);
-    this.dialog.open(RatingListComponent, {height: '600px'});
+    if (this.totalReviews != 0) {
+      this.tempData.setReviews(this.reviews);
+      this.dialog.open(RatingListComponent, {height: '600px'});
+    }
   }
 
 }

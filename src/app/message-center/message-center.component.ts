@@ -68,11 +68,11 @@ export class MessageCenterComponent implements OnInit {
     this.messageId = 0; //reset
     for (var messageCenterData of this.messageCenterDatas)
     {
-      if (this.tempdata.getStoreData() == null) { 
-            if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username) {
+      if (this.tempdata.getloginData().usertype == 'buyer') { 
+          if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username) {
             this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
-      } else if (this.tempdata.getStoreData() != null) {
+      } else if (this.tempdata.getloginData().usertype == 'seller') {
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email) {
           this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
@@ -87,11 +87,11 @@ export class MessageCenterComponent implements OnInit {
     this.messageId = 0; //reset
     for (var messageCenterData of this.messageCenterDatas)
     {
-      if (this.tempdata.getStoreData() == null) { 
+      if (this.tempdata.getloginData().usertype == 'buyer') { 
             if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.user.username) {
             this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
-      } else if (this.tempdata.getStoreData() != null) {
+      } else if (this.tempdata.getloginData().usertype == 'seller') {
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.senderUsername === this.tempdata.getStoreData().email) {
           this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
@@ -108,11 +108,11 @@ export class MessageCenterComponent implements OnInit {
 
     for (var messageCenterData of this.messageCenterDatas)
     {
-      if (this.tempdata.getStoreData() == null) { 
+      if (this.tempdata.getloginData().usertype == 'buyer') { 
             if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.recipientUsername === this.user.username) {
             this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }
-      } else if (this.tempdata.getStoreData() != null) {
+      } else if (this.tempdata.getloginData().usertype == 'seller') {
         if (messageCenterData.messageCategory === 'DELETED' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email) {
           this.inboxMessages.push(messageCenterData); //new MessageCenter(messageCenterData.messageId, messageCenterData.senderId, messageCenterData.recipientId, messageCenterData.message, messageCenterData.messageDate, messageCenterData.messageTime, messageCenterData.messageStatus, messageCenterData.messageCategory)
         }

@@ -15,7 +15,7 @@
             <mat-form-field>
                 <input matInput placeholder="Phone Number" name="phone" [(ngModel)]="phone" [formControl]="phoneFormControl">
                 <mat-error *ngIf="phoneFormControl.hasError">
-                    Invalid Phone number!
+                    Invalid Phone number. The format should be xxx-xxx-xxxx.
                 </mat-error>    
             </mat-form-field>
         

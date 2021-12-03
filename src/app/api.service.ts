@@ -19,7 +19,7 @@ export class ApiService {
   constructor(private http: HttpClient, private tempdata: TempdataService) { }
 
   baseUrl: string = "http://it494projectbackend-env-2.eba-fg2m6uvs.us-east-2.elasticbeanstalk.com";
-  // baseUrl: string = "http://localhost:8080"
+  //baseUrl: string = "http://localhost:5000"
 
   public login(username:string, password:string){
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ":" + password)})

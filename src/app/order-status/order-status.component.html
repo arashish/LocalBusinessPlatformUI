@@ -29,7 +29,7 @@
                       <h1 id="redstatus">{{orderData.order.orderStatus}}</h1><br>
                   </div>
 
-                  <div *ngIf="orderData.order.orderStatus === 'Order Shipped'">
+                  <div *ngIf="orderData.order.orderStatus === 'Order Shipped' || orderData.order.orderStatus === 'Order Picked Up'">
                     <h1 id="greenstatus">{{orderData.order.orderStatus}} </h1><br> 
                   </div>
 

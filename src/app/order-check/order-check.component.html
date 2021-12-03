@@ -153,19 +153,25 @@
                   
 
                   <mat-card-actions align="start">
+                    <div id="inlinediv">
+                        <button mat-raised-button (click)="LeaveFeedback(orderData.customer.username)">Feedback</button>
+                    </div>
 
-                  <div id="inlinediv">
-                      <button mat-raised-button (click)="LeaveFeedback(orderData.customer.username)">Feedback</button>
-                  </div>
+                    <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Submitted' && orderData.order.shipMethod ==='LBP Delivery'">
+                        <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)">Ship Order</button>
+                    </div>
 
-                  <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Submitted'">
-                      <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)">Ship Order</button>
-                  </div>
+                    <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Shipped' && orderData.order.shipMethod ==='LBP Delivery'">
+                      <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)" disabled>Ship Order</button>
+                    </div>
 
-                  <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Shipped'">
-                    <button mat-raised-button (click)="ShipOrder(orderData.order.orderId)" disabled>Ship Order</button>
-                  </div>
+                    <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Submitted' && orderData.order.shipMethod ==='Pick Up'">
+                      <button mat-raised-button (click)="pickedUpOrder(orderData.order.orderId)">Picked Up</button>
+                    </div>
 
+                    <div id="inlinediv" *ngIf="orderData.order.orderStatus === 'Order Picked Up' && orderData.order.shipMethod ==='Pick Up'">
+                      <button mat-raised-button (click)="pickedUpOrder(orderData.order.orderId)" disabled>Picked Up</button>
+                    </div>
                   </mat-card-actions>
                 </td>
               </tr>

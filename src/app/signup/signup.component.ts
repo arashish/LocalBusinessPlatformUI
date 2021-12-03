@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
   emailFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
   passwordFormControl = new FormControl('',[Validators.required, Validators.pattern("^.{8,}$"),]) //new FormControl('',[Validators.required, Validators.minLength(8)],)
   userTypeFormControl = new FormControl('1')
-  phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9 ]{10}"),]) //was "^[0-9]+$"
+  phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}"),]) //was "^[0-9]+$"
   addressFormControl = new FormControl('',[Validators.required, Validators.pattern("[-a-zA-Z0-9,. ]*"),])
   cityFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
   stateFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z]{2}"),])

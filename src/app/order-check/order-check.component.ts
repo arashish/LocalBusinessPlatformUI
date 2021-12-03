@@ -1,9 +1,13 @@
+import { DatePipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { AboutComponent } from '../footer/about/about.component';
 import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
+import { MessageComponent } from '../message/message.component';
+import { Order } from '../models/Order';
 import { OrderShipComponent } from '../order-ship/order-ship.component';
 import { RatingListComponent } from '../rating-list/rating-list.component';
 import { RatingWindowComponent } from '../rating-window/rating-window.component';
@@ -38,6 +42,59 @@ export class OrderCheckComponent implements OnInit {
   ShipOrder(orderId: number){
     this.tempData.setOrderId(orderId);
     this.dialog.open(OrderShipComponent);
+  }
+
+  orderId: string = "";
+  customerId :string = "";
+  storeId: string = "";
+  itemId :string = "";
+  itemPrice :string = "";
+  orderQty :string = "";
+  orderStatus :string = "";
+  orderDate :string = "";
+  paymentMethod :string = "";
+  shipMethod :string = "";
+
+  pickedUpOrder(orderId: number){
+    for  (var orderData of this.orderDatas){
+      if (orderData.order.orderId === orderId) {
+        this.orderId = orderData.order.orderId;
+        this.customerId = orderData.order.customerId;
+        this.storeId = orderData.order.storeId;
+        this.itemId = orderData.order.itemId;
+        this.itemPrice = orderData.order.itemPrice;
+        this.orderQty = orderData.order.orderQty;
+        this.orderStatus = orderData.order.orderStatus;
+        this.orderDate = orderData.order.orderDate;
+        this.paymentMethod = orderData.order.paymentMethod;
+        this.shipMethod = orderData.order.shipMethod;
+        
+        let totalCash: number = Number(orderData.order.itemPrice) * Number(orderData.order.orderQty);
+
+        const pipe = new DatePipe('en-US');
+        const now = Date.now();
+        const PickedUpDate: string = pipe.transform(now, 'MM/dd/yyyy') as string;
+        let resp = this.service.shiporder(new Order(this.orderId, this.customerId, this.storeId, this.itemId, this.itemPrice, this.orderQty, "Order Picked Up", this.orderDate, this.paymentMethod, this.shipMethod, PickedUpDate, "", ""));
+        resp.subscribe(data=>{
+          this.tempData.setResoponseStatus(data);
+          this.tempData.setMessage("The order status has been set to 'picked up'! Make sure to collect $" + totalCash.toFixed(2) + " from the buyer.");
+          this.tempData.setOrderCheckNotifications(Number(this.tempData.getOrderCheckNotifications()) -1);
+          this.dialog.closeAll();
+          this.dialog.open(MessageComponent);
+          // this.tempData.setMessage("Would you like to leave a feedback to the buyer?");
+          // this.dialog.open(ConfirmBoxComponent);
+          this.router.navigate(['/ordercheck']);
+        }, err => {
+          if (err instanceof HttpErrorResponse) {
+            this.tempData.setMessage("Error: This order status cannot be changed. Please check your inventory!");
+            this.dialog.open(MessageComponent);
+          }
+        })
+
+      
+        break;
+      }
+    }
   }
 
   LeaveFeedback(email : string){
