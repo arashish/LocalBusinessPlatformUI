@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,6 +11,7 @@ import { DisplayStoreComponent } from '../display-store/display-store.component'
 import { AboutComponent } from '../footer/about/about.component';
 import { ContactUsComponent } from '../footer/contact-us/contact-us.component';
 import { LoginComponent } from '../login/login.component';
+import { MessageComponent } from '../message/message.component';
 import { Store } from '../models/store';
 import { User } from '../models/User';
 import { UserData } from '../models/UserData';
@@ -75,6 +77,7 @@ export class HomeComponent implements OnInit {
   retrievedImage: any;
   retrievedImages: any;
   
+  pageLoaded: boolean = false;
 
   constructor(route:ActivatedRoute, private service: ApiService ,private loginComponent:LoginComponent, public tempdata:TempdataService, public dialog: MatDialog, private sanitizer:DomSanitizer) { 
     
@@ -124,6 +127,7 @@ export class HomeComponent implements OnInit {
             {
               this.ratingValue =0;
             }
+            this.pageLoaded = true;
           })
   }
 
@@ -165,6 +169,12 @@ export class HomeComponent implements OnInit {
     this.retrievedImages = this.tempdata.getItemData();
     this.itemIsSearched = true;
     this.isWait = false;
+    }, err => {
+      if (err instanceof HttpErrorResponse) {
+        this.isWait = false;
+        this.tempdata.setMessage("Error: An error occured when searching for items!");
+        this.dialog.open(MessageComponent);
+      }
     })
   }
 

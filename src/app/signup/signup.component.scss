@@ -1,22 +1,26 @@
 .login-main{
     margin-top: 10%;
-    }
-    mat-card{
-    min-width: 40%;
-    }
+}
 
-    .mat-button, .mat-raised-button{
-    background-color:#4CAF50;
-    } 
+mat-card{
+  min-width: 30%;
+  max-height: 100%;
+  position: absolute;
+  overflow: auto;
+}
 
-    .errorColor{
-    background-color: red;
-    }
+.mat-button, .mat-raised-button{
+  background-color:#4CAF50;
+} 
 
-    div.a {
-    font-size: 12px;
-    }
+.errorColor{
+  background-color: red;
+}
 
-    .mat-radio-button ~ .mat-radio-button {
-        margin-left: 15px;
-      }
+div.a {
+  font-size: 12px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 15px;
+}

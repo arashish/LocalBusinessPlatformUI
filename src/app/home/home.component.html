@@ -2,9 +2,9 @@
   <nav>
       <ul>
         <li><a href="#" routerLink="/logout">logout</a></li>
-        <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/cart">Cart</a></li>
+        <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/cart" matBadge="{{tempdata.getCartItems().length}}">Cart</a></li>
         <li><a href="#" routerLink="/messagecenter" matBadge="{{tempdata.getMessageCenterNotifications()}}">Messages</a></li>
-        <li *ngIf="user.usertype === 'seller'"><a href="#" routerLink="/ordercheck" matBadge="{{this.tempdata.getOrderCheckNotifications()}}">Order</a></li>
+        <li *ngIf="user.usertype === 'seller'"><a href="#" routerLink="/ordercheck" matBadge="{{tempdata.getOrderCheckNotifications()}}">Order</a></li>
         <li *ngIf="user.usertype === 'buyer'"><a href="#" routerLink="/orderstatus">Order Status</a></li>
         <li><a href="#" routerLink="/profile">Profile</a></li>
         <li><a href="#" class="active" routerLink="/home">Home</a></li>
@@ -131,13 +131,25 @@
         <mat-label >Select a category</mat-label>
         <mat-select [(value)]="categoryName" >
           <mat-option value="All Category">All Category</mat-option>
+          <mat-option value="Arts & Crafts">Arts & Crafts</mat-option>
+          <mat-option value="Bakery">Bakery</mat-option>
+          <mat-option value="Beauty">Beauty</mat-option>
           <mat-option value="Books">Books</mat-option>
+          <mat-option value="Clothing">Clothing</mat-option>
           <mat-option value="Computers">Computers</mat-option>
           <mat-option value="Electronics">Electronics</mat-option>
           <mat-option value="Entertainment">Entertainment</mat-option>
+          <mat-option value="Food">Food</mat-option>
+          <mat-option value="Furniture">Furniture</mat-option>
+          <mat-option value="Household">Household</mat-option>
           <mat-option value="Instruments">Instruments</mat-option>
+          <mat-option value="Kids">Kids</mat-option>
+          <mat-option value="Kitchen">Kitchen</mat-option>
+          <mat-option value="Shoes">Shoes</mat-option>
           <mat-option value="Sports">Sports</mat-option>
+          <mat-option value="Toys">Toys</mat-option>
           <mat-option value="Well being">Well being</mat-option>
+          <mat-option value="Other">Other</mat-option>
         </mat-select>
       </mat-form-field>
 

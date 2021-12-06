@@ -27,10 +27,16 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput placeholder="password" type="password" name="password" [(ngModel)]="password" [formControl]="passwordFormControl">
+              <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="password" (keyup)="checkPasswords()" [formControl]="passwordFormControl">
               <mat-error *ngIf="passwordFormControl.hasError">
-                  Invalid password! The password length should be atleast 8 characters long!
-              </mat-error> 
+                Invalid password! The password length should be atleast 8 characters long!
+              </mat-error>
+              <span *ngIf="!passwordsMatch" style="color:red;font-size:11px;">The entered passwords don't match! </span>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Confirm Password" type="password" name="tempPassword" [(ngModel)]="tempPassword" (keyup)="checkPasswords()" [formControl]="tempPasswordFormControl">
+              <span *ngIf="!passwordsMatch" style="color:red;font-size:11px;">The entered passwords don't match! </span>
             </mat-form-field>
             
             <label> User Type: </label>

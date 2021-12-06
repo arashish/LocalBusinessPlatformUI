@@ -64,7 +64,7 @@ export class CreateStoreComponent implements OnInit {
 	registration_date: string="";
   user_id: string="";
 
-  store_nameFormControl = new FormControl('',[Validators.required, Validators.pattern("[a-zA-Z ]*"),])
+  store_nameFormControl = new FormControl('',[Validators.required, Validators.pattern("[-a-zA-Z.& ]*"),])
   phoneFormControl = new FormControl('',[Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}"),])
   emailFormControl = new FormControl('',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),])
   streetFormControl = new FormControl('',[Validators.required, Validators.pattern("[-a-zA-Z0-9,. ]*"),])

@@ -16,7 +16,7 @@ import { TempdataService } from '../tempdata.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(route:ActivatedRoute, private router: Router, private service: ApiService , private tempdata:TempdataService, public dialog: MatDialog) 
+  constructor(route:ActivatedRoute, private router: Router, private service: ApiService , public tempdata:TempdataService, public dialog: MatDialog) 
   { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}; //to refresh the redirected page
   }

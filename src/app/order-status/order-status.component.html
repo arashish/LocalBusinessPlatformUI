@@ -2,7 +2,7 @@
     <nav>
         <ul>
           <li><a href="#" routerLink="/logout">logout</a></li>
-          <li><a href="#" routerLink="/cart">Cart</a></li>
+          <li><a href="#" routerLink="/cart" matBadge="{{tempData.getCartItems().length}}">Cart</a></li>
           <li><a href="#" routerLink="/messagecenter" matBadge="{{tempData.getMessageCenterNotifications()}}">Messages</a></li>
           <li><a href="#" class="active" routerLink="/orderstatus">Order Status</a></li>
           <li><a href="#" routerLink="/profile">Profile</a></li>
