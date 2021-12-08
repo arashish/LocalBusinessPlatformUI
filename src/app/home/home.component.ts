@@ -195,7 +195,7 @@ export class HomeComponent implements OnInit {
   ratingList(){
     this.tempdata.setReviews(this.reviews);
     if (this.totalReviews != 0) {
-      this.dialog.open(RatingListComponent, {height: '600px'});
+      this.dialog.open(RatingListComponent); //, {height: '600px'}
     }
   }
 

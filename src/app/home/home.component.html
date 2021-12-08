@@ -383,13 +383,18 @@
       </div>  
 
       <div *ngIf="!store">
-        <mat-card-actions>
-          <button mat-raised-button value="createstore" (click)="createStore()">+</button>
-          <Span> Click here to create a store</Span>
+        <mat-card-actions style="margin: 0 auto;">
+          <button mat-raised-button value="createstore" (click)="createStore()">Click here to create a store</button>
         </mat-card-actions>
-      </div>
 
-      
+        <footer>
+          <div class="footer">
+            <a style="margin-right:15px;" class="footerlink" (click)="footerPage('about')">About</a>
+            <a style="margin-right:15px;" class="footerlink" (click)="footerPage('contactus')">Contact Us</a>
+            <a style="margin-right:15px;">© 2021 LBP, Inc</a>
+          </div>
+        </footer>
+      </div>
       
   </div>
 

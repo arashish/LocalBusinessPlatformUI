@@ -107,9 +107,11 @@ export class OrderCheckComponent implements OnInit {
   }
 
   ratingList(reviews: any){
-    this.tempData.setRequestFrom("ordercheck");
-    this.tempData.setReviews(reviews);
-    this.dialog.open(RatingListComponent, {height: '600px'});
+    if (reviews.length != 0) {
+      this.tempData.setRequestFrom("ordercheck");
+      this.tempData.setReviews(reviews);
+      this.dialog.open(RatingListComponent); //, {height: '600px'}
+    }
   }
  
   calcTotalReviews(){
