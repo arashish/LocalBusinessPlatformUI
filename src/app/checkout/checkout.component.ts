@@ -57,7 +57,7 @@ export class CheckoutComponent implements OnInit {
     resp.subscribe(data=>{
       this.tempdata.setResoponseStatus(data);
       this.tempdata.setCartItems([]);
-      this.tempdata.setMessage("Your items has been place for order. Please check your order section to get the order status");
+      this.tempdata.setMessage("Your items have been placed for an order. Please check your order section to get the order status");
       this.dialog.closeAll();
       this.dialog.open(MessageComponent);
       this.router.navigate(["/home"])

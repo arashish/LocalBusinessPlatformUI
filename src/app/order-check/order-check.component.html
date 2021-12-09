@@ -45,15 +45,17 @@
                   <table>
                     <tr>
                       <td><h3>Rating:</h3></td>
-                      <td *ngIf="ratingValueArray[index]==0">
-                          <span style="font-size:15px">{{ratingValueArray[index]}} </span>
+                      <td *ngIf="ratingValueArray[index]==0 || orderData.review.length==0">
+                          <!-- <span style="font-size:15px">{{ratingValueArray[index]}} </span> -->
+                          <span style="font-size:15px">0 </span>
                           <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                           <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                           <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                           <span class="fa fa-star" style="color:#ccc; font-size:20px"></span>
                           <span class="fa fa-star" style="color:#ccc; font-size:20px"> </span>
-                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span>
-                      </td>
+                          <!-- <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">{{totalReviewsArray[index]}} reviews</span><span>)</span> -->
+                          <span> (</span><span class="link" style="font-size:15px" (click)="ratingList(orderData.review)">0 reviews</span><span>)</span>
+                        </td>
     
                       <td *ngIf="ratingValueArray[index]==1">
                           <span style="font-size:15px">{{ratingValueArray[index]}} </span>

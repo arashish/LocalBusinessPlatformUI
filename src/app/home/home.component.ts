@@ -207,11 +207,11 @@ export class HomeComponent implements OnInit {
     var unreadMessages: number = 0;
     for (var messageCenterData of this.tempdata.getMessageCenterData())
     {
-      if (this.tempdata.getStoreData() == null) {
+      if (this.tempdata.getloginData().usertype == 'buyer') {
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.user.username && messageCenterData.messageStatus === 'U') {
           unreadMessages = unreadMessages + 1;  
         }
-      } else {
+      } else if (this.tempdata.getloginData().usertype == 'seller') {
         if (messageCenterData.messageCategory === 'INBOX' && messageCenterData.recipientUsername === this.tempdata.getStoreData().email && messageCenterData.messageStatus === 'U') {
           unreadMessages = unreadMessages + 1; 
         }
